@@ -108,7 +108,7 @@ describe("hints", () => {
 
 describe("share text", () => {
   it("matches the agreed format", () => {
-    expect(shareText(30, 49)).toBe("Verbil (verbil.fun)\nCantering 🟧🟧🟧🟧🟧🟧⬜⬜⬜⬜\n30/49 words - 61%");
+    expect(shareText(30, 49)).toBe("🐭 Verbil (verbil.fun)\nCantering 🟧🟧🟧🟧🟧🟧⬜⬜⬜⬜\n30/49 words - 61%");
   });
 
   it("fills the bar only when every word is found", () => {
