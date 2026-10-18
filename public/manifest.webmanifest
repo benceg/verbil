@@ -1,7 +1,7 @@
 {
   "name": "Verbil",
   "short_name": "Verbil",
-  "description": "A daily verb synonym game. Help the gerbil run!",
+  "description": "A daily synonym game. Can you find every word?",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFF4E6",
