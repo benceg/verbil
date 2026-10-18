@@ -7,7 +7,23 @@ import data from "./puzzles.json";
 const puzzles = data as unknown as Puzzle[];
 const byDate = new Map(puzzles.map((p) => [p.date, p]));
 
-const app = new Hono();
+const app = new Hono<{ Bindings: { ASSETS: Fetcher } }>();
+
+// The deployed site. Anything else (localhost, a LAN address for testing on a phone) is
+// left alone, so local development keeps working over plain http.
+const PRODUCTION = /(^|\.)verbil\.fun$|\.workers\.dev$/;
+
+// On the real site, always use HTTPS and tell browsers to stick to it (HSTS).
+app.use("*", async (c, next) => {
+  const url = new URL(c.req.url);
+  const production = PRODUCTION.test(url.hostname);
+  if (production && url.protocol === "http:") {
+    url.protocol = "https:";
+    return c.redirect(url.toString(), 301);
+  }
+  await next();
+  if (production) c.header("Strict-Transport-Security", "max-age=31536000");
+});
 
 // Nothing dated after today (in the earliest timezone) is ever served, so tomorrow's
 // words can't be fetched early. The answers aren't in the client bundle either.
@@ -29,6 +45,9 @@ app.get("/api/archive", (c) => {
   return c.json(entries);
 });
 
-app.notFound((c) => c.json({ error: "Not found" }, 404));
+app.all("/api/*", (c) => c.json({ error: "Not found" }, 404));
+
+// Everything else is the single-page app.
+app.all("*", (c) => c.env.ASSETS.fetch(c.req.raw));
 
 export default app;

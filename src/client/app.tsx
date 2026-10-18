@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "preact/hooks";
-import { addDays, formatDate, isDate, LAUNCH, localToday } from "../shared/dates";
+import { formatDate, isDate, LAUNCH, localToday } from "../shared/dates";
 import { answersOf } from "../shared/puzzle";
 import type { ArchiveEntry, Puzzle } from "../shared/types";
 import { fetchArchive, fetchPuzzle, NotAvailable } from "./api";
@@ -206,17 +206,16 @@ export function App() {
 
   const everything = panel === "archive" ? allProgress() : {};
   const sensesKnown = puzzle ? knownSenses(puzzle, new Set(found), progress.hints).size : 0;
-  const prev = addDays(date, -1);
-  const next = addDays(date, 1);
 
   const closePanel = useCallback(() => setPanel(null), []);
 
   return (
     <div class="shell">
       <div class="app">
+        {/* A button either side keeps the title centred over the verb. */}
         <header class="top">
-          <button type="button" class="icon-btn" onClick={() => go(prev)} disabled={prev < LAUNCH} aria-label="Previous day">
-            ‹
+          <button type="button" class="icon-btn top-help" onClick={() => setPanel("help")} aria-label="How to play">
+            ?
           </button>
           <div class="title">
             <h1>Verbil</h1>
@@ -225,17 +224,9 @@ export function App() {
               {date === today ? "Today" : formatDate(date)}
             </span>
           </div>
-          <button type="button" class="icon-btn" onClick={() => go(next)} disabled={next > today} aria-label="Next day">
-            ›
+          <button type="button" class="icon-btn top-archive" onClick={() => setPanel("archive")} aria-label="All puzzles">
+            ☰
           </button>
-          <div class="top-actions">
-            <button type="button" class="icon-btn" onClick={() => setPanel("archive")} aria-label="All puzzles">
-              ☰
-            </button>
-            <button type="button" class="icon-btn" onClick={() => setPanel("help")} aria-label="How to play">
-              ?
-            </button>
-          </div>
         </header>
 
         <section class="puzzle-head">

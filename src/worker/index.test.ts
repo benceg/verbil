@@ -42,4 +42,20 @@ describe("puzzle API", () => {
     expect(list.map((e) => e.date)).toEqual(["2026-10-20", "2026-10-19", "2026-10-18"]);
     expect(list[2].total).toBeGreaterThanOrEqual(24);
   });
+
+  it("redirects http to https on the real site only", async () => {
+    const res = await app.request("http://verbil.fun/?date=2026-10-18");
+    expect(res.status).toBe(301);
+    expect(res.headers.get("location")).toBe("https://verbil.fun/?date=2026-10-18");
+    expect((await app.request("http://www.verbil.fun/")).status).toBe(301);
+    expect((await app.request("http://verbil.example.workers.dev/")).status).toBe(301);
+    expect((await app.request("http://localhost/api/archive")).status).toBe(200);
+    expect((await app.request("http://192.168.1.20:5173/api/archive")).status).toBe(200);
+  });
+
+  it("sends HSTS over https", async () => {
+    at("2026-10-20T00:00:00Z");
+    const res = await app.request("https://verbil.fun/api/archive");
+    expect(res.headers.get("strict-transport-security")).toContain("max-age=");
+  });
 });

@@ -4,8 +4,8 @@
 // - Puzzles and the archive are fetched from the network when possible and fall back to
 //   the last copy seen, so any day you've opened can be replayed with no connection.
 
-const CACHE = "verbil-v2";
-const SHELL = ["/", "/favicon.svg", "/fonts/nunito-latin.woff2", "/manifest.webmanifest"];
+const CACHE = "verbil-v3";
+const SHELL = ["/", "/favicon.svg", "/apple-touch-icon.png", "/fonts/nunito-latin.woff2", "/manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
