@@ -1,6 +1,12 @@
 import { Sheet } from "./Sheet";
 
-export function Help({ onClose }: { onClose: () => void }) {
+interface Props {
+  animate: boolean;
+  onToggleAnimate: () => void;
+  onClose: () => void;
+}
+
+export function Help({ animate, onToggleAnimate, onClose }: Props) {
   return (
     <Sheet title="How to play" onClose={onClose}>
       <div class="help">
@@ -25,6 +31,22 @@ export function Help({ onClose }: { onClose: () => void }) {
           You can replay any past day, but tomorrow's puzzle stays locked until tomorrow. Your progress is saved on
           this device. Word lists are built from Princeton WordNet and curated by hand.
         </p>
+        <div class="setting">
+          <div>
+            <b id="animations-label">Animations</b>
+            <p class="muted small">Off to start with if your device is set to reduce motion.</p>
+          </div>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={animate}
+            aria-labelledby="animations-label"
+            class={`switch ${animate ? "on" : ""}`}
+            onClick={onToggleAnimate}
+          >
+            <span class="knob" />
+          </button>
+        </div>
         <p class="muted small copyright">
           Copyright © {new Date().getFullYear()}{" "}
           <a href="https://ceglow.ski" target="_blank" rel="noopener">

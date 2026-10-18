@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "preact/hooks";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
 import { formatDate, isDate, LAUNCH, localToday } from "../shared/dates";
 import { answersOf } from "../shared/puzzle";
 import type { ArchiveEntry, Puzzle } from "../shared/types";
@@ -13,6 +13,7 @@ import { knownSenses, moreHelp, newHint } from "./game/hints";
 import { judge } from "./game/lemma";
 import { GERBRILLIANT, percent, tierFor } from "./game/scoring";
 import { allProgress, loadProgress, type Progress, saveProgress, streak } from "./game/storage";
+import { onReducedMotionChange, prefersReducedMotion, saveAnimate, savedAnimate } from "./settings";
 
 type Panel = "found" | "hints" | "archive" | "help" | null;
 type ToastKind = "good" | "bad" | "info" | "big";
@@ -58,6 +59,19 @@ export function App() {
   const [brilliantKey, setBrilliantKey] = useState(0);
   const [smashKey, setSmashKey] = useState(0);
   const [listMode, setListMode] = useState<ListMode>(savedListMode);
+
+  // Animation follows the device's reduced-motion setting unless the player has chosen.
+  const [animatePref, setAnimatePref] = useState(savedAnimate);
+  const [reducedMotion, setReducedMotion] = useState(prefersReducedMotion);
+  useEffect(() => onReducedMotionChange(setReducedMotion), []);
+  const animate = animatePref ?? !reducedMotion;
+  useLayoutEffect(() => {
+    document.documentElement.dataset.motion = animate ? "on" : "off";
+  }, [animate]);
+  const toggleAnimate = () => {
+    setAnimatePref(!animate);
+    saveAnimate(!animate);
+  };
   const changeListMode = (mode: ListMode) => {
     setListMode(mode);
     try {
@@ -249,7 +263,7 @@ export function App() {
           )}
         </section>
 
-        <Gerbil key={date} pct={pct} finished={complete} brilliantKey={brilliantKey} smashKey={smashKey} />
+        <Gerbil key={date} pct={pct} finished={complete} brilliantKey={brilliantKey} smashKey={smashKey} animate={animate} />
 
         <div class="entry-wrap">
           {toast && (
@@ -315,7 +329,7 @@ export function App() {
             onClose={closePanel}
           />
         )}
-        {panel === "help" && <Help onClose={closePanel} />}
+        {panel === "help" && <Help animate={animate} onToggleAnimate={toggleAnimate} onClose={closePanel} />}
       </div>
       <aside class="side" aria-label="Words found">
         <h2>

@@ -14,12 +14,15 @@ type GRef = RefObject<SVGGElement | null>;
  *   rolls off-screen, then the gerbil hops back, dizzy, and turns to face you
  *   holding a #1 trophy.
  * - `finished` replays the Smashdown whenever a solved day is opened or reloaded.
+ * - `animate` false freezes the scene in its resting pose.
  */
 
 interface Props {
   pct: number;
   finished: boolean;
   brilliantKey: number;
+  /** Off: everything holds still (the player's setting, which defaults to their reduced-motion preference). */
+  animate: boolean;
   smashKey: number;
 }
 
@@ -236,7 +239,7 @@ interface Particle {
 
 const CONFETTI = ["#F08A3C", "#F7A8B8", "#6CC3C1", "#FFD166", "#8E7DFF", "#5BAA6A"];
 
-export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
+export function Gerbil({ pct, finished, brilliantKey, smashKey, animate }: Props) {
   const stage = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const wheelGroup = useRef<SVGGElement>(null);
@@ -253,6 +256,7 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
   const anim = useRef({
     pct,
     finished,
+    animate,
     angle: 0,
     speed: 0,
     phase: 0,
@@ -263,6 +267,7 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
   });
   anim.current.pct = pct;
   anim.current.finished = finished;
+  anim.current.animate = animate;
 
   const firstBrilliant = useRef(brilliantKey);
   const firstSmash = useRef(smashKey);
@@ -275,7 +280,6 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
   }, [smashKey]);
 
   useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const ctx = canvas.current!.getContext("2d")!;
     let size = { w: 0, h: 0, dpr: 1 };
     const resize = () => {
@@ -290,7 +294,7 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
 
     const burst = (count: number, star: boolean, fromTop: boolean) => {
       const a = anim.current;
-      for (let i = 0; i < (reduced ? 0 : count); i++) {
+      for (let i = 0; i < (a.animate ? count : 0); i++) {
         const angle = Math.random() * Math.PI * 2;
         const v = 120 + Math.random() * 260;
         a.particles.push({
@@ -322,19 +326,22 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
       const dt = Math.min(0.05, now - last);
       last = now;
       const a = anim.current;
+      // With animation off the scene is drawn in its resting pose: no spinning, swaying,
+      // blinking, particles or Smashdown sequence (its final scene is shown straight away).
+      const still = !a.animate;
 
       // A day that's already solved replays the Smashdown each time it's opened. (Checked
       // here rather than on mount because the puzzle, and so `finished`, arrives later.)
-      if (a.finished && a.smashAt < 0 && !reduced) a.smashAt = now + 0.9;
+      if (a.finished && a.smashAt < 0 && !still) a.smashAt = now + 0.9;
 
       // Smashdown timeline, or the settled aftermath.
       const smashT = a.smashAt >= 0 ? now - a.smashAt : -Infinity;
-      const smashing = smashT >= 0 && smashT < SMASH_SECONDS && !reduced;
-      const aftermath = smashT >= SMASH_SECONDS || (a.finished && (reduced || a.smashAt < 0));
+      const smashing = smashT >= 0 && smashT < SMASH_SECONDS && !still;
+      const aftermath = smashT >= SMASH_SECONDS || (a.finished && (still || a.smashAt < 0));
 
       // Wheel speed eases towards the target for the current progress.
       const target = smashing ? MAX_SPEED * 1.6 : a.pct <= 0 ? 0 : MAX_SPEED * (0.12 + 0.88 * easeOut(a.pct / 100));
-      a.speed += (target - a.speed) * Math.min(1, dt * 1.8);
+      a.speed = still ? 0 : a.speed + (target - a.speed) * Math.min(1, dt * 1.8);
       a.angle = (a.angle + a.speed * dt) % (Math.PI * 2);
       const pace = clamp(a.speed / 2);
       a.phase += a.speed * 3.1 * dt;
@@ -401,7 +408,7 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
         runner.root.current,
         `translate(192 ${rootY}) scale(${RUNNER_SCALE}) rotate(${lean} ${BACK_FOOT.x} ${BACK_SOLE_Y})`,
       );
-      const tailSway = Math.sin(now * (a.speed > 0.3 ? 9 : 2.2)) * (a.speed > 0.3 ? 3 : 4);
+      const tailSway = still ? 0 : Math.sin(now * (a.speed > 0.3 ? 9 : 2.2)) * (a.speed > 0.3 ? 3 : 4);
       setT(runner.tail.current, `translate(-44 -22) rotate(${tailSway})`);
       setT(runner.ear.current, `translate(22 -58) rotate(${-pace * 14 + Math.sin(now * 12) * 3 * pace})`);
 
@@ -413,11 +420,11 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
 
       // Blinking, star eyes after Gerbrilliant.
       if (now > a.blinkAt + 0.14) a.blinkAt = now + 2.5 + Math.random() * 3;
-      const blinking = now > a.blinkAt;
-      const starry = a.brilliantAt >= 0 && now - a.brilliantAt < 2.2;
+      const blinking = !still && now > a.blinkAt;
+      const starry = !still && a.brilliantAt >= 0 && now - a.brilliantAt < 2.2;
       // Shades drop on once the star eyes fade (or are simply on, for a day already past 80%).
       const cool = a.pct >= GERBRILLIANT && !starry;
-      const drop = a.brilliantAt >= 0 ? easeOut(clamp((now - a.brilliantAt - 2.2) / 0.45)) : 1;
+      const drop = !still && a.brilliantAt >= 0 ? easeOut(clamp((now - a.brilliantAt - 2.2) / 0.45)) : 1;
       for (const part of [runner.shades, runner.shadesArm]) {
         part.current?.setAttribute("display", cool ? "inline" : "none");
         setT(part.current, `translate(0 ${-36 * (1 - drop)})`);
@@ -443,10 +450,11 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
         }
       }
       show(champ.root.current, aftermath || (smashing && smashT > 3.4));
-      const breathe = 1 + Math.sin(now * 2.4) * 0.012;
+      const sway = still ? 0 : 1;
+      const breathe = 1 + Math.sin(now * 2.4) * 0.012 * sway;
       setT(champ.root.current, `translate(${200 + cx} ${286 + hop}) scale(1.15 ${1.15 * breathe})`);
-      setT(champ.tail.current, `rotate(${Math.sin(now * 3) * 8} 16 -12)`);
-      setT(champ.trophy.current, `translate(0 ${-9 * raise}) rotate(${Math.sin(now * 2) * 3 * raise} 0 -20)`);
+      setT(champ.tail.current, `rotate(${Math.sin(now * 3) * 8 * sway} 16 -12)`);
+      setT(champ.trophy.current, `translate(0 ${-9 * raise}) rotate(${Math.sin(now * 2) * 3 * raise * sway} 0 -20)`);
       const dizzyOn = smashing && smashT > 3.4 && smashT < 5.2;
       show(dizzy.current, dizzyOn);
       setT(dizzy.current, `translate(${200 + cx} ${286 + hop - 92}) rotate(${(now * 240) % 360})`);
