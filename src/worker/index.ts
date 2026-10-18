@@ -1,6 +1,5 @@
 import { Hono } from "hono";
 import { isDate, latestPlayableDate } from "../shared/dates";
-import { answersOf } from "../shared/puzzle";
 import type { ArchiveEntry, Puzzle } from "../shared/types";
 import data from "./puzzles.json";
 
@@ -39,7 +38,7 @@ app.get("/api/archive", (c) => {
   const latest = latestPlayableDate();
   const entries: ArchiveEntry[] = puzzles
     .filter((p) => p.date <= latest)
-    .map((p) => ({ number: p.number, date: p.date, verb: p.verb, total: answersOf(p).length }))
+    .map((p) => ({ number: p.number, date: p.date, starter: p.starter, definition: p.definition, total: p.words.length }))
     .reverse();
   c.header("Cache-Control", "public, max-age=300");
   return c.json(entries);

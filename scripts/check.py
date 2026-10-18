@@ -30,15 +30,15 @@ def main():
     only = {v.upper() for v in sys.argv[1:]}
     total = flagged = 0
     for p in json.loads(OUT.read_text()):
-        if only and p["verb"] not in only:
+        if only and p["starter"] not in only or p["pos"] != "verb":
             continue
-        near = neighbourhood(p["verb"])
-        words = list(dict.fromkeys(w for s in p["senses"] for w in s["words"]))
+        near = neighbourhood(p["starter"])
+        words = p["words"]
         loose = [w for w in words if not set(wn.synsets(w.lower(), "v")) & near]
         total += len(words)
         flagged += len(loose)
         if loose:
-            print(f"{p['verb']}: {' '.join(loose)}")
+            print(f"{p['starter']}: {' '.join(loose)}")
     print(f"# {flagged}/{total} answers not connected in WordNet ({flagged / total:.0%})")
 
 

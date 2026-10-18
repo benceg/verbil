@@ -45,7 +45,9 @@ export function Archive({ entries: all, failed, progress, today, current, streak
                 >
                   <span class="archive-num">#{e.number}</span>
                   <span class="archive-date">{e.date === today ? "Today" : formatDate(e.date)}</span>
-                  <span class="archive-verb">{e.verb}</span>
+                  <span class="archive-verb" title={e.definition}>
+                    {e.starter}
+                  </span>
                   <span class="archive-status">
                     {p?.revealed ? "Revealed" : tier.label}
                     {found > 0 && pct < 100 ? ` · ${pct}%` : ""}

@@ -1,15 +1,14 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
 import { formatDate, isDate, LAUNCH, localToday } from "../shared/dates";
-import { answersOf } from "../shared/puzzle";
 import type { ArchiveEntry, Puzzle } from "../shared/types";
 import { fetchArchive, fetchPuzzle, NotAvailable } from "./api";
 import { Archive } from "./components/Archive";
-import { FoundList, FoundWords, type ListMode } from "./components/FoundWords";
+import { FoundList, FoundWords } from "./components/FoundWords";
 import { Gerbil } from "./components/Gerbil";
 import { Help } from "./components/Help";
 import { Hints } from "./components/Hints";
 import { Keyboard } from "./components/Keyboard";
-import { knownSenses, moreHelp, newHint } from "./game/hints";
+import { moreHelp, newHint } from "./game/hints";
 import { judge } from "./game/lemma";
 import { GERBRILLIANT, percent, tierFor } from "./game/scoring";
 import { shareText } from "./game/share";
@@ -21,15 +20,6 @@ type ToastKind = "good" | "bad" | "info" | "big";
 
 const MAX_LETTERS = 15;
 const SEEN_HELP = "verbil:v1:seen-help";
-const LIST_MODE = "verbil:v1:list-mode";
-
-function savedListMode(): ListMode {
-  try {
-    return localStorage.getItem(LIST_MODE) === "sense" ? "sense" : "alpha";
-  } catch {
-    return "alpha";
-  }
-}
 
 function dateFromUrl(today: string): string {
   const d = new URLSearchParams(location.search).get("date");
@@ -59,7 +49,6 @@ export function App() {
   const [archive, setArchive] = useState<ArchiveEntry[] | null>(null);
   const [brilliantKey, setBrilliantKey] = useState(0);
   const [smashKey, setSmashKey] = useState(0);
-  const [listMode, setListMode] = useState<ListMode>(savedListMode);
 
   // Animation follows the device's reduced-motion setting unless the player has chosen.
   const [animatePref, setAnimatePref] = useState(savedAnimate);
@@ -72,14 +61,6 @@ export function App() {
   const toggleAnimate = () => {
     setAnimatePref(!animate);
     saveAnimate(!animate);
-  };
-  const changeListMode = (mode: ListMode) => {
-    setListMode(mode);
-    try {
-      localStorage.setItem(LIST_MODE, mode);
-    } catch {
-      // ignore
-    }
   };
 
   useEffect(() => {
@@ -130,7 +111,7 @@ export function App() {
     setPanel(null);
   };
 
-  const answers = useMemo(() => (puzzle ? answersOf(puzzle) : []), [puzzle]);
+  const answers = useMemo(() => puzzle?.words ?? [], [puzzle]);
   const answerSet = useMemo(() => new Set(answers), [answers]);
   const total = answers.length;
   const found = progress.found;
@@ -211,7 +192,10 @@ export function App() {
   }, []);
 
   // The system share sheet where there is one; otherwise copy the text to the clipboard.
+  // Sharing is the reward for reaching Gerbrilliant.
+  const canShare = pct >= GERBRILLIANT;
   const share = async () => {
+    if (!canShare) return;
     const text = shareText(found.length, total);
     const copy = async () => {
       try {
@@ -239,7 +223,6 @@ export function App() {
   };
 
   const everything = panel === "archive" ? allProgress() : {};
-  const sensesKnown = puzzle ? knownSenses(puzzle, new Set(found), progress.hints).size : 0;
 
   const closePanel = useCallback(() => setPanel(null), []);
 
@@ -268,7 +251,10 @@ export function App() {
             <p class="error">{error}</p>
           ) : (
             <>
-              <div class="verb">{puzzle?.verb ?? "…"}</div>
+              <div class="verb">{puzzle?.starter ?? "…"}</div>
+              <p class="definition">
+                {puzzle ? `${puzzle.pos === "verb" ? "" : `${puzzle.pos}, `}as in “${puzzle.definition}”` : "\u00a0"}
+              </p>
               <div class="score">
                 <span class={`tier tier-${tier.min}`}>{progress.revealed ? "Revealed" : tier.label}</span>
                 <span class="count">
@@ -309,8 +295,6 @@ export function App() {
           puzzle={puzzle}
           found={found}
           revealed={!!progress.revealed}
-          mode={listMode}
-          onMode={changeListMode}
           open={panel === "found"}
           onOpen={() => setPanel("found")}
           onClose={closePanel}
@@ -318,11 +302,11 @@ export function App() {
 
         <div class="action-row">
           <button type="button" class="btn small" onClick={() => setPanel("hints")} disabled={!puzzle}>
-            💡 Hints · senses {sensesKnown}/{puzzle?.senses.length ?? "?"}
+            💡 Hints
           </button>
-          {found.length > 0 && (
-            <button type="button" class="btn small" onClick={share}>
-              ↗ Share
+          {canShare && (
+            <button type="button" class="btn small share-btn" onClick={share}>
+              <span class="share-label">{complete ? "Smashdown!" : "Gerbrilliant!"}</span> ↗ Share
             </button>
           )}
         </div>
@@ -360,7 +344,7 @@ export function App() {
         <h2>
           {progress.revealed ? "All the words" : `${found.length} ${found.length === 1 ? "word" : "words"} found`}
         </h2>
-        <FoundList puzzle={puzzle} found={found} revealed={!!progress.revealed} mode={listMode} onMode={changeListMode} />
+        <FoundList puzzle={puzzle} found={found} revealed={!!progress.revealed} />
       </aside>
     </div>
   );

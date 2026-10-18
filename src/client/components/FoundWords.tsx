@@ -1,47 +1,26 @@
 import type { Puzzle } from "../../shared/types";
 import { Sheet } from "./Sheet";
 
-export type ListMode = "alpha" | "sense";
-
 interface ListProps {
   puzzle: Puzzle | null;
   found: string[];
   revealed: boolean;
-  mode: ListMode;
-  onMode: (mode: ListMode) => void;
 }
 
-/** The discovered words, alphabetically or grouped under the senses they belong to. */
-export function FoundList({ puzzle, found, revealed, mode, onMode }: ListProps) {
+/** The discovered words (or, once revealed, all of them), alphabetically. */
+export function FoundList({ puzzle, found, revealed }: ListProps) {
   const foundSet = new Set(found);
-  const show = (words: string[]) => [...new Set(words)].filter((w) => revealed || foundSet.has(w)).sort();
-  const item = (w: string) => <li class={revealed && !foundSet.has(w) ? "missed" : ""}>{w}</li>;
-  const all = puzzle ? show(puzzle.senses.flatMap((s) => s.words)) : [];
-
+  const words = (revealed && puzzle ? puzzle.words : found).slice().sort();
   return (
     <div class="found-list">
-      <div class="seg" role="group" aria-label="Sort words">
-        <button type="button" class={mode === "alpha" ? "on" : ""} onClick={() => onMode("alpha")}>
-          A–Z
-        </button>
-        <button type="button" class={mode === "sense" ? "on" : ""} onClick={() => onMode("sense")}>
-          By sense
-        </button>
-      </div>
-      {!all.length ? (
-        <p class="muted small">Nothing yet. Type a synonym and press Enter.</p>
-      ) : mode === "alpha" ? (
-        <ul class="word-list">{all.map(item)}</ul>
+      {words.length ? (
+        <ul class="word-list">
+          {words.map((w) => (
+            <li class={revealed && !foundSet.has(w) ? "missed" : ""}>{w}</li>
+          ))}
+        </ul>
       ) : (
-        puzzle!.senses.map((s) => {
-          const words = show(s.words);
-          return words.length ? (
-            <section class="sense-group">
-              <h4>{s.label}</h4>
-              <ul class="word-list">{words.map(item)}</ul>
-            </section>
-          ) : null;
-        })
+        <p class="muted small">Nothing yet. Type a synonym and press Enter.</p>
       )}
     </div>
   );

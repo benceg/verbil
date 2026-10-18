@@ -2,8 +2,11 @@ import type { Puzzle } from "../../shared/types";
 
 export type Verdict = { kind: "answer"; word: string } | { kind: "starter" } | { kind: "unknown" };
 
-/** Possible base forms of an inflected verb: JOGGING -> JOG, CARRIED -> CARRY, ... */
-export function baseForms(word: string): string[] {
+/**
+ * Possible base forms of an inflected word: JOGGING -> JOG, CARRIED -> CARRY, FOOLS -> FOOL,
+ * and with `comparatives`, HAPPIER -> HAPPY, BIGGEST -> BIG, NICER -> NICE.
+ */
+export function baseForms(word: string, comparatives = false): string[] {
   const out = [word];
   const add = (stem: string) => {
     if (stem.length < 2) return;
@@ -18,6 +21,15 @@ export function baseForms(word: string): string[] {
     add(word.slice(0, -2));
     add(word.slice(0, -1));
   }
+  if (comparatives) {
+    for (const end of ["EST", "ER"]) {
+      if (!word.endsWith(end)) continue;
+      const stem = word.slice(0, -end.length);
+      if (stem.endsWith("I")) out.push(`${stem.slice(0, -1)}Y`); // HAPPI(ER) -> HAPPY
+      add(stem); // QUICK(ER), BIGG(EST) -> BIG
+      add(`${stem}E`); // NIC(ER) -> NICE
+    }
+  }
   if (word.endsWith("ING")) {
     const stem = word.slice(0, -3);
     add(stem);
@@ -28,10 +40,10 @@ export function baseForms(word: string): string[] {
 }
 
 export function judge(input: string, puzzle: Puzzle, answers: Set<string>): Verdict {
-  for (const base of baseForms(input)) {
+  for (const base of baseForms(input, puzzle.pos === "adjective")) {
     for (const word of [base, puzzle.forms[base]]) {
       if (!word) continue;
-      if (word === puzzle.verb) return { kind: "starter" };
+      if (word === puzzle.starter) return { kind: "starter" };
       if (answers.has(word)) return { kind: "answer", word };
     }
   }

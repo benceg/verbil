@@ -28,6 +28,7 @@ interface Props {
 
 const WHEEL = { x: 200, y: 140, r: 112 };
 const MAX_SPEED = 7.5; // radians per second at 100%
+const SWEAT_CYCLE = 2.8; // seconds: fade in, fall, fade out, then a pause
 const RUNNER_SCALE = 1.12;
 // Foot centres (far-back, far-front, near-back, near-front), each overlapping the belly edge.
 const FEET = [
@@ -214,6 +215,7 @@ function Champion({ refs }: { refs: ChampionRefs }) {
 }
 
 const easeOut = (t: number) => 1 - (1 - t) * (1 - t);
+const easeIn = (t: number) => t * t;
 const clamp = (v: number, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, v));
 function bounce(t: number) {
   const n = 7.5625;
@@ -416,7 +418,13 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey, animate }: Props
       const fast = clamp((a.speed / MAX_SPEED - 0.6) * 3);
       speedLines.current?.setAttribute("opacity", String(fast * (0.6 + 0.4 * Math.sin(now * 20))));
       setT(speedLines.current, `translate(${-((now * 160) % 30)} 0)`);
-      sweat.current?.setAttribute("opacity", String(clamp((a.speed / MAX_SPEED - 0.8) * 5)));
+      // The sweat drop fades in, falls and fades out, then pauses before the next one.
+      const sweating = clamp((a.speed / MAX_SPEED - 0.8) * 5);
+      const t = (now % SWEAT_CYCLE) / SWEAT_CYCLE;
+      const fall = easeIn(clamp((t - 0.1) / 0.45));
+      const visible = still ? 1 : Math.min(clamp(t / 0.1), clamp((0.55 - t) / 0.15));
+      sweat.current?.setAttribute("opacity", String(sweating * visible));
+      setT(sweat.current, `translate(0 ${still ? 0 : fall * 16})`);
 
       // Blinking, star eyes after Gerbrilliant.
       if (now > a.blinkAt + 0.14) a.blinkAt = now + 2.5 + Math.random() * 3;

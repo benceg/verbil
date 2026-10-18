@@ -14,7 +14,7 @@ describe("puzzle API", () => {
     at("2026-10-18T12:00:00Z");
     const res = await app.request("/api/puzzle/2026-10-18");
     expect(res.status).toBe(200);
-    expect(((await res.json()) as Puzzle).verb).toBe("RUN");
+    expect(((await res.json()) as Puzzle).starter).toBe("RUN");
   });
 
   it("refuses tomorrow's puzzle", async () => {

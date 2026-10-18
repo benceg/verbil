@@ -154,6 +154,13 @@ button {
   letter-spacing: 0.12em;
   line-height: 1.1;
 }
+.definition {
+  margin: 2px 0 6px;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-style: italic;
+}
 .score {
   display: flex;
   justify-content: space-between;
@@ -345,10 +352,12 @@ button {
   stroke: var(--outline);
   opacity: 0.55;
 }
+/* Stroked in the lens colour, not the outline, so the lenses keep their size. */
 .g-shades-lens {
   fill: #1f1a24;
-  stroke: var(--outline);
+  stroke: #1f1a24;
   stroke-width: 2;
+  stroke-linejoin: round;
 }
 .g-shades-arm {
   stroke: #1f1a24;
@@ -505,6 +514,8 @@ button {
   display: flex;
   justify-content: center;
   gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
   padding: 6px 0;
 }
 
@@ -658,107 +669,50 @@ button {
   font-weight: 400;
 }
 
-/* Found list */
-.seg {
-  display: inline-flex;
-  padding: 3px;
-  margin-bottom: 12px;
-  border-radius: 99px;
-  background: var(--key);
-}
-.seg button {
-  border: 0;
-  border-radius: 99px;
-  padding: 5px 14px;
-  background: transparent;
-  font-size: 0.85rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-.seg button.on {
-  background: var(--surface);
-  box-shadow: 0 1px 3px var(--shadow);
-}
-.sense-group h4 {
-  margin: 14px 0 4px;
-  font-size: 0.9rem;
-  color: var(--ink-soft);
-  font-weight: 700;
-}
-.sense-group:first-of-type h4 {
-  margin-top: 0;
+.share-label {
+  margin-right: 4px;
+  color: var(--accent);
+  font-weight: 900;
 }
 
 /* Hints */
-.senses-title {
-  margin: 4px 0 0;
-  font-size: 1.05rem;
-}
-.sense-grid {
+.length-bars {
+  list-style: none;
   margin: 10px 0 4px;
+  padding: 0;
 }
-/* One grid template for every row keeps the length columns aligned; squares shrink to fit. */
-.sg-row {
+.length-bars li {
   display: grid;
-  grid-template-columns: minmax(5.5rem, 1fr) repeat(var(--cols), minmax(0, 2.3rem)) 2.6rem;
+  grid-template-columns: 1.6rem 1fr 3rem;
   align-items: center;
-  gap: 4px;
-  padding: 4px 0;
-  border-bottom: 1px solid var(--line);
+  gap: 10px;
+  padding: 3px 0;
 }
-.sg-header {
-  border-bottom: 0;
-}
-.sg-len {
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--ink-soft);
-}
-.sg-label {
-  min-width: 0;
+.lb-len {
   font-size: 0.85rem;
-  line-height: 1.2;
-}
-.sg-mystery {
-  color: var(--ink-soft);
-  font-style: italic;
-}
-.sg-total {
+  font-weight: 800;
   text-align: right;
+}
+.lb-bar {
+  height: 14px;
+  border-radius: 99px;
+  background: var(--key);
+  overflow: hidden;
+}
+.lb-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #f2a65a;
+  transition: width 0.3s;
+}
+.lb-done .lb-fill {
+  background: var(--wheel);
+}
+.lb-count {
   color: var(--ink-soft);
   font-size: 0.8rem;
   font-variant-numeric: tabular-nums;
-}
-.sg-cell {
-  width: 100%;
-  aspect-ratio: 1;
-  font-variant-numeric: tabular-nums;
-  display: grid;
-  place-items: center;
-  border-radius: 7px;
-  font-size: clamp(0.55rem, 2.4vw, 0.75rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-.sg-none {
-  background: var(--key);
-  color: var(--ink-soft);
-}
-.sg-some {
-  background: #f7c99e;
-  color: #5b3a29;
-}
-.sg-full {
-  background: var(--wheel);
-  color: #10302f;
-}
-.sg-empty {
-  background: none;
-}
-.sg-done .sg-label {
-  text-decoration: line-through;
-  color: var(--ink-soft);
 }
 .hint-card {
   margin-top: 16px;

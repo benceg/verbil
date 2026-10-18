@@ -1,4 +1,4 @@
-const ANIMATE = "verbil:v1:animate";
+export const ANIMATE = "verbil:v1:animate";
 const REDUCED = "(prefers-reduced-motion: reduce)";
 
 /** The player's explicit animation choice, or null to follow the device's reduced-motion setting. */

@@ -1,6 +1,11 @@
 import { render } from "preact";
 import { App } from "./app";
+import { checkStorageVersion } from "./game/storage";
+import { ANIMATE } from "./settings";
 import "./styles.css";
+
+// Before anything reads saved progress: clear data an older version of the game left behind.
+checkStorageVersion([ANIMATE]);
 
 render(<App />, document.getElementById("app")!);
 
