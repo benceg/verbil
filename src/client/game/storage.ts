@@ -17,7 +17,12 @@ export const emptyProgress = (): Progress => ({ found: [], hints: emptyHints() }
 export function loadProgress(date: string): Progress {
   try {
     const raw = localStorage.getItem(PREFIX + date);
-    if (raw) return { ...emptyProgress(), ...JSON.parse(raw) };
+    if (raw) {
+      const saved = { ...emptyProgress(), ...JSON.parse(raw) } as Progress;
+      // Hints saved by earlier versions had a different shape; start them afresh.
+      if (!Array.isArray(saved.hints?.cards)) saved.hints = emptyHints();
+      return saved;
+    }
   } catch {
     // fall through
   }

@@ -4,10 +4,12 @@ puzzles.txt holds one block per puzzle, in date order from LAUNCH. A block is
 the starter verb followed by one indented line per sense:
 
     RUN
-      move fast: SPRINT JOG DASH WHIZ/WHIZZ ...
-      manage: OPERATE DIRECT ...
+      go faster than walking: SPRINT JOG DASH ...
+      be the boss of: MANAGE OPERATE DIRECT ...
 
-Every sense counts towards the score; the labels feed the hints. `A/B` accepts
+Every sense counts towards the score. Each sense is labelled with a short
+definition, which hints and the found-words list show, so a label must not give
+away any answer (or the starter) in any form. `A/B` accepts
 B as an alternative spelling of A, and -IZE/-ISE spellings are aliased
 automatically. WordNet supplies irregular forms (RAN -> RUN) and is used,
 with wordfreq, to sanity check every word.
@@ -31,7 +33,7 @@ SRC = ROOT / "data" / "puzzles.txt"
 OUT = ROOT / "src" / "worker" / "puzzles.json"
 LAUNCH = date(2026, 10, 18)
 MIN_ANSWERS = 24
-MAX_ANSWERS = 70
+MAX_ANSWERS = 50
 COMMON_ZIPF = 2.3  # at or above: a word most players will know
 RARE_ZIPF = 1.0  # below: too obscure to ask for at all
 WORD_RE = re.compile(r"^[A-Z]{3,}$")
@@ -92,6 +94,21 @@ def parse_blocks(text: str):
         yield block
 
 
+def base_forms(token: str) -> set[str]:
+    """A label word and the verbs it could be an inflection of (FLEEING -> FLEE)."""
+    t = token.lower()
+    forms = {t, wn.morphy(t, "v") or t, wn.morphy(t) or t}
+    for suffix, repl in (("ing", ""), ("ing", "e"), ("ed", ""), ("ed", "e"), ("es", ""), ("s", ""), ("ies", "y")):
+        if t.endswith(suffix):
+            forms.add(t[: -len(suffix)] + repl)
+    return {f.upper() for f in forms}
+
+
+def label_leaks(label: str, verb: str, answers: set[str]) -> list[str]:
+    """Words in a sense label that would give away an answer (or the starter)."""
+    return [t for t in re.findall(r"[A-Za-z]+", label) if base_forms(t) & (answers | {verb})]
+
+
 def check_word(w: str, verb: str) -> str | None:
     if not WORD_RE.match(w):
         return "not A-Z, 3+ letters"
@@ -133,6 +150,9 @@ def main():
                     if alias and alias != canon:
                         forms[alias] = canon
             out_senses.append({"label": label, "words": words})
+        for sense in out_senses:
+            if leaks := label_leaks(sense["label"], verb, set(answers)):
+                warnings.append(f"{where}: label '{sense['label']}' gives away {', '.join(leaks)}")
         if not MIN_ANSWERS <= len(answers) <= MAX_ANSWERS:
             warnings.append(f"{where}: {len(answers)} answers")
         rare = [w for w in answers if usage(w.lower()) < COMMON_ZIPF]

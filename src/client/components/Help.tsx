@@ -25,6 +25,12 @@ export function Help({ onClose }: { onClose: () => void }) {
           You can replay any past day, but tomorrow's puzzle stays locked until tomorrow. Your progress is saved on
           this device. Word lists are built from Princeton WordNet and curated by hand.
         </p>
+        <p class="muted small copyright">
+          Copyright © {new Date().getFullYear()}{" "}
+          <a href="https://ceglow.ski" target="_blank" rel="noopener">
+            Ben Ceglowski
+          </a>
+        </p>
       </div>
     </Sheet>
   );

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import data from "../../worker/puzzles.json";
 import { answersOf } from "../../shared/puzzle";
 import type { Puzzle } from "../../shared/types";
-import { emptyHints, mask, nextHint } from "./hints";
+import { emptyHints, hintText, knownSenses, liveCards, MAX_LEVEL, mask, moreHelp, newHint, countsByLength } from "./hints";
 import { baseForms, judge } from "./lemma";
 import { percent, tierFor } from "./scoring";
 import { streak, type Progress } from "./storage";
@@ -49,32 +49,48 @@ describe("scoring", () => {
 });
 
 describe("hints", () => {
-  it("narrows in on one word and eventually masks it", () => {
-    const found = ["SPRINT", "JOG"];
-    let state = nextHint(run, found, emptyHints());
-    const target = state.target!;
-    while (state.plan.length) state = nextHint(run, found, state);
-    expect(state.target).toBe(target);
-    expect(state.log.length).toBeLessThanOrEqual(5);
-    expect(state.log.at(-1)).toContain(mask(target));
-    expect(found).not.toContain(target);
+  it("gets more specific without ever naming an answer", () => {
+    let state = newHint(run, ["SPRINT"], emptyHints());
+    const card = state.cards[0];
+    const texts = [hintText(run, card)];
+    for (let i = 0; i < MAX_LEVEL; i++) {
+      state = moreHelp(state, card.target);
+      texts.push(hintText(run, state.cards[0]));
+    }
+    expect(texts[1]).toContain(`starting with ${card.target[0]}`);
+    expect(texts[2]).toContain(mask(card.target));
+    for (const t of texts) expect(t).not.toContain(card.target);
   });
 
-  it("introduces untouched senses first", () => {
-    const state = nextHint(run, ["SPRINT"], emptyHints());
-    expect(state.log[0]).toContain("can also mean");
-    expect(state.senses).toHaveLength(1);
+  it("points at the least explored sense first", () => {
+    const state = newHint(run, ["SPRINT", "JOG"], emptyHints());
+    const sense = run.senses.find((s) => s.words.includes(state.cards[0].target))!;
+    expect(sense.words).not.toContain("SPRINT");
   });
 
-  it("moves on once the target is found", () => {
-    const first = nextHint(run, [], emptyHints());
-    const next = nextHint(run, [first.target!], first);
-    expect(next.target).not.toBe(first.target);
+  it("drops hints once their word is found", () => {
+    let state = newHint(run, [], emptyHints());
+    state = newHint(run, [], state);
+    expect(state.cards).toHaveLength(2);
+    const found = [state.cards[0].target];
+    expect(liveCards(state, new Set(found))).toHaveLength(1);
+    expect(newHint(run, found, state).cards.map((c) => c.target)).not.toContain(found[0]);
   });
 
-  it("has nothing to say when everything is found", () => {
-    const all = answersOf(run);
-    expect(nextHint(run, all, emptyHints()).log).toHaveLength(0);
+  it("reveals the sense a hint points at", () => {
+    const state = newHint(run, [], emptyHints());
+    expect(knownSenses(run, new Set(), state).size).toBe(1);
+  });
+
+  it("counts found and total words by length", () => {
+    const sense = run.senses[0];
+    const counts = countsByLength(sense, new Set(["SPRINT"]));
+    expect([...counts.values()].reduce((a, c) => a + c.total, 0)).toBe(sense.words.length);
+    expect(counts.get(6)!.found).toBe(1);
+  });
+
+  it("has nothing to add when everything is found", () => {
+    expect(newHint(run, answersOf(run), emptyHints()).cards).toHaveLength(0);
   });
 });
 
@@ -92,6 +108,14 @@ describe("puzzle data", () => {
   it("has a year of puzzles with enough answers", () => {
     expect(puzzles).toHaveLength(365);
     for (const p of puzzles) expect(answersOf(p).length).toBeGreaterThanOrEqual(24);
+    for (const p of puzzles) expect(answersOf(p).length).toBeLessThanOrEqual(50);
+  });
+
+  it("keeps sense labels free of answers", () => {
+    for (const p of puzzles) {
+      const answers = new Set(answersOf(p));
+      for (const s of p.senses) for (const w of s.label.toUpperCase().match(/[A-Z]+/g) ?? []) expect(answers).not.toContain(w);
+    }
   });
 
   it("never accepts the starter itself as an answer", () => {

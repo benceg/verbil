@@ -4,12 +4,12 @@ import { answersOf } from "../shared/puzzle";
 import type { ArchiveEntry, Puzzle } from "../shared/types";
 import { fetchArchive, fetchPuzzle, NotAvailable } from "./api";
 import { Archive } from "./components/Archive";
-import { FoundWords } from "./components/FoundWords";
+import { FoundList, FoundWords, type ListMode } from "./components/FoundWords";
 import { Gerbil } from "./components/Gerbil";
 import { Help } from "./components/Help";
 import { Hints } from "./components/Hints";
 import { Keyboard } from "./components/Keyboard";
-import { nextHint } from "./game/hints";
+import { knownSenses, moreHelp, newHint } from "./game/hints";
 import { judge } from "./game/lemma";
 import { GERBRILLIANT, percent, tierFor } from "./game/scoring";
 import { allProgress, loadProgress, type Progress, saveProgress, streak } from "./game/storage";
@@ -19,6 +19,15 @@ type ToastKind = "good" | "bad" | "info" | "big";
 
 const MAX_LETTERS = 15;
 const SEEN_HELP = "verbil:v1:seen-help";
+const LIST_MODE = "verbil:v1:list-mode";
+
+function savedListMode(): ListMode {
+  try {
+    return localStorage.getItem(LIST_MODE) === "sense" ? "sense" : "alpha";
+  } catch {
+    return "alpha";
+  }
+}
 
 function dateFromUrl(today: string): string {
   const d = new URLSearchParams(location.search).get("date");
@@ -48,6 +57,15 @@ export function App() {
   const [archive, setArchive] = useState<ArchiveEntry[] | null>(null);
   const [brilliantKey, setBrilliantKey] = useState(0);
   const [smashKey, setSmashKey] = useState(0);
+  const [listMode, setListMode] = useState<ListMode>(savedListMode);
+  const changeListMode = (mode: ListMode) => {
+    setListMode(mode);
+    try {
+      localStorage.setItem(LIST_MODE, mode);
+    } catch {
+      // ignore
+    }
+  };
 
   useEffect(() => {
     let live = true;
@@ -59,7 +77,13 @@ export function App() {
       .then((p) => live && setPuzzle(p))
       .catch((e) => {
         if (!live) return;
-        setError(e instanceof NotAvailable ? "That puzzle isn't available. Come back when it's that day!" : String(e.message));
+        setError(
+          e instanceof NotAvailable
+            ? "That puzzle isn't available. Come back when it's that day!"
+            : navigator.onLine
+              ? String(e.message)
+              : "You're offline, and this puzzle hasn't been downloaded yet. Any day you've opened before will still work.",
+        );
       });
     return () => {
       live = false;
@@ -72,8 +96,16 @@ export function App() {
     return () => removeEventListener("popstate", onPop);
   }, []);
 
+  // Fetched up front (and refreshed when opened) so the service worker has a copy for offline use.
+  const [archiveFailed, setArchiveFailed] = useState(false);
   useEffect(() => {
-    if (panel === "archive") fetchArchive().then(setArchive).catch(() => setArchive([]));
+    if (panel && panel !== "archive") return;
+    fetchArchive()
+      .then((list) => {
+        setArchive(list);
+        setArchiveFailed(false);
+      })
+      .catch(() => setArchiveFailed(true));
   }, [panel]);
 
   const go = (d: string) => {
@@ -163,7 +195,8 @@ export function App() {
     return () => removeEventListener("keydown", onDown);
   }, []);
 
-  const hint = () => puzzle && update({ ...progress, hints: nextHint(puzzle, found, progress.hints) });
+  const askHint = () => puzzle && update({ ...progress, hints: newHint(puzzle, found, progress.hints) });
+  const askMore = (target: string) => update({ ...progress, hints: moreHelp(progress.hints, target) });
   const reveal = () => {
     if (confirm("Reveal all the answers for this day? You can't take it back.")) {
       update({ ...progress, revealed: true });
@@ -172,121 +205,133 @@ export function App() {
   };
 
   const everything = panel === "archive" ? allProgress() : {};
-  const sensesTouched = puzzle ? puzzle.senses.filter((s) => s.words.some((w) => found.includes(w))).length : 0;
+  const sensesKnown = puzzle ? knownSenses(puzzle, new Set(found), progress.hints).size : 0;
   const prev = addDays(date, -1);
   const next = addDays(date, 1);
 
   const closePanel = useCallback(() => setPanel(null), []);
 
   return (
-    <div class="app">
-      <header class="top">
-        <button type="button" class="icon-btn" onClick={() => go(prev)} disabled={prev < LAUNCH} aria-label="Previous day">
-          ‹
-        </button>
-        <div class="title">
-          <h1>Verbil</h1>
-          <span class="subtitle">
-            {puzzle ? `#${puzzle.number} · ` : ""}
-            {date === today ? "Today" : formatDate(date)}
-          </span>
-        </div>
-        <button type="button" class="icon-btn" onClick={() => go(next)} disabled={next > today} aria-label="Next day">
-          ›
-        </button>
-        <div class="top-actions">
-          <button type="button" class="icon-btn" onClick={() => setPanel("archive")} aria-label="All puzzles">
-            ☰
+    <div class="shell">
+      <div class="app">
+        <header class="top">
+          <button type="button" class="icon-btn" onClick={() => go(prev)} disabled={prev < LAUNCH} aria-label="Previous day">
+            ‹
           </button>
-          <button type="button" class="icon-btn" onClick={() => setPanel("help")} aria-label="How to play">
-            ?
-          </button>
-        </div>
-      </header>
-
-      <section class="puzzle-head">
-        {error ? (
-          <p class="error">{error}</p>
-        ) : (
-          <>
-            <div class="verb">{puzzle?.verb ?? "…"}</div>
-            <div class="score">
-              <span class={`tier tier-${tier.min}`}>{progress.revealed ? "Revealed" : tier.label}</span>
-              <span class="count">
-                {found.length}/{total || "?"} · {pct}%
-              </span>
-            </div>
-            <div class="progress" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}>
-              <div class="progress-fill" style={{ width: `${pct}%` }} />
-              <div class="progress-mark" style={{ left: `${GERBRILLIANT}%` }} title="Gerbrilliant" />
-            </div>
-          </>
-        )}
-      </section>
-
-      <Gerbil key={date} pct={pct} finished={complete} brilliantKey={brilliantKey} smashKey={smashKey} />
-
-      <div class="entry-wrap">
-        {toast && (
-          <div key={toast.id} class={`toast toast-${toast.kind}`} role="status">
-            {toast.text}
+          <div class="title">
+            <h1>Verbil</h1>
+            <span class="subtitle">
+              {puzzle ? `#${puzzle.number} · ` : ""}
+              {date === today ? "Today" : formatDate(date)}
+            </span>
           </div>
-        )}
-        <div key={shake} class={`entry ${shake ? "shake" : ""}`} aria-live="polite">
-          {progress.revealed ? (
-            <span class="entry-note">Answers revealed</span>
-          ) : complete ? (
-            <span class="entry-note">Every word found!</span>
+          <button type="button" class="icon-btn" onClick={() => go(next)} disabled={next > today} aria-label="Next day">
+            ›
+          </button>
+          <div class="top-actions">
+            <button type="button" class="icon-btn" onClick={() => setPanel("archive")} aria-label="All puzzles">
+              ☰
+            </button>
+            <button type="button" class="icon-btn" onClick={() => setPanel("help")} aria-label="How to play">
+              ?
+            </button>
+          </div>
+        </header>
+
+        <section class="puzzle-head">
+          {error ? (
+            <p class="error">{error}</p>
           ) : (
             <>
-              <span class="entry-text">{entry}</span>
-              <span class="caret" />
+              <div class="verb">{puzzle?.verb ?? "…"}</div>
+              <div class="score">
+                <span class={`tier tier-${tier.min}`}>{progress.revealed ? "Revealed" : tier.label}</span>
+                <span class="count">
+                  {found.length}/{total || "?"} · {pct}%
+                </span>
+              </div>
+              <div class="progress" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}>
+                <div class="progress-fill" style={{ width: `${pct}%` }} />
+                <div class="progress-mark" style={{ left: `${GERBRILLIANT}%` }} title="Gerbrilliant" />
+              </div>
             </>
           )}
+        </section>
+
+        <Gerbil key={date} pct={pct} finished={complete} brilliantKey={brilliantKey} smashKey={smashKey} />
+
+        <div class="entry-wrap">
+          {toast && (
+            <div key={toast.id} class={`toast toast-${toast.kind}`} role="status">
+              {toast.text}
+            </div>
+          )}
+          <div key={shake} class={`entry ${shake ? "shake" : ""}`} aria-live="polite">
+            {progress.revealed ? (
+              <span class="entry-note">Answers revealed</span>
+            ) : complete ? (
+              <span class="entry-note">Every word found!</span>
+            ) : (
+              <>
+                <span class="entry-text">{entry}</span>
+                <span class="caret" />
+              </>
+            )}
+          </div>
         </div>
-      </div>
 
-      <FoundWords
-        found={found}
-        answers={answers}
-        revealed={!!progress.revealed}
-        open={panel === "found"}
-        onOpen={() => setPanel("found")}
-        onClose={closePanel}
-      />
-
-      <div class="action-row">
-        <button type="button" class="btn small" onClick={() => setPanel("hints")} disabled={!puzzle}>
-          💡 Hints · senses {sensesTouched}/{puzzle?.senses.length ?? "?"}
-        </button>
-      </div>
-
-      <Keyboard onKey={onKey} disabled={locked} />
-
-      {panel === "hints" && puzzle && (
-        <Hints
+        <FoundWords
           puzzle={puzzle}
           found={found}
-          hints={progress.hints}
-          complete={complete || !!progress.revealed}
-          canReveal={date < today && !complete && !progress.revealed}
-          onHint={hint}
-          onReveal={reveal}
+          revealed={!!progress.revealed}
+          mode={listMode}
+          onMode={changeListMode}
+          open={panel === "found"}
+          onOpen={() => setPanel("found")}
           onClose={closePanel}
         />
-      )}
-      {panel === "archive" && (
-        <Archive
-          entries={archive}
-          progress={everything}
-          today={today}
-          current={date}
-          streak={streak(today, everything)}
-          onPick={go}
-          onClose={closePanel}
-        />
-      )}
-      {panel === "help" && <Help onClose={closePanel} />}
+
+        <div class="action-row">
+          <button type="button" class="btn small" onClick={() => setPanel("hints")} disabled={!puzzle}>
+            💡 Hints · senses {sensesKnown}/{puzzle?.senses.length ?? "?"}
+          </button>
+        </div>
+
+        <Keyboard onKey={onKey} disabled={locked} />
+
+        {panel === "hints" && puzzle && (
+          <Hints
+            puzzle={puzzle}
+            found={found}
+            hints={progress.hints}
+            complete={complete || !!progress.revealed}
+            canReveal={date < today && !complete && !progress.revealed}
+            onNewHint={askHint}
+            onMoreHelp={askMore}
+            onReveal={reveal}
+            onClose={closePanel}
+          />
+        )}
+        {panel === "archive" && (
+          <Archive
+            entries={archive}
+          failed={archiveFailed}
+            progress={everything}
+            today={today}
+            current={date}
+            streak={streak(today, everything)}
+            onPick={go}
+            onClose={closePanel}
+          />
+        )}
+        {panel === "help" && <Help onClose={closePanel} />}
+      </div>
+      <aside class="side" aria-label="Words found">
+        <h2>
+          {progress.revealed ? "All the words" : `${found.length} ${found.length === 1 ? "word" : "words"} found`}
+        </h2>
+        <FoundList puzzle={puzzle} found={found} revealed={!!progress.revealed} mode={listMode} onMode={changeListMode} />
+      </aside>
     </div>
   );
 }

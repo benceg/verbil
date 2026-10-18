@@ -4,6 +4,11 @@ A daily verb-synonym game. Each day has a starter verb (RUN); players type singl
 synonyms from **any** of its senses (SPRINT, MANAGE, FLOW…). Every word speeds up the
 gerbil's wheel. 80% is *Gerbrilliant!*; 100% is the *Gerbil Smashdown*.
 
+Hints show a Spelling Bee-style grid of the words left in each sense by length (senses
+stay "undiscovered" until you find a word in them), plus one hint at a time that points
+at a word and can be made more specific. Found words are listed A–Z or by sense, beside
+the game on wide screens and in a sheet on phones.
+
 ## Stack
 
 - **Frontend:** Vite + Preact + TypeScript. The gerbil is an inline SVG animated from one
@@ -11,6 +16,8 @@ gerbil's wheel. 80% is *Gerbrilliant!*; 100% is the *Gerbil Smashdown*.
   on-screen keyboard (no `<input>`, so phones never open their own keyboard).
 - **Server:** a [Hono](https://hono.dev) app on Cloudflare Workers, which also serves the static client.
 - **Storage:** `localStorage` (`verbil:v1:<date>`), so there are no accounts. Stats show inline in the puzzle list.
+- **Offline:** a small service worker (`public/sw.js`) caches the app shell, the self-hosted
+  Nunito font and every puzzle you open, so once a day has loaded it plays with no network.
 
 ## Development
 
@@ -48,12 +55,14 @@ a starter verb with one line per sense:
 
 ```
 RUN
-  move fast: SPRINT JOG DASH ...
-  manage: MANAGE OPERATE DIRECT ...
+  go faster than walking: SPRINT JOG DASH ...
+  be the boss of: MANAGE OPERATE DIRECT ...
 ```
 
+Each sense is labelled with a short definition that must not contain any answer.
 `A/B` accepts B as an alternative spelling. Lists were drafted from Princeton WordNet and
-curated by hand: mostly common words, the odd rarity, at least 24 answers each.
+curated by hand: natural synonyms rather than "kinds of" (SPRINT, not SCAMPER), mostly
+common words, 24–50 answers each.
 
 ```sh
 python3 -m venv .venv && .venv/bin/pip install -r scripts/requirements.txt
@@ -65,5 +74,5 @@ python3 -m venv .venv && .venv/bin/pip install -r scripts/requirements.txt
 ```
 
 `build.py` warns about non-verbs, inflected forms, very rare words, words containing the
-starter, and lists under 24 answers. It also adds irregular forms (RAN→RUN), so the game
+starter, labels that give away an answer, and lists outside 24–50 answers. It also adds irregular forms (RAN→RUN), so the game
 accepts any inflection. Once a day has been played, don't edit or reorder past days.

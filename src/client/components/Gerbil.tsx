@@ -1,7 +1,8 @@
 import type { RefObject } from "preact";
+import { useEffect, useLayoutEffect, useRef } from "preact/hooks";
+import { GERBRILLIANT } from "../game/scoring";
 
 type GRef = RefObject<SVGGElement | null>;
-import { useEffect, useLayoutEffect, useRef } from "preact/hooks";
 
 /*
  * The gerbil stage: an SVG scene animated from one requestAnimationFrame loop.
@@ -9,9 +10,10 @@ import { useEffect, useLayoutEffect, useRef } from "preact/hooks";
  *
  * - The wheel's speed eases towards a target set by the player's progress.
  * - `brilliantKey` changing plays the Gerbrilliant sparkle (star eyes + burst).
- * - `smashKey` changing plays the Gerbil Smashdown: the wheel shakes loose,
- *   rolls off-screen and the gerbil wanders back, dizzy, to sit by the wreck.
- * - `finished` shows that aftermath straight away (e.g. revisiting a solved day).
+ * - `smashKey` changing plays the Gerbil Smashdown: the wheel shakes loose and
+ *   rolls off-screen, then the gerbil hops back, dizzy, and turns to face you
+ *   holding a #1 trophy.
+ * - `finished` replays the Smashdown whenever a solved day is opened or reloaded.
  */
 
 interface Props {
@@ -23,6 +25,19 @@ interface Props {
 
 const WHEEL = { x: 200, y: 140, r: 112 };
 const MAX_SPEED = 7.5; // radians per second at 100%
+const RUNNER_SCALE = 1.12;
+// Foot centres (far-back, far-front, near-back, near-front), each overlapping the belly edge.
+const FEET = [
+  { x: -14, y: -1.5 },
+  { x: 36, y: -2.5 },
+  { x: -18, y: -1.5 },
+  { x: 32, y: -2.5 },
+];
+const BACK_FOOT = FEET[2];
+const FOOT_RY = 4.4;
+const BACK_SOLE_Y = BACK_FOOT.y + FOOT_RY;
+const TREAD_R = 102.5; // the dark tread line the feet stand on
+const RUNNER_Y = 235.25; // puts the back soles on the tread when standing still
 const SMASH_SECONDS = 6.5;
 
 interface FigureRefs {
@@ -30,6 +45,8 @@ interface FigureRefs {
   tail: GRef;
   legs: GRef[]; // far-back, far-front, near-back, near-front
   eyes: GRef;
+  shades: GRef;
+  shadesArm: GRef;
   ear: GRef;
 }
 
@@ -39,26 +56,32 @@ function useFigureRefs(): FigureRefs {
     tail: useRef<SVGGElement>(null),
     legs: [useRef<SVGGElement>(null), useRef<SVGGElement>(null), useRef<SVGGElement>(null), useRef<SVGGElement>(null)],
     eyes: useRef<SVGGElement>(null),
+    shades: useRef<SVGGElement>(null),
+    shadesArm: useRef<SVGGElement>(null),
     ear: useRef<SVGGElement>(null),
   };
 }
 
-const BODY =
-  "M -40,-6 C -54,-20 -48,-48 -20,-54 C 0,-60 14,-66 32,-64 C 50,-62 62,-50 62,-38 C 62,-28 56,-20 46,-16 C 36,-6 20,-4 0,-4 C -20,-4 -32,-2 -40,-6 Z";
+const TAIL = "M 0,0 C -18,-4 -30,-18 -33,-42";
+// The tail's outline (6.4 = 2 x 3.2) matches the body's 3.2 stroke.
+const TAIL_WIDTH = 4.2;
 
-function Leg({ x, far, legRef }: { x: number; far?: boolean; legRef: GRef }) {
+const BODY =
+  "M -48,-26 C -48,-40 -40,-48 -20,-54 C 0,-60 14,-66 32,-64 C 50,-62 62,-50 62,-38 C 62,-28 56,-20 46,-16 C 36,-6 20,-4 0,-4 C -10,-4 -16,-4 -26,-4 C -38,-4 -48,-14 -48,-26 Z";
+
+/**
+ * A foot: no leg, just a paw tucked under the body. It always overlaps the belly, so as it
+ * shuffles (see the run loop) it can slide and lift but never drop away from the body.
+ */
+function Foot({ x, y, far, footRef }: { x: number; y: number; far?: boolean; footRef: GRef }) {
   return (
-    <g transform={`translate(${x} -12)`}>
-      <g ref={legRef}>
-        <line x1="0" y1="0" x2="0" y2="9" class="g-outline" stroke-width="10" stroke-linecap="round" />
-        <line x1="0" y1="0" x2="0" y2="9" class={far ? "g-fur-far" : "g-fur"} stroke-width="5" stroke-linecap="round" />
-        <ellipse cx="4" cy="11" rx="7" ry="3.6" class={far ? "g-paw-far" : "g-paw"} />
-      </g>
+    <g ref={footRef}>
+      <ellipse cx={x} cy={y} rx="8.5" ry={FOOT_RY} class={far ? "g-paw-far" : "g-paw"} />
     </g>
   );
 }
 
-function Figure({ refs, id, seed }: { refs: FigureRefs; id: string; seed?: boolean }) {
+function Figure({ refs, id }: { refs: FigureRefs; id: string }) {
   return (
     <g ref={refs.root}>
       <defs>
@@ -66,13 +89,13 @@ function Figure({ refs, id, seed }: { refs: FigureRefs; id: string; seed?: boole
           <path d={BODY} />
         </clipPath>
       </defs>
-      <g ref={refs.tail} transform="translate(-40 -12)">
-        <path d="M 0,0 C -20,4 -36,-6 -46,-22" class="g-outline" stroke-width="7" fill="none" stroke-linecap="round" />
-        <path d="M 0,0 C -20,4 -36,-6 -46,-22" class="g-tail" stroke-width="3.5" fill="none" stroke-linecap="round" />
-        <ellipse cx="-48" cy="-25" rx="7" ry="4.5" transform="rotate(-50 -48 -25)" class="g-tuft" />
+      {/* A long, plain tail from high on the rump, curving up the inside of the wheel. */}
+      <g ref={refs.tail} transform="translate(-44 -22)">
+        <path d={TAIL} class="g-outline" stroke-width={TAIL_WIDTH + 6.4} fill="none" stroke-linecap="round" />
+        <path d={TAIL} class="g-tail" stroke-width={TAIL_WIDTH} fill="none" stroke-linecap="round" />
       </g>
-      <Leg x={-18} far legRef={refs.legs[0]} />
-      <Leg x={34} far legRef={refs.legs[1]} />
+      <Foot {...FEET[0]} far footRef={refs.legs[0]} />
+      <Foot {...FEET[1]} far footRef={refs.legs[1]} />
       <path d={BODY} class="g-body" />
       <g clip-path={`url(#body-${id})`}>
         <path
@@ -82,6 +105,10 @@ function Figure({ refs, id, seed }: { refs: FigureRefs; id: string; seed?: boole
         <ellipse cx="16" cy="-6" rx="34" ry="12" class="g-belly" />
       </g>
       <path d={BODY} class="g-line" />
+      {/* The sunglasses' arm runs back behind the ear. */}
+      <g ref={refs.shadesArm} display="none">
+        <line x1="34" y1="-46" x2="20" y2="-52" class="g-shades-arm" />
+      </g>
       <g ref={refs.ear} transform="translate(22 -58)">
         <ellipse rx="9" ry="12" transform="rotate(-18)" class="g-ear" />
         <ellipse rx="5" ry="7.5" transform="rotate(-18) translate(0.5 1)" class="g-ear-in" />
@@ -95,6 +122,12 @@ function Figure({ refs, id, seed }: { refs: FigureRefs; id: string; seed?: boole
         <path class="eye-star" d="M42,-52 L44.4,-46 L50.5,-45.4 L45.8,-41.4 L47.3,-35.3 L42,-38.6 L36.7,-35.3 L38.2,-41.4 L33.5,-45.4 L39.6,-46 Z" />
         <path class="eye-happy" d="M36,-42 Q42,-50 48,-42" fill="none" stroke-width="3" stroke-linecap="round" />
       </g>
+      {/* Sunglasses, worn from Gerbrilliant (80%) onwards. */}
+      <g ref={refs.shades} class="g-shades" display="none">
+        <line x1="51" y1="-46" x2="59.5" y2="-45.5" class="g-shades-arm" />
+        <path d="M32,-50 H52 Q53,-40 47,-37 H38 Q32,-39 32,-50 Z" class="g-shades-lens" />
+        <path d="M36,-47 L40,-47 L37,-41 Z" class="g-shades-glint" />
+      </g>
       <ellipse cx="49" cy="-30" rx="6" ry="3.4" class="g-blush" />
       <circle cx="61" cy="-38" r="3.2" class="g-nose" />
       <path d="M53,-30 q2,3 4,0 q2,3 4,0" class="g-mouth" fill="none" stroke-width="1.8" stroke-linecap="round" />
@@ -103,14 +136,76 @@ function Figure({ refs, id, seed }: { refs: FigureRefs; id: string; seed?: boole
         <line x1="60" y1="-33" x2="82" y2="-33" />
         <line x1="60" y1="-32" x2="78" y2="-25" />
       </g>
-      {seed && (
-        <g transform="translate(46 -14) rotate(-20)">
-          <ellipse rx="6" ry="10" class="g-seed" />
-          <path d="M0,-9 L0,9 M-3,-8 Q-4,0 -3,8 M3,-8 Q4,0 3,8" class="g-seed-stripe" fill="none" stroke-width="1.2" />
-        </g>
-      )}
-      <Leg x={-22} legRef={refs.legs[2]} />
-      <Leg x={30} legRef={refs.legs[3]} />
+      <Foot {...FEET[2]} footRef={refs.legs[2]} />
+      <Foot {...FEET[3]} footRef={refs.legs[3]} />
+    </g>
+  );
+}
+
+interface ChampionRefs {
+  root: GRef;
+  tail: GRef;
+  trophy: GRef;
+}
+
+/** The gerbil facing the player, shades on, holding up a #1 trophy: the Smashdown finale. */
+function Champion({ refs }: { refs: ChampionRefs }) {
+  return (
+    <g ref={refs.root} opacity="0">
+      <defs>
+        <clipPath id="champ-body">
+          <ellipse cx="0" cy="-36" rx="30" ry="35" />
+        </clipPath>
+      </defs>
+      <g ref={refs.tail}>
+        <path d="M16,-14 C44,-12 60,-28 62,-60" class="g-outline" stroke-width={TAIL_WIDTH + 6.4} fill="none" stroke-linecap="round" />
+        <path d="M16,-14 C44,-12 60,-28 62,-60" class="g-tail" stroke-width={TAIL_WIDTH} fill="none" stroke-linecap="round" />
+      </g>
+      <g transform="translate(-19 -64) rotate(-22)">
+        <ellipse rx="9" ry="11.5" class="g-ear" />
+        <ellipse rx="5" ry="7" transform="translate(0 1)" class="g-ear-in" />
+      </g>
+      <g transform="translate(19 -64) rotate(22)">
+        <ellipse rx="9" ry="11.5" class="g-ear" />
+        <ellipse rx="5" ry="7" transform="translate(0 1)" class="g-ear-in" />
+      </g>
+      <ellipse cx="-12" cy="-1" rx="8" ry="4" class="g-paw" />
+      <ellipse cx="12" cy="-1" rx="8" ry="4" class="g-paw" />
+      <ellipse cx="0" cy="-36" rx="30" ry="35" class="g-body" />
+      <g clip-path="url(#champ-body)">
+        <path d="M-34,-48 C-28,-80 28,-80 34,-48 C22,-56 -22,-56 -34,-48 Z" class="g-patch" />
+        <path d="M-34,-48 C-30,-30 -32,-14 -28,0 L-40,0 L-40,-48 Z" class="g-patch" />
+        <path d="M34,-48 C30,-30 32,-14 28,0 L40,0 L40,-48 Z" class="g-patch" />
+        <ellipse cx="0" cy="-18" rx="21" ry="20" class="g-belly" />
+      </g>
+      <ellipse cx="0" cy="-36" rx="30" ry="35" class="g-line" />
+      <g class="g-shades">
+        <line x1="-27" y1="-52" x2="27" y2="-52" class="g-shades-arm" />
+        <path d="M-21,-55 H-3 Q-3,-46 -9,-44 H-16 Q-21,-46 -21,-55 Z" class="g-shades-lens" />
+        <path d="M3,-55 H21 Q21,-46 16,-44 H9 Q3,-46 3,-55 Z" class="g-shades-lens" />
+        <path d="M-17,-53 L-14,-53 L-16,-48 Z" class="g-shades-glint" />
+        <path d="M7,-53 L10,-53 L8,-48 Z" class="g-shades-glint" />
+      </g>
+      <ellipse cx="-17" cy="-39" rx="5" ry="3" class="g-blush" />
+      <ellipse cx="17" cy="-39" rx="5" ry="3" class="g-blush" />
+      <ellipse cx="0" cy="-42" rx="2.6" ry="2" class="g-nose" />
+      <path d="M-4,-38 q2,3 4,0 q2,3 4,0" class="g-mouth" fill="none" stroke-width="1.6" stroke-linecap="round" />
+      <g class="g-whiskers" stroke-width="1.1" stroke-linecap="round">
+        <line x1="-8" y1="-41" x2="-28" y2="-45" />
+        <line x1="-8" y1="-39" x2="-29" y2="-38" />
+        <line x1="8" y1="-41" x2="28" y2="-45" />
+        <line x1="8" y1="-39" x2="29" y2="-38" />
+      </g>
+      <g ref={refs.trophy}>
+        <path d="M-11,-33 H11 C11,-22 6,-16 0,-15 C-6,-16 -11,-22 -11,-33 Z" class="g-trophy" />
+        <rect x="-2" y="-15" width="4" height="5" class="g-trophy" />
+        <rect x="-8" y="-11" width="16" height="5" rx="1.5" class="g-trophy" />
+        <text x="0" y="-21.5" class="g-trophy-text" text-anchor="middle">
+          #1
+        </text>
+        <ellipse cx="-10.5" cy="-25" rx="4.5" ry="5" class="g-paw" />
+        <ellipse cx="10.5" cy="-25" rx="4.5" ry="5" class="g-paw" />
+      </g>
     </g>
   );
 }
@@ -152,7 +247,7 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
   const sweat = useRef<SVGPathElement>(null);
   const dizzy = useRef<SVGGElement>(null);
   const runner = useFigureRefs();
-  const sitter = useFigureRefs();
+  const champ: ChampionRefs = { root: useRef(null), tail: useRef(null), trophy: useRef(null) };
 
   // Mutable animation state shared with the loop.
   const anim = useRef({
@@ -220,6 +315,7 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
     let raf = 0;
     let brilliantPlayed = -1;
     let confettiPlayed = -1;
+    let trophyPlayed = -1;
 
     const frame = () => {
       const now = performance.now() / 1000;
@@ -227,10 +323,14 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
       last = now;
       const a = anim.current;
 
+      // A day that's already solved replays the Smashdown each time it's opened. (Checked
+      // here rather than on mount because the puzzle, and so `finished`, arrives later.)
+      if (a.finished && a.smashAt < 0 && !reduced) a.smashAt = now + 0.9;
+
       // Smashdown timeline, or the settled aftermath.
-      const smashT = a.smashAt >= 0 ? now - a.smashAt : -1;
+      const smashT = a.smashAt >= 0 ? now - a.smashAt : -Infinity;
       const smashing = smashT >= 0 && smashT < SMASH_SECONDS && !reduced;
-      const aftermath = (a.finished && !smashing) || (smashT >= 0 && (smashT >= SMASH_SECONDS || reduced));
+      const aftermath = smashT >= SMASH_SECONDS || (a.finished && (reduced || a.smashAt < 0));
 
       // Wheel speed eases towards the target for the current progress.
       const target = smashing ? MAX_SPEED * 1.6 : a.pct <= 0 ? 0 : MAX_SPEED * (0.12 + 0.88 * easeOut(a.pct / 100));
@@ -279,15 +379,30 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
         leg.current?.setAttribute("y2", String(140 + 142 * fold));
       });
 
-      // Runner's legs, bob, tail and ears.
-      const swing = Math.sin(a.phase) * 34 * pace;
-      const legs = [swing, -swing, -swing, swing];
-      runner.legs.forEach((leg, i) => setT(leg.current, `rotate(${legs[i]})`));
-      const bob = -Math.abs(Math.sin(a.phase)) * 3.5 * pace;
+      // Runner's feet, bob, lean, tail and ears. The body bobs and leans into the run; the
+      // feet slide back and forth under the belly and are each dropped or raised so the sole
+      // sits exactly on the curved tread, within limits that keep them overlapping the body.
+      const bob = -Math.abs(Math.sin(a.phase)) * 1.2 * pace;
       const lean = pace * 6;
-      setT(runner.root.current, `translate(192 ${239 + bob}) rotate(${lean}) scale(1.12)`);
-      const tailSway = Math.sin(now * (a.speed > 0.3 ? 9 : 2.2)) * (a.speed > 0.3 ? 5 : 7);
-      setT(runner.tail.current, `translate(-40 -12) rotate(${-pace * 28 + tailSway})`);
+      const theta = (lean * Math.PI) / 180;
+      const rootY = RUNNER_Y + bob;
+      runner.legs.forEach((foot, i) => {
+        const dx = Math.sin(a.phase + (i % 3 === 0 ? 0 : Math.PI)) * 5 * pace;
+        // Where the sole would land with no adjustment (local point -> stage coordinates).
+        const lx = FEET[i].x + dx - BACK_FOOT.x;
+        const ly = FEET[i].y + FOOT_RY - BACK_SOLE_Y;
+        const wx = 192 + RUNNER_SCALE * (BACK_FOOT.x + lx * Math.cos(theta) - ly * Math.sin(theta));
+        const wy = rootY + RUNNER_SCALE * (BACK_SOLE_Y + lx * Math.sin(theta) + ly * Math.cos(theta));
+        const tread = WHEEL.y + Math.sqrt(TREAD_R * TREAD_R - (wx - WHEEL.x) ** 2);
+        const dy = clamp((tread - wy) / (RUNNER_SCALE * Math.cos(theta)), -7, 2.5);
+        setT(foot.current, `translate(${dx} ${dy})`);
+      });
+      setT(
+        runner.root.current,
+        `translate(192 ${rootY}) scale(${RUNNER_SCALE}) rotate(${lean} ${BACK_FOOT.x} ${BACK_SOLE_Y})`,
+      );
+      const tailSway = Math.sin(now * (a.speed > 0.3 ? 9 : 2.2)) * (a.speed > 0.3 ? 3 : 4);
+      setT(runner.tail.current, `translate(-44 -22) rotate(${tailSway})`);
       setT(runner.ear.current, `translate(22 -58) rotate(${-pace * 14 + Math.sin(now * 12) * 3 * pace})`);
 
       // Speed lines and sweat at high speed.
@@ -300,31 +415,41 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
       if (now > a.blinkAt + 0.14) a.blinkAt = now + 2.5 + Math.random() * 3;
       const blinking = now > a.blinkAt;
       const starry = a.brilliantAt >= 0 && now - a.brilliantAt < 2.2;
+      // Shades drop on once the star eyes fade (or are simply on, for a day already past 80%).
+      const cool = a.pct >= GERBRILLIANT && !starry;
+      const drop = a.brilliantAt >= 0 ? easeOut(clamp((now - a.brilliantAt - 2.2) / 0.45)) : 1;
+      for (const part of [runner.shades, runner.shadesArm]) {
+        part.current?.setAttribute("display", cool ? "inline" : "none");
+        setT(part.current, `translate(0 ${-36 * (1 - drop)})`);
+      }
       runner.eyes.current?.setAttribute("class", `g-eyes ${starry ? "starry" : blinking ? "blink" : ""}`);
       if (a.brilliantAt >= 0 && brilliantPlayed !== a.brilliantAt) {
         brilliantPlayed = a.brilliantAt;
         burst(40, true, false);
       }
 
-      // The sitter walks back in after the smash and stays.
-      let sx = 0;
-      let walking = false;
+      // The champion hops back in, dizzy, lands facing you and raises the trophy.
+      let cx = 0;
+      let hop = 0;
+      let raise = aftermath ? 1 : 0;
       if (smashing && smashT > 3.4) {
-        const k = clamp((smashT - 3.4) / 1.8);
-        sx = 240 * (1 - easeOut(k));
-        walking = k < 1;
+        const k = clamp((smashT - 3.4) / 1.6);
+        cx = 240 * (1 - easeOut(k));
+        hop = -Math.abs(Math.sin(k * Math.PI * 4)) * 16 * (1 - k * 0.6);
+        raise = easeOut(clamp((smashT - 5.1) / 0.35));
+        if (smashT > 5.15 && trophyPlayed !== a.smashAt) {
+          trophyPlayed = a.smashAt;
+          burst(30, true, false);
+        }
       }
-      const sitterVisible = aftermath || (smashing && smashT > 3.4);
-      show(sitter.root.current, sitterVisible);
-      const step = walking ? Math.sin(now * 18) * 28 : 0;
-      sitter.legs.forEach((leg, i) => setT(leg.current, `rotate(${i % 3 === 0 ? step : -step})`));
-      const sitBob = walking ? -Math.abs(Math.sin(now * 18)) * 3 : 0;
-      setT(sitter.root.current, `translate(${206 + sx} ${282 + sitBob}) rotate(${walking ? 0 : -8}) scale(0.95)`);
-      setT(sitter.tail.current, `translate(-40 -12) rotate(${Math.sin(now * 1.6) * 8})`);
-      sitter.eyes.current?.setAttribute("class", `g-eyes ${walking ? (blinking ? "blink" : "") : "happy"}`);
-      const dizzyOn = smashing && smashT > 3.4;
+      show(champ.root.current, aftermath || (smashing && smashT > 3.4));
+      const breathe = 1 + Math.sin(now * 2.4) * 0.012;
+      setT(champ.root.current, `translate(${200 + cx} ${286 + hop}) scale(1.15 ${1.15 * breathe})`);
+      setT(champ.tail.current, `rotate(${Math.sin(now * 3) * 8} 16 -12)`);
+      setT(champ.trophy.current, `translate(0 ${-9 * raise}) rotate(${Math.sin(now * 2) * 3 * raise} 0 -20)`);
+      const dizzyOn = smashing && smashT > 3.4 && smashT < 5.2;
       show(dizzy.current, dizzyOn);
-      setT(dizzy.current, `translate(${206 + sx + 30} ${282 - 78}) rotate(${(now * 240) % 360})`);
+      setT(dizzy.current, `translate(${200 + cx} ${286 + hop - 92}) rotate(${(now * 240) % 360})`);
 
       // Particles.
       ctx.setTransform(size.dpr, 0, 0, size.dpr, 0, 0);
@@ -407,7 +532,7 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey }: Props) {
           <path ref={sweat} d="M262,170 q-5,8 0,11 q5,-3 0,-11 Z" class="sweat" opacity="0" />
         </g>
         <circle ref={bolt} cx={WHEEL.x} cy={WHEEL.y} r="5.5" class="wheel-bolt" />
-        <Figure refs={sitter} id="sitter" seed />
+        <Champion refs={champ} />
         <g ref={dizzy} class="dizzy" opacity="0">
           {[0, 120, 240].map((d) => (
             <path transform={`rotate(${d}) translate(16 0) scale(0.55)`} d="M0,-10 L2.9,-4 L9.5,-3.1 L4.7,1.5 L5.9,8 L0,5 L-5.9,8 L-4.7,1.5 L-9.5,-3.1 L-2.9,-4 Z" />

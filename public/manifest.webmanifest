@@ -1,0 +1,10 @@
+{
+  "name": "Verbil",
+  "short_name": "Verbil",
+  "description": "A daily verb synonym game. Help the gerbil run!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF4E6",
+  "theme_color": "#FFF4E6",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

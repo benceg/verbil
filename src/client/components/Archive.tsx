@@ -6,6 +6,7 @@ import { Sheet } from "./Sheet";
 
 interface Props {
   entries: ArchiveEntry[] | null;
+  failed: boolean;
   progress: Record<string, Progress>;
   today: string;
   current: string;
@@ -14,7 +15,7 @@ interface Props {
   onClose: () => void;
 }
 
-export function Archive({ entries: all, progress, today, current, streak, onPick, onClose }: Props) {
+export function Archive({ entries: all, failed, progress, today, current, streak, onPick, onClose }: Props) {
   // The server lists every day that has begun anywhere on Earth; only show the player's own days.
   const entries = all?.filter((e) => e.date <= today) ?? null;
   const finished = entries?.filter((e) => (progress[e.date]?.found.length ?? 0) >= e.total).length ?? 0;
@@ -27,7 +28,7 @@ export function Archive({ entries: all, progress, today, current, streak, onPick
         <span>{finished} smashed</span>
       </p>
       {!entries ? (
-        <p class="muted">Loading…</p>
+        <p class="muted">{failed ? "You're offline. The list will appear when you reconnect." : "Loading…"}</p>
       ) : (
         <ul class="archive">
           {entries.map((e) => {

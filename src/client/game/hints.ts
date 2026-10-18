@@ -1,80 +1,88 @@
-import type { Puzzle } from "../../shared/types";
+import type { Puzzle, Sense } from "../../shared/types";
 
-type Step = "sense" | "letter" | "ending" | "prefix" | "mask";
-
-export interface HintState {
-  target?: string;
-  /** Remaining steps for the current target, vaguest first. */
-  plan: Step[];
-  log: string[];
-  /** Sense labels revealed by hints, before the player has found a word for them. */
-  senses: string[];
+/**
+ * A hint points at one unfound word. It starts vague (its length and which
+ * sense it belongs to) and the player can ask for more: the first letter,
+ * then a partly filled-in mask. Hints for words the player has since found
+ * simply drop away.
+ */
+export interface HintCard {
+  target: string;
+  level: number;
 }
 
-export const emptyHints = (): HintState => ({ plan: [], log: [], senses: [] });
+export interface HintState {
+  cards: HintCard[];
+  /** Total hints ever requested for this puzzle. */
+  used: number;
+}
 
-const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
+export const MAX_LEVEL = 2;
+
+export const emptyHints = (): HintState => ({ cards: [], used: 0 });
 
 export function mask(word: string): string {
   return [...word].map((ch, i) => (i === 0 || i % 3 === 0 ? ch : "_")).join(" ");
 }
 
-/** Longest ending (3-5 letters) the target shares with a word already found. */
-function sharedEnding(target: string, found: string[]): string | undefined {
-  for (let n = 5; n >= 3; n--) {
-    const end = target.slice(-n);
-    if (target.length > n && found.some((w) => w !== target && w.length > n && w.endsWith(end))) return end;
-  }
-  return undefined;
+export function liveCards(state: HintState, found: Set<string>): HintCard[] {
+  return state.cards.filter((c) => !found.has(c.target));
 }
 
-function pickTarget(puzzle: Puzzle, found: Set<string>, turn: number): string | undefined {
-  // Prefer senses the player hasn't touched; otherwise rotate through the senses.
-  const open = puzzle.senses.filter((s) => s.words.some((w) => !found.has(w)));
-  if (!open.length) return undefined;
-  const untouched = open.filter((s) => !s.words.some((w) => found.has(w)));
-  const pool = untouched.length ? untouched : open;
-  const sense = pool[turn % pool.length];
-  return sense.words.find((w) => !found.has(w));
+export function senseOf(puzzle: Puzzle, word: string): Sense {
+  return puzzle.senses.find((s) => s.words.includes(word))!;
 }
 
-/**
- * Each hint narrows in on one unfound word, going from vague to specific:
- * an untouched sense, a starting-letter count, a shared ending, the word's
- * length and first two letters, and finally a partly filled-in mask.
- */
-export function nextHint(puzzle: Puzzle, foundList: string[], state: HintState): HintState {
+/** Senses the player knows about: they've found a word in it, or a hint has pointed at it. */
+export function knownSenses(puzzle: Puzzle, found: Set<string>, state: HintState): Set<string> {
+  const known = new Set<string>();
+  for (const s of puzzle.senses) if (s.words.some((w) => found.has(w))) known.add(s.label);
+  for (const c of liveCards(state, found)) known.add(senseOf(puzzle, c.target).label);
+  return known;
+}
+
+function pickTarget(puzzle: Puzzle, found: Set<string>, taken: Set<string>, turn: number): string | undefined {
+  const open = (s: Sense) => s.words.filter((w) => !found.has(w) && !taken.has(w));
+  const candidates = puzzle.senses.filter((s) => open(s).length);
+  if (!candidates.length) return undefined;
+  // Steer towards the senses the player has done least with.
+  const progress = (s: Sense) => s.words.filter((w) => found.has(w)).length / s.words.length;
+  const least = Math.min(...candidates.map(progress));
+  const pool = candidates.filter((s) => progress(s) === least);
+  return open(pool[turn % pool.length])[0];
+}
+
+export function newHint(puzzle: Puzzle, foundList: string[], state: HintState): HintState {
   const found = new Set(foundList);
-  let { target, plan } = state;
-  if (!target || found.has(target) || !plan.length) {
-    target = pickTarget(puzzle, found, state.log.length);
-    if (!target) return state;
-    const sense = puzzle.senses.find((s) => s.words.includes(target!))!;
-    const touched = sense.words.some((w) => found.has(w)) || state.senses.includes(sense.label);
-    plan = [...(touched ? [] : (["sense"] as Step[])), "letter", "ending", "prefix", "mask"];
-  }
-  const t = target;
-  const ending = sharedEnding(t, foundList);
-  // Endings only help if the player has found a word to compare with.
-  plan = plan.filter((step) => step !== "ending" || ending);
-  const [step, ...rest] = plan;
-  const senses = [...state.senses];
-  let text: string;
+  const cards = liveCards(state, found);
+  const target = pickTarget(puzzle, found, new Set(cards.map((c) => c.target)), state.used);
+  if (!target) return { ...state, cards };
+  return { cards: [...cards, { target, level: 0 }], used: state.used + 1 };
+}
 
-  if (step === "sense") {
-    const label = puzzle.senses.find((s) => s.words.includes(t))!.label;
-    senses.push(label);
-    text = `${puzzle.verb} can also mean “${label}”. Can you think of a word for that?`;
-  } else if (step === "letter") {
-    const remaining = new Set(puzzle.senses.flatMap((s) => s.words).filter((w) => !found.has(w)));
-    const n = [...remaining].filter((w) => w[0] === t[0]).length;
-    text = `There ${n === 1 ? "is" : "are"} ${plural(n, "word")} starting with ${t[0]} still to find.`;
-  } else if (step === "ending") {
-    text = `You've found a word ending in -${ending}. There's another one to find!`;
-  } else if (step === "prefix") {
-    text = `One of them is ${t.length} letters long and starts with ${t.slice(0, 2)}.`;
-  } else {
-    text = `Try this one: ${mask(t)}`;
+export function moreHelp(state: HintState, target: string): HintState {
+  return {
+    ...state,
+    cards: state.cards.map((c) => (c.target === target ? { ...c, level: Math.min(MAX_LEVEL, c.level + 1) } : c)),
+  };
+}
+
+export function hintText(puzzle: Puzzle, card: HintCard): string {
+  const { target, level } = card;
+  const base = `A ${target.length}-letter word for “${senseOf(puzzle, target).label}”`;
+  if (level === 0) return `${base}.`;
+  if (level === 1) return `${base}, starting with ${target[0]}.`;
+  return `${base}: ${mask(target)}`;
+}
+
+/** Words found and total per word length in a sense, for the hints grid. */
+export function countsByLength(sense: Sense, found: Set<string>): Map<number, { found: number; total: number }> {
+  const counts = new Map<number, { found: number; total: number }>();
+  for (const w of sense.words) {
+    const c = counts.get(w.length) ?? { found: 0, total: 0 };
+    c.total++;
+    if (found.has(w)) c.found++;
+    counts.set(w.length, c);
   }
-  return { target: t, plan: rest, log: [...state.log, text], senses };
+  return counts;
 }
