@@ -4,12 +4,12 @@ export interface Tier {
 }
 
 export const TIERS: Tier[] = [
-  { min: 0, label: "Not started" },
-  { min: 1, label: "Nibbling" },
+  { min: 0, label: "Parking" },
+  { min: 1, label: "Scampering" },
   { min: 25, label: "Scurrying" },
-  { min: 50, label: "Good" },
-  { min: 65, label: "Speedy" },
-  { min: 80, label: "Gerbrilliant!" },
+  { min: 50, label: "Cantering" },
+  { min: 65, label: "Dashing" },
+  { min: 80, label: "Sprinting" },
   { min: 100, label: "Smashdown!" },
 ];
 

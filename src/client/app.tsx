@@ -12,6 +12,7 @@ import { Keyboard } from "./components/Keyboard";
 import { knownSenses, moreHelp, newHint } from "./game/hints";
 import { judge } from "./game/lemma";
 import { GERBRILLIANT, percent, tierFor } from "./game/scoring";
+import { shareText } from "./game/share";
 import { allProgress, loadProgress, type Progress, saveProgress, streak } from "./game/storage";
 import { onReducedMotionChange, prefersReducedMotion, saveAnimate, savedAnimate } from "./settings";
 
@@ -209,6 +210,25 @@ export function App() {
     return () => removeEventListener("keydown", onDown);
   }, []);
 
+  // The system share sheet where there is one; otherwise copy the text to the clipboard.
+  const share = async () => {
+    const text = shareText(found.length, total);
+    const copy = async () => {
+      try {
+        await navigator.clipboard.writeText(text);
+        flash("Copied to clipboard", "info");
+      } catch {
+        flash("Couldn't share", "bad");
+      }
+    };
+    if (!navigator.share) return copy();
+    try {
+      await navigator.share({ text });
+    } catch (e) {
+      if ((e as Error).name !== "AbortError") await copy();
+    }
+  };
+
   const askHint = () => puzzle && update({ ...progress, hints: newHint(puzzle, found, progress.hints) });
   const askMore = (target: string) => update({ ...progress, hints: moreHelp(progress.hints, target) });
   const reveal = () => {
@@ -300,6 +320,11 @@ export function App() {
           <button type="button" class="btn small" onClick={() => setPanel("hints")} disabled={!puzzle}>
             💡 Hints · senses {sensesKnown}/{puzzle?.senses.length ?? "?"}
           </button>
+          {found.length > 0 && (
+            <button type="button" class="btn small" onClick={share}>
+              ↗ Share
+            </button>
+          )}
         </div>
 
         <Keyboard onKey={onKey} disabled={locked} />

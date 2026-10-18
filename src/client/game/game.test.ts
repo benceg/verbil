@@ -5,6 +5,7 @@ import type { Puzzle } from "../../shared/types";
 import { emptyHints, hintText, knownSenses, liveCards, MAX_LEVEL, mask, moreHelp, newHint, countsByLength } from "./hints";
 import { baseForms, judge } from "./lemma";
 import { percent, tierFor } from "./scoring";
+import { shareText } from "./share";
 import { streak, type Progress } from "./storage";
 
 const puzzles = data as unknown as Puzzle[];
@@ -40,9 +41,9 @@ describe("judge", () => {
 
 describe("scoring", () => {
   it("maps progress to tiers", () => {
-    expect(tierFor(0, 40).label).toBe("Not started");
-    expect(tierFor(1, 40).label).toBe("Nibbling");
-    expect(tierFor(32, 40).label).toBe("Gerbrilliant!");
+    expect(tierFor(0, 40).label).toBe("Parking");
+    expect(tierFor(1, 40).label).toBe("Scampering");
+    expect(tierFor(32, 40).label).toBe("Sprinting");
     expect(tierFor(40, 40).label).toBe("Smashdown!");
     expect(percent(39, 40)).toBe(97);
   });
@@ -91,6 +92,18 @@ describe("hints", () => {
 
   it("has nothing to add when everything is found", () => {
     expect(newHint(run, answersOf(run), emptyHints()).cards).toHaveLength(0);
+  });
+});
+
+describe("share text", () => {
+  it("matches the agreed format", () => {
+    expect(shareText(30, 49)).toBe("Verbil (verbil.fun)\nCantering 🟧🟧🟧🟧🟧🟧⬜⬜⬜⬜\n30/49 words - 61%");
+  });
+
+  it("fills the bar only when every word is found", () => {
+    expect(shareText(49, 49)).toContain("Smashdown! " + "🟧".repeat(10));
+    expect(shareText(48, 49)).toContain("🟧".repeat(9) + "⬜");
+    expect(shareText(1, 49)).toContain("Scampering 🟧" + "⬜".repeat(9));
   });
 });
 

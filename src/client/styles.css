@@ -504,6 +504,7 @@ button {
 .action-row {
   display: flex;
   justify-content: center;
+  gap: 8px;
   padding: 6px 0;
 }
 
