@@ -6,8 +6,9 @@ players type single-word synonyms, and for verbs kinds of that action too (SPRIN
 TROT, GALLOP…). Every word speeds up the gerbil's wheel. 80% is
 _Gerbrilliant!_; 100% is the _Gerbil Smashdown_.
 
-Hints show a Spelling Bee-style grid of words found and left by length, plus one hint at
-a time that points at a word and can be made more specific. Found words are listed A–Z,
+Hints sit just above the keyboard, one at a time: a word's length and first letter, then a
+partly filled-in pattern, then the same with the second letter too. Stats shows a Spelling
+Bee-style bar of words found and left for each word length. Found words are listed A–Z,
 beside the game on wide screens and in a sheet on phones.
 
 ## Stack

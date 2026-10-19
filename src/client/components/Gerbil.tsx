@@ -252,6 +252,29 @@ interface Particle {
   color: string;
   life: number;
   star?: boolean;
+  /** Drifts down at a steady pace, swaying, instead of falling under gravity. */
+  cheese?: boolean;
+}
+
+/** A chunky wedge of cheese, holes and all, centred on the origin. */
+function drawCheese(ctx: CanvasRenderingContext2D, s: number) {
+  ctx.beginPath();
+  ctx.moveTo(-s, s * 0.55);
+  ctx.lineTo(s, s * 0.55);
+  ctx.lineTo(s, -s * 0.75);
+  ctx.closePath();
+  ctx.fillStyle = "#FFD54A";
+  ctx.fill();
+  ctx.fillStyle = "#E3A92E";
+  for (const [hx, hy, hr] of [
+    [0.05, 0.3, 0.14],
+    [0.55, 0.25, 0.18],
+    [0.68, -0.32, 0.12],
+  ]) {
+    ctx.beginPath();
+    ctx.arc(hx * s, hy * s, hr * s, 0, Math.PI * 2);
+    ctx.fill();
+  }
 }
 
 const CONFETTI = ["#F08A3C", "#F7A8B8", "#6CC3C1", "#FFD166", "#8E7DFF", "#5BAA6A"];
@@ -259,6 +282,8 @@ const CONFETTI = ["#F08A3C", "#F7A8B8", "#6CC3C1", "#FFD166", "#8E7DFF", "#5BAA6
 export function Gerbil({ pct, finished, brilliantKey, smashKey, animate }: Props) {
   const stage = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
+  // Cheese falls behind the gerbil, so it gets its own canvas under the SVG.
+  const backCanvas = useRef<HTMLCanvasElement>(null);
   const wheelGroup = useRef<SVGGElement>(null);
   const wheel = useRef<SVGGElement>(null);
   const bolt = useRef<SVGCircleElement>(null);
@@ -298,12 +323,19 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey, animate }: Props
 
   useEffect(() => {
     const ctx = canvas.current!.getContext("2d")!;
+    const backCtx = backCanvas.current!.getContext("2d")!;
     let size = { w: 0, h: 0, dpr: 1 };
+    // Where the brown ground line (y=286 in the 400x300 SVG, scaled to fit) sits on the canvas.
+    let ground = 0;
     const resize = () => {
       const rect = stage.current!.getBoundingClientRect();
       size = { w: rect.width, h: rect.height, dpr: window.devicePixelRatio || 1 };
-      canvas.current!.width = rect.width * size.dpr;
-      canvas.current!.height = rect.height * size.dpr;
+      const scale = Math.min(rect.width / 400, rect.height / 300);
+      ground = (rect.height - 300 * scale) / 2 + 284 * scale;
+      for (const c of [canvas.current!, backCanvas.current!]) {
+        c.width = rect.width * size.dpr;
+        c.height = rect.height * size.dpr;
+      }
     };
     resize();
     const observer = new ResizeObserver(resize);
@@ -337,6 +369,23 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey, animate }: Props
     let brilliantPlayed = -1;
     let confettiPlayed = -1;
     let trophyPlayed = -1;
+    let cheeseDue = 0;
+    // A gentle, endless shower of cheese once the champion holds up its trophy.
+    const dropCheese = () => {
+      const a = anim.current;
+      a.particles.push({
+        x: 10 + Math.random() * (size.w - 20),
+        y: -20,
+        vx: Math.random() * Math.PI * 2, // sway phase
+        vy: 45 + Math.random() * 40,
+        rot: Math.random() * 6,
+        vr: (Math.random() - 0.5) * 2.4,
+        size: 11 + Math.random() * 7,
+        color: "#FFD54A",
+        life: 30,
+        cheese: true,
+      });
+    };
 
     const frame = () => {
       const now = performance.now() / 1000;
@@ -473,6 +522,13 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey, animate }: Props
         }
       }
       show(champ.root.current, aftermath || (smashing && smashT > 3.4));
+      if (!still && (aftermath || (smashing && smashT > 5.15))) {
+        cheeseDue -= dt;
+        if (cheeseDue <= 0) {
+          dropCheese();
+          cheeseDue = 0.22 + Math.random() * 0.25;
+        }
+      }
       const sway = still ? 0 : 1;
       const breathe = 1 + Math.sin(now * 2.4) * 0.012 * sway;
       setT(champ.root.current, `translate(${200 + cx} ${286 + hop}) scale(1.15 ${1.15 * breathe})`);
@@ -483,32 +539,50 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey, animate }: Props
       setT(dizzy.current, `translate(${200 + cx} ${286 + hop - 92}) rotate(${(now * 240) % 360})`);
 
       // Particles.
-      ctx.setTransform(size.dpr, 0, 0, size.dpr, 0, 0);
-      ctx.clearRect(0, 0, size.w, size.h);
-      a.particles = a.particles.filter((p) => (p.life -= dt) > 0 && p.y < size.h + 20);
+      for (const c of [ctx, backCtx]) {
+        c.setTransform(size.dpr, 0, 0, size.dpr, 0, 0);
+        c.clearRect(0, 0, size.w, size.h);
+      }
+      // Cheese lands on the ground line; everything else falls off the bottom.
+      a.particles = a.particles.filter((p) => (p.life -= dt) > 0 && p.y < (p.cheese ? ground : size.h + 20));
+      backCtx.save();
+      backCtx.beginPath();
+      backCtx.rect(0, 0, size.w, ground);
+      backCtx.clip();
       for (const p of a.particles) {
-        p.vy += (p.star ? 220 : 380) * dt;
-        p.vx *= 1 - dt * 0.8;
-        p.x += p.vx * dt;
-        p.y += p.vy * dt;
-        p.rot += p.vr * dt;
-        ctx.save();
-        ctx.globalAlpha = clamp(p.life * 1.5);
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rot);
-        ctx.fillStyle = p.color;
-        if (p.star) {
-          ctx.beginPath();
+        if (p.cheese) {
+          p.vx += dt * 1.6;
+          p.x += Math.sin(p.vx) * 18 * dt;
+          p.y += p.vy * dt;
+          p.rot += p.vr * dt;
+        } else {
+          p.vy += (p.star ? 220 : 380) * dt;
+          p.vx *= 1 - dt * 0.8;
+          p.x += p.vx * dt;
+          p.y += p.vy * dt;
+          p.rot += p.vr * dt;
+        }
+        const c = p.cheese ? backCtx : ctx;
+        c.save();
+        c.globalAlpha = p.cheese ? clamp((ground - p.y) / 30) : clamp(p.life * 1.5);
+        c.translate(p.x, p.y);
+        c.rotate(p.rot);
+        c.fillStyle = p.color;
+        if (p.cheese) {
+          drawCheese(c, p.size);
+        } else if (p.star) {
+          c.beginPath();
           for (let i = 0; i < 10; i++) {
             const r = i % 2 ? p.size * 0.45 : p.size;
-            ctx.lineTo(Math.cos((i * Math.PI) / 5) * r, Math.sin((i * Math.PI) / 5) * r);
+            c.lineTo(Math.cos((i * Math.PI) / 5) * r, Math.sin((i * Math.PI) / 5) * r);
           }
-          ctx.fill();
+          c.fill();
         } else {
-          ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+          c.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
         }
-        ctx.restore();
+        c.restore();
       }
+      backCtx.restore();
 
       raf = requestAnimationFrame(frame);
     };
@@ -524,6 +598,7 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey, animate }: Props
 
   return (
     <div class="stage" ref={stage} aria-hidden="true">
+      <canvas ref={backCanvas} />
       <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
         <ellipse cx="200" cy="290" rx="150" ry="9" class="shadow" />
         <g class="bedding">

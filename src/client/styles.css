@@ -154,6 +154,14 @@ button {
   letter-spacing: 0.12em;
   line-height: 1.1;
 }
+.definition .pos {
+  margin-right: 4px;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
 .definition {
   margin: 2px 0 6px;
   color: var(--ink-soft);
@@ -714,35 +722,35 @@ button {
   font-size: 0.8rem;
   font-variant-numeric: tabular-nums;
 }
-.hint-card {
-  margin-top: 16px;
-  padding: 12px 8px;
-  border-radius: 14px;
-  background: var(--surface);
-  border: 1.5px solid var(--line);
+.lb-summary {
+  margin: 10px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
 }
-.hint-nav {
+
+/* The current hint, on one line above the buttons and keyboard */
+.hint-line {
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  gap: 2px;
+  min-height: 32px;
 }
 .hint-text {
-  flex: 1;
   margin: 0;
+  padding: 0 4px;
   text-align: center;
-  font-size: 1.05rem;
-  line-height: 1.4;
+  font-size: 0.95rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.hint-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 8px;
-  padding: 0 8px;
-}
-.hint-empty {
-  margin: 4px 8px;
-  text-align: center;
+.hint-line .icon-btn {
+  width: 32px;
+  height: 32px;
+  flex: none;
 }
 
 /* Archive */
@@ -884,12 +892,13 @@ button {
   .shell {
     display: grid;
     grid-template-columns: 1fr minmax(0, 540px) 372px 1fr;
-    grid-template-rows: auto auto minmax(0, 1fr) auto auto auto;
+    grid-template-rows: auto auto minmax(0, 1fr) auto auto auto auto;
     grid-template-areas:
       "top top top top"
       ". head side ."
       ". stage side ."
       ". entry side ."
+      ". hints hints ."
       ". actions actions ."
       ". kb kb .";
     height: 100dvh;
@@ -926,6 +935,9 @@ button {
   }
   .action-row {
     grid-area: actions;
+  }
+  .hint-line {
+    grid-area: hints;
   }
   .keyboard {
     grid-area: kb;

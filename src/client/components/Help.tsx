@@ -26,7 +26,8 @@ export function Help({ animate, onToggleAnimate, onClose }: Props) {
           </li>
         </ul>
         <p>
-          Stuck? <b>Hints</b> show how many words of each length are left and nudge you towards one.
+          Stuck? Ask for a <b>hint</b> just above the keyboard, and <b>Stats</b> shows how many words of each length are
+          left.
         </p>
         <p class="muted small">
           You can replay any past day, but tomorrow's puzzle stays locked until tomorrow. Your progress is saved on this

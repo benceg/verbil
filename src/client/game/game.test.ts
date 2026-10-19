@@ -73,9 +73,13 @@ describe("hints", () => {
       state = moreHelp(state, card.target);
       texts.push(hintText(state.cards[0]));
     }
-    expect(texts).toHaveLength(2);
+    expect(texts).toHaveLength(3);
     expect(texts[0]).toBe(`A ${card.target.length}-letter word starting with ${card.target[0]}.`);
     expect(texts[1]).toContain(mask(card.target));
+    expect(texts[2]).toContain(mask(card.target, true));
+    expect(mask("SPRINT")).toBe("S _ _ I _ _");
+    expect(mask("SPRINT", true)).toBe("S P _ I _ _");
+    expect(mask("DOT")).toBe("D _ T");
     for (const t of texts) expect(t).not.toContain(card.target);
   });
 

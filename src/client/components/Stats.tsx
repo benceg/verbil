@@ -1,38 +1,20 @@
-import { useEffect, useState } from "preact/hooks";
 import type { Puzzle } from "../../shared/types";
-import { countsByLength, type HintState, hintText, liveCards, MAX_LEVEL } from "../game/hints";
+import { countsByLength } from "../game/hints";
 import { Sheet } from "./Sheet";
 
 interface Props {
   puzzle: Puzzle;
   found: string[];
-  hints: HintState;
   canReveal: boolean;
-  complete: boolean;
-  onNewHint: () => void;
-  onMoreHelp: (target: string) => void;
   onReveal: () => void;
   onClose: () => void;
 }
 
-export function Hints({ puzzle, found, hints, canReveal, complete, onNewHint, onMoreHelp, onReveal, onClose }: Props) {
-  const foundSet = new Set(found);
-  const cards = liveCards(hints, foundSet);
-  const [index, setIndex] = useState(cards.length - 1);
-
-  // Jump to a newly added hint; stay in range when one drops away.
-  const count = cards.length;
-  useEffect(() => setIndex(count - 1), [hints.used]);
-  const current = Math.min(Math.max(index, 0), count - 1);
-  const card = cards[current];
-
-  const counts = [...countsByLength(puzzle.words, foundSet)];
-  // Every word left already has a hint pointing at it.
-  const taken = new Set(cards.map((c) => c.target));
-  const outOfHints = !puzzle.words.some((w) => !foundSet.has(w) && !taken.has(w));
-
+/** Words found so far, by number of letters, and (for past days) a way to give up. */
+export function Stats({ puzzle, found, canReveal, onReveal, onClose }: Props) {
+  const counts = [...countsByLength(puzzle.words, new Set(found))];
   return (
-    <Sheet title="Hints" onClose={onClose}>
+    <Sheet title="Stats" onClose={onClose}>
       <p class="muted small">Words found, by number of letters.</p>
       <ul class="length-bars">
         {counts.map(([n, c]) => (
@@ -54,61 +36,16 @@ export function Hints({ puzzle, found, hints, canReveal, complete, onNewHint, on
           </li>
         ))}
       </ul>
-
-      <div class="hint-card">
-        {card ? (
-          <>
-            <div class="hint-nav">
-              <button
-                type="button"
-                class="icon-btn"
-                onClick={() => setIndex(current - 1)}
-                disabled={current <= 0}
-                aria-label="Previous hint"
-              >
-                ‹
-              </button>
-              <p class="hint-text" aria-live="polite">
-                {hintText(card)}
-              </p>
-              <button
-                type="button"
-                class="icon-btn"
-                onClick={() => setIndex(current + 1)}
-                disabled={current >= count - 1}
-                aria-label="Next hint"
-              >
-                ›
-              </button>
-            </div>
-            <div class="hint-meta">
-              <span class="muted small">
-                Hint {current + 1} of {count}
-              </span>
-              {card.level < MAX_LEVEL && (
-                <button type="button" class="btn small" onClick={() => onMoreHelp(card.target)}>
-                  More help
-                </button>
-              )}
-            </div>
-          </>
-        ) : (
-          <p class="muted hint-empty">
-            {complete ? "Nothing left to find!" : "Stuck? Ask for a hint and it'll point you at a word."}
-          </p>
-        )}
-      </div>
-
-      <div class="sheet-actions">
-        <button type="button" class="btn primary" onClick={onNewHint} disabled={complete || outOfHints}>
-          {outOfHints && !complete ? "Out of hints" : count ? "Another hint" : "Give me a hint"}
-        </button>
-        {canReveal && (
+      <p class="lb-summary">
+        {found.length} of {puzzle.words.length} words found
+      </p>
+      {canReveal && (
+        <div class="sheet-actions">
           <button type="button" class="btn" onClick={onReveal}>
             Reveal answers
           </button>
-        )}
-      </div>
+        </div>
+      )}
     </Sheet>
   );
 }

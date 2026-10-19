@@ -2,8 +2,8 @@ import type { Puzzle } from "../../shared/types";
 
 /**
  * A hint points at one unfound word. It starts with the word's length and first
- * letter (the length alone adds nothing to the hints grid), and the player can ask
- * for a partly filled-in mask.
+ * letter (the length alone adds nothing to the stats), and the player can ask for
+ * more: a partly filled-in mask, then the same mask with the second letter too.
  * Hints for words the player has since found simply drop away.
  */
 export interface HintCard {
@@ -17,12 +17,17 @@ export interface HintState {
   used: number;
 }
 
-export const MAX_LEVEL = 1;
+export const MAX_LEVEL = 2;
 
 export const emptyHints = (): HintState => ({ cards: [], used: 0 });
 
-export function mask(word: string): string {
-  return [...word].map((ch, i) => (i === 0 || i % 3 === 0 ? ch : "_")).join(" ");
+/**
+ * Every third letter from the first (and the last letter of a three-letter word, which
+ * would otherwise show only the first), plus with `second` the second letter.
+ */
+export function mask(word: string, second = false): string {
+  const shown = (i: number) => i % 3 === 0 || (word.length === 3 && i === 2) || (second && i === 1);
+  return [...word].map((ch, i) => (shown(i) ? ch : "_")).join(" ");
 }
 
 export function liveCards(state: HintState, found: Set<string>): HintCard[] {
@@ -61,7 +66,7 @@ export function moreHelp(state: HintState, target: string): HintState {
 export function hintText(card: HintCard): string {
   const { target, level } = card;
   const base = `A ${target.length}-letter word`;
-  return level === 0 ? `${base} starting with ${target[0]}.` : `${base}: ${mask(target)}`;
+  return level === 0 ? `${base} starting with ${target[0]}.` : `${base}: ${mask(target, level >= 2)}`;
 }
 
 /** Words found and total per word length, for the hints grid. */

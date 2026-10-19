@@ -6,8 +6,9 @@ import { Archive } from "./components/Archive";
 import { FoundList, FoundWords } from "./components/FoundWords";
 import { Gerbil } from "./components/Gerbil";
 import { Help } from "./components/Help";
-import { Hints } from "./components/Hints";
+import { HintBar } from "./components/HintBar";
 import { Keyboard } from "./components/Keyboard";
+import { Stats } from "./components/Stats";
 import { moreHelp, newHint } from "./game/hints";
 import { judge } from "./game/lemma";
 import { GERBRILLIANT, percent, tierFor } from "./game/scoring";
@@ -15,7 +16,13 @@ import { shareText } from "./game/share";
 import { allProgress, loadProgress, type Progress, saveProgress, streak } from "./game/storage";
 import { onReducedMotionChange, prefersReducedMotion, saveAnimate, savedAnimate } from "./settings";
 
-type Panel = "found" | "hints" | "archive" | "help" | null;
+declare global {
+  interface Window {
+    verbil?: { smashdown: () => void; gerbrilliant: () => void };
+  }
+}
+
+type Panel = "found" | "stats" | "archive" | "help" | null;
 type ToastKind = "good" | "bad" | "info" | "big";
 
 const MAX_LETTERS = 15;
@@ -49,6 +56,19 @@ export function App() {
   const [archive, setArchive] = useState<ArchiveEntry[] | null>(null);
   const [brilliantKey, setBrilliantKey] = useState(0);
   const [smashKey, setSmashKey] = useState(0);
+
+  // Dev only: preview the celebrations from the browser console, without touching saved progress.
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
+    window.verbil = {
+      smashdown: () => setSmashKey((k) => k + 1),
+      gerbrilliant: () => setBrilliantKey((k) => k + 1),
+    };
+    console.info("Verbil dev: verbil.smashdown() or verbil.gerbrilliant() previews the animations.");
+    return () => {
+      delete window.verbil;
+    };
+  }, []);
 
   // Animation follows the device's reduced-motion setting unless the player has chosen.
   const [animatePref, setAnimatePref] = useState(savedAnimate);
@@ -227,6 +247,17 @@ export function App() {
 
   const closePanel = useCallback(() => setPanel(null), []);
 
+  const statsButton = (
+    <button type="button" class="btn small" onClick={() => setPanel("stats")} disabled={!puzzle}>
+      📊 Stats
+    </button>
+  );
+  const shareButton = canShare && (
+    <button type="button" class="btn small share-btn" onClick={share}>
+      <span class="share-label">{complete ? "Smashdown!" : "Gerbrilliant!"}</span> ↗ Share
+    </button>
+  );
+
   return (
     <div class="shell">
       <div class="app">
@@ -259,7 +290,13 @@ export function App() {
             <>
               <div class="verb">{puzzle?.starter ?? "…"}</div>
               <p class="definition">
-                {puzzle ? `${puzzle.pos === "verb" ? "" : `${puzzle.pos}, `}as in “${puzzle.definition}”` : "\u00a0"}
+                {puzzle ? (
+                  <>
+                    <span class="pos">{puzzle.pos}</span> “{puzzle.definition}”
+                  </>
+                ) : (
+                  "\u00a0"
+                )}
               </p>
               <div class="score">
                 <span class={`tier tier-${tier.min}`}>{progress.revealed ? "Revealed" : tier.label}</span>
@@ -313,28 +350,30 @@ export function App() {
           onClose={closePanel}
         />
 
-        <div class="action-row">
-          <button type="button" class="btn small" onClick={() => setPanel("hints")} disabled={!puzzle}>
-            💡 Hints
-          </button>
-          {canShare && (
-            <button type="button" class="btn small share-btn" onClick={share}>
-              <span class="share-label">{complete ? "Smashdown!" : "Gerbrilliant!"}</span> ↗ Share
-            </button>
-          )}
-        </div>
-
-        <Keyboard onKey={onKey} disabled={locked} />
-
-        {panel === "hints" && puzzle && (
-          <Hints
+        {puzzle && !locked ? (
+          <HintBar
             puzzle={puzzle}
             found={found}
             hints={progress.hints}
-            complete={complete || !!progress.revealed}
-            canReveal={date < today && !complete && !progress.revealed}
             onNewHint={askHint}
             onMoreHelp={askMore}
+            before={statsButton}
+            after={shareButton}
+          />
+        ) : (
+          <div class="action-row">
+            {statsButton}
+            {shareButton}
+          </div>
+        )}
+
+        <Keyboard onKey={onKey} disabled={locked} />
+
+        {panel === "stats" && puzzle && (
+          <Stats
+            puzzle={puzzle}
+            found={found}
+            canReveal={date < today && !complete && !progress.revealed}
             onReveal={reveal}
             onClose={closePanel}
           />
