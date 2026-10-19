@@ -20,6 +20,8 @@
   --good: #3f9a5a;
   --bad: #d4544a;
   --key: #f3e3cf;
+  --key-enter: var(--patch); /* the gerbil's back */
+  --key-enter-press: #e3924a;
   --key-ink: #4a2e1f;
   --key-press: #e7cfb2;
   --wheel: #6cc3c1;
@@ -44,6 +46,8 @@
     --ink-soft: #bfa592;
     --line: #3d2f26;
     --key: #3a2c23;
+    --key-enter: #8a5428;
+    --key-enter-press: #774722;
     --key-ink: #f7e9da;
     --key-press: #4b3a2e;
     --stand: #8c6a55;
@@ -61,6 +65,8 @@
   --ink-soft: #bfa592;
   --line: #3d2f26;
   --key: #3a2c23;
+  --key-enter: #8a5428;
+  --key-enter-press: #774722;
   --key-ink: #f7e9da;
   --key-press: #4b3a2e;
   --stand: #8c6a55;
@@ -140,6 +146,17 @@ button {
   font-size: 1.35rem;
   font-weight: 700;
   cursor: pointer;
+}
+.icon-btn .icon {
+  display: block;
+  width: 26px;
+  height: 26px;
+  margin: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .icon-btn:hover:not(:disabled) {
   background: var(--key);
@@ -584,6 +601,12 @@ button {
   cursor: pointer;
   padding: 0;
 }
+.key-enter {
+  background: var(--key-enter);
+}
+.key-enter:active {
+  background: var(--key-enter-press);
+}
 .key:active {
   background: var(--key-press);
   transform: translateY(1px);
@@ -592,6 +615,17 @@ button {
   flex: 1.6 1 0;
   max-width: 72px;
   font-size: 0.8rem;
+}
+.key-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* Sheets */

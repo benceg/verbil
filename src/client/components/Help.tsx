@@ -13,14 +13,11 @@ export function Help({ animate, onToggleAnimate, onOpenPuzzles, onClose }: Props
       <div class="help">
         <p>Find as many synonyms as you can for the daily word.</p>
         <p>Each word you find gives Verbil the Furball Gerbil an energy boost!</p>
-        <ul>
-          <li>
-            <b>80%</b>: Gerbrilliant!
-          </li>
-          <li>
-            <b>100%</b>: Gerbil Smashdown!
-          </li>
-        </ul>
+        <p>
+          At <b>80%</b>, you're certified <b>Gerbrilliant!</b>
+          <br />
+          At <b>100%</b>, you've achieved <b>Gerbil Smashdown!</b> Enjoy your reward!
+        </p>
         <p>
           Use hints freely and check your <b>Stats</b> to see how many words are left.
         </p>

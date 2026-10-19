@@ -277,9 +277,14 @@ export function App() {
             type="button"
             class="icon-btn top-archive"
             onClick={() => setPanel("archive")}
-            aria-label="All puzzles"
+            aria-label="Past puzzles"
           >
-            ☰
+            {/* A clock with its arrow circling backwards: the past. Uses the text colour. */}
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3" />
+              <path d="M9.6 6.7H6.7V3.8" />
+              <path d="M12 8.2V12l2.8 1.8" />
+            </svg>
           </button>
         </header>
 

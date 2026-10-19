@@ -22,11 +22,19 @@ export function Keyboard({ onKey, disabled }: Props) {
             return (
               <button
                 type="button"
-                class={`key ${key.length > 1 ? "key-wide" : ""}`}
+                class={`key ${key.length > 1 ? "key-wide" : ""} ${key === "Enter" ? "key-enter" : ""}`}
                 onPointerDown={press(key)}
                 aria-label={key === "Backspace" ? "Delete" : key}
               >
-                {key === "Enter" ? "ENTER" : key === "Backspace" ? "⌫" : key}
+                {key === "Enter" ? (
+                  <svg class="key-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12.5l4.5 4.5L19 7.5" />
+                  </svg>
+                ) : key === "Backspace" ? (
+                  "⌫"
+                ) : (
+                  key
+                )}
               </button>
             );
           })}
