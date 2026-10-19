@@ -2,6 +2,7 @@ import type { ComponentChildren } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import type { Puzzle } from "../../shared/types";
 import { type HintState, hintText, liveCards, MAX_LEVEL } from "../game/hints";
+import { BulbIcon, HelpIcon } from "./Icons";
 
 interface Props {
   puzzle: Puzzle;
@@ -65,11 +66,13 @@ export function HintBar({ puzzle, found, hints, onNewHint, onMoreHelp, before, a
         {before}
         {card && card.level < MAX_LEVEL && (
           <button type="button" class="btn small" onClick={() => onMoreHelp(card.target)}>
+            <HelpIcon />
             More help
           </button>
         )}
         <button type="button" class="btn small" onClick={onNewHint} disabled={outOfHints}>
-          {outOfHints ? "Out of hints" : count ? "Another hint" : "💡 Hint"}
+          {!outOfHints && <BulbIcon />}
+          {outOfHints ? "Out of hints" : count ? "Another hint" : "Hint"}
         </button>
         {after}
       </div>

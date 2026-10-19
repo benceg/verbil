@@ -7,6 +7,7 @@ import { FoundList, FoundWords } from "./components/FoundWords";
 import { Gerbil } from "./components/Gerbil";
 import { Help } from "./components/Help";
 import { HintBar } from "./components/HintBar";
+import { StatsIcon } from "./components/Icons";
 import { Keyboard } from "./components/Keyboard";
 import { Stats } from "./components/Stats";
 import { moreHelp, newHint } from "./game/hints";
@@ -249,6 +250,7 @@ export function App() {
 
   const statsButton = (
     <button type="button" class="btn small" onClick={() => setPanel("stats")} disabled={!puzzle}>
+      <StatsIcon />
       Stats
     </button>
   );
