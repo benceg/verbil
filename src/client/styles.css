@@ -166,6 +166,24 @@ button {
   cursor: default;
 }
 
+/* The description in index.html, until the game replaces it */
+.intro {
+  max-width: 32rem;
+  margin: 18vh auto 0;
+  padding: 0 24px;
+  text-align: center;
+}
+.intro h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+  font-weight: 900;
+}
+.intro p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
 /* Starter word and score */
 .puzzle-head {
   text-align: center;

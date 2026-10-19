@@ -52,7 +52,35 @@ app.get("/api/archive", (c) => {
 
 app.all("/api/*", (c) => c.json({ error: "Not found" }, 404));
 
-// Everything else is the single-page app.
-app.all("*", (c) => c.env.ASSETS.fetch(c.req.raw));
+// Everything else: the game page (/, /?date=...) and static files, or a real 404 so
+// search engines don't index junk URLs as copies of the home page.
+app.all("*", async (c) => {
+  const res = await c.env.ASSETS.fetch(c.req.raw);
+  return res.status === 404 ? c.html(NOT_FOUND, 404) : res;
+});
+
+const NOT_FOUND = `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Page not found · Verbil</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <style>
+      body { margin: 0; min-height: 100dvh; display: grid; place-items: center; font-family: system-ui, sans-serif;
+        background: #fff4e6; color: #4a3426; text-align: center; padding: 24px; }
+      h1 { margin: 0 0 8px; font-size: 1.6rem; }
+      a { color: #b8621f; font-weight: 700; }
+      @media (prefers-color-scheme: dark) { body { background: #1e1612; color: #f6e8d8; } a { color: #f2a65a; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>This page has scurried off</h1>
+      <p><a href="/">Play today's Verbil</a></p>
+    </main>
+  </body>
+</html>`;
 
 export default app;

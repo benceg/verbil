@@ -8,7 +8,10 @@
     />
     <meta name="theme-color" content="#FFF4E6" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1E1612" media="(prefers-color-scheme: dark)" />
-    <meta name="description" content="A daily synonym game. Can you find every word?" />
+    <meta
+      name="description"
+      content="Verbil is a free daily word game. Find every synonym of the day's word to power up Verbil the Furball Gerbil. A new puzzle every day."
+    />
     <link rel="canonical" href="https://verbil.fun/" />
     <!-- Link previews (Facebook, WhatsApp, iMessage, Slack, X, ...) -->
     <meta property="og:type" content="website" />
@@ -21,14 +24,41 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="A cartoon gerbil running in a wheel beside the word Verbil" />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>Verbil</title>
+    <title>Verbil: a daily synonym word game</title>
+    <!-- Tells search engines what this page is: a free word game called Verbil. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Verbil",
+        "url": "https://verbil.fun/",
+        "description": "A free daily word game: find every synonym of the day's word to power up Verbil the Furball Gerbil.",
+        "applicationCategory": "GameApplication",
+        "genre": "Word game",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "image": "https://verbil.fun/og-image.png",
+        "author": { "@type": "Person", "name": "Ben Ceglowski", "url": "https://ceglow.ski" }
+      }
+    </script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" href="/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="manifest" href="/manifest.webmanifest" />
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- Shown until the game starts (and readable by search engines); main.tsx replaces it. -->
+      <main class="intro">
+        <h1>Verbil</h1>
+        <p>
+          Verbil is a free daily word game. Each day brings a new word: find as many of its synonyms as you can to power
+          up Verbil the Furball Gerbil. Play today's synonym puzzle or any past day, right in your browser.
+        </p>
+      </main>
+    </div>
     <script type="module" src="/src/client/main.tsx"></script>
   </body>
 </html>

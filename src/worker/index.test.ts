@@ -59,3 +59,29 @@ describe("puzzle API", () => {
     expect(res.headers.get("strict-transport-security")).toContain("max-age=");
   });
 });
+
+describe("pages", () => {
+  // A stand-in asset store: the game page at /, robots.txt, and nothing else.
+  const env = {
+    ASSETS: {
+      fetch: async (req: Request) => {
+        const path = new URL(req.url).pathname;
+        if (path === "/") return new Response("<html>game</html>", { headers: { "content-type": "text/html" } });
+        if (path === "/robots.txt") return new Response("User-agent: *");
+        return new Response("Not found", { status: 404 });
+      },
+    },
+  };
+
+  it("serves the game page, with or without a date", async () => {
+    expect((await app.request("https://verbil.fun/", {}, env)).status).toBe(200);
+    expect((await app.request("https://verbil.fun/?date=2026-10-18", {}, env)).status).toBe(200);
+    expect((await app.request("https://verbil.fun/robots.txt", {}, env)).status).toBe(200);
+  });
+
+  it("gives unknown paths a real 404 page", async () => {
+    const res = await app.request("https://verbil.fun/some/junk", {}, env);
+    expect(res.status).toBe(404);
+    expect(await res.text()).toContain("noindex");
+  });
+});
