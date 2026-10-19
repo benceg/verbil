@@ -54,8 +54,8 @@ BLOCKED_OK = {"adjective": {"WEE"}}
 # WordNet parts of speech for each kind of puzzle.
 POS = {"verb": ("v",), "adjective": ("a", "s"), "noun": ("n",)}
 # Everyday words WordNet 3.0 (from 2006) lacks, checked by hand.
-EXTRA_ADJECTIVES = set("TITCHY SAVVY DOUGHTY POOPED ZONKED MINTED DUFF NAFF TOASTY LIPPY HUNKY MOREISH WHIFFY JAMMY SQUIDGY GLOOPY LEGIT VINTAGE MOUTHWATERING HUBRISTIC UNFUSSY".split())
-EXTRA_NOUNS = set("DOSH HALFWIT NUMBSKULL PLONKER HOEDOWN HOOTENANNY SCRAN".split())
+EXTRA_ADJECTIVES = set("TITCHY SAVVY DOUGHTY POOPED ZONKED MINTED DUFF NAFF TOASTY LIPPY HUNKY MOREISH WHIFFY JAMMY SQUIDGY GLOOPY LEGIT VINTAGE MOUTHWATERING HUBRISTIC UNFUSSY STREWN".split())
+EXTRA_NOUNS = set("DOSH HALFWIT NUMBSKULL PLONKER HOEDOWN HOOTENANNY SCRAN MUNCHIES VITTLES SOULMATE".split())
 EXTRA_VERBS = set("WHINGE TWERK SHORTCHANGE UNSHACKLE UNLATCH UNCAP TEMP TELECOMMUTE TEXT SHOWCASE COURIER BABYSIT WOOF SHOWBOAT HOICK HANDPICK".split())
 
 EXTRA = {"verb": EXTRA_VERBS, "adjective": EXTRA_ADJECTIVES, "noun": EXTRA_NOUNS}
@@ -221,7 +221,8 @@ def main():
     for w in warnings:
         print("warn:", w)
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(puzzles, separators=(",", ":")))
+    # Indented so each day's words can be read and diffed; `npm run puzzles` then runs oxfmt over it.
+    OUT.write_text(json.dumps(puzzles, indent=2, ensure_ascii=False) + "\n")
     sizes = [len(p["words"]) for p in puzzles]
     print(
         f"{len(puzzles)} puzzles, {puzzles[0]['date']} to {puzzles[-1]['date']}, "

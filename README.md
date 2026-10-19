@@ -4,7 +4,7 @@ A daily synonym game. Each day has a starter word, mostly verbs with some adject
 abstract nouns, and the one meaning it's being used in (RUN, as in "move fast on foot");
 players type single-word synonyms, and for verbs kinds of that action too (SPRINT, JOG,
 TROT, GALLOP…). Every word speeds up the gerbil's wheel. 80% is
-*Gerbrilliant!*; 100% is the *Gerbil Smashdown*.
+_Gerbrilliant!_; 100% is the _Gerbil Smashdown_.
 
 Hints show a Spelling Bee-style grid of words found and left by length, plus one hint at
 a time that points at a word and can be made more specific. Found words are listed A–Z,
@@ -30,6 +30,8 @@ npm install
 npm run dev        # Vite + the Worker on http://localhost:5173
 npm test           # Vitest: API date gating, word matching, hints, data checks
 npm run typecheck
+npm run lint       # oxlint
+npm run format     # oxfmt (npm run format:check to verify); includes puzzles.json
 ```
 
 ## Deploying (free)
@@ -84,7 +86,7 @@ two adjective/noun days run together.
 python3 -m venv .venv && .venv/bin/pip install -r scripts/requirements.txt
 .venv/bin/python -c "import nltk; nltk.download('wordnet')"
 
-.venv/bin/python scripts/build.py      # validate + write src/worker/puzzles.json (npm run puzzles)
+.venv/bin/python scripts/build.py      # validate + write src/worker/puzzles.json (npm run puzzles also formats it)
 .venv/bin/python scripts/check.py RUN  # sense check: answers WordNet can't link to the starter
 .venv/bin/python scripts/draft.py fold --thesaurus  # candidate answers for each sense of a verb
 ```

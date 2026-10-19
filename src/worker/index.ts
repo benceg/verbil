@@ -38,7 +38,13 @@ app.get("/api/archive", (c) => {
   const latest = latestPlayableDate();
   const entries: ArchiveEntry[] = puzzles
     .filter((p) => p.date <= latest)
-    .map((p) => ({ number: p.number, date: p.date, starter: p.starter, definition: p.definition, total: p.words.length }))
+    .map((p) => ({
+      number: p.number,
+      date: p.date,
+      starter: p.starter,
+      definition: p.definition,
+      total: p.words.length,
+    }))
     .reverse();
   c.header("Cache-Control", "public, max-age=300");
   return c.json(entries);

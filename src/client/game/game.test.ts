@@ -121,7 +121,11 @@ describe("share text", () => {
 describe("streak", () => {
   const played = (d: string): Progress => ({ found: ["X"], hints: emptyHints(), startedOn: d });
   it("counts consecutive days played on the day", () => {
-    const p = { "2026-10-20": played("2026-10-20"), "2026-10-19": played("2026-10-19"), "2026-10-17": played("2026-10-17") };
+    const p = {
+      "2026-10-20": played("2026-10-20"),
+      "2026-10-19": played("2026-10-19"),
+      "2026-10-17": played("2026-10-17"),
+    };
     expect(streak("2026-10-20", p)).toBe(2);
     expect(streak("2026-10-21", p)).toBe(2);
     expect(streak("2026-10-22", p)).toBe(0);

@@ -148,7 +148,8 @@ export function App() {
     if (verdict.kind === "starter") return reject("That's today's word!");
     if (verdict.kind === "unknown") return reject("Not in the burrow");
     const word = verdict.word;
-    if (found.includes(word)) return reject(typed === word ? `Already found ${word}` : `Already found ${word} (${typed})`, "info");
+    if (found.includes(word))
+      return reject(typed === word ? `Already found ${word}` : `Already found ${word} (${typed})`, "info");
 
     const next = { ...progress, found: [...found, word], startedOn: progress.startedOn ?? today };
     update(next);
@@ -241,7 +242,12 @@ export function App() {
               {date === today ? "Today" : formatDate(date)}
             </span>
           </div>
-          <button type="button" class="icon-btn top-archive" onClick={() => setPanel("archive")} aria-label="All puzzles">
+          <button
+            type="button"
+            class="icon-btn top-archive"
+            onClick={() => setPanel("archive")}
+            aria-label="All puzzles"
+          >
             ☰
           </button>
         </header>
@@ -269,7 +275,14 @@ export function App() {
           )}
         </section>
 
-        <Gerbil key={date} pct={pct} finished={complete} brilliantKey={brilliantKey} smashKey={smashKey} animate={animate} />
+        <Gerbil
+          key={date}
+          pct={pct}
+          finished={complete}
+          brilliantKey={brilliantKey}
+          smashKey={smashKey}
+          animate={animate}
+        />
 
         <div class="entry-wrap">
           {toast && (
@@ -329,7 +342,7 @@ export function App() {
         {panel === "archive" && (
           <Archive
             entries={archive}
-          failed={archiveFailed}
+            failed={archiveFailed}
             progress={everything}
             today={today}
             current={date}

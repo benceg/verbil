@@ -59,7 +59,13 @@ export function Hints({ puzzle, found, hints, canReveal, complete, onNewHint, on
         {card ? (
           <>
             <div class="hint-nav">
-              <button type="button" class="icon-btn" onClick={() => setIndex(current - 1)} disabled={current <= 0} aria-label="Previous hint">
+              <button
+                type="button"
+                class="icon-btn"
+                onClick={() => setIndex(current - 1)}
+                disabled={current <= 0}
+                aria-label="Previous hint"
+              >
                 ‹
               </button>
               <p class="hint-text" aria-live="polite">

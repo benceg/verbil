@@ -11,9 +11,9 @@ export function Help({ animate, onToggleAnimate, onClose }: Props) {
     <Sheet title="How to play" onClose={onClose}>
       <div class="help">
         <p>
-          Every day there's a new word, usually a verb, with the meaning you're looking for underneath. Find as
-          many <b>single-word synonyms</b> as you can. For verbs, particular ways of doing it count too: for{" "}
-          <b>RUN</b> as in “move fast on foot”, that's <b>SPRINT</b>, <b>JOG</b>, <b>TROT</b>, <b>GALLOP</b> and more.
+          Every day there's a new word, usually a verb, with the meaning you're looking for underneath. Find as many{" "}
+          <b>single-word synonyms</b> as you can. For verbs, particular ways of doing it count too: for <b>RUN</b> as in
+          “move fast on foot”, that's <b>SPRINT</b>, <b>JOG</b>, <b>TROT</b>, <b>GALLOP</b> and more.
         </p>
         <p>Any form of a word works: JOGGING counts as JOG, HAPPIER as HAPPY.</p>
         <p>Each word you find makes the gerbil run faster.</p>
@@ -29,8 +29,8 @@ export function Help({ animate, onToggleAnimate, onClose }: Props) {
           Stuck? <b>Hints</b> show how many words of each length are left and nudge you towards one.
         </p>
         <p class="muted small">
-          You can replay any past day, but tomorrow's puzzle stays locked until tomorrow. Your progress is saved on
-          this device. Word lists are built from Princeton WordNet, checked against a thesaurus and curated by hand.
+          You can replay any past day, but tomorrow's puzzle stays locked until tomorrow. Your progress is saved on this
+          device. Word lists are built from Princeton WordNet, checked against a thesaurus and curated by hand.
         </p>
         <div class="setting">
           <div>

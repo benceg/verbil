@@ -123,7 +123,10 @@ function Figure({ refs, id }: { refs: FigureRefs; id: string }) {
           <circle cx="44.2" cy="-46" r="2.3" fill="#fff" />
           <circle cx="40.5" cy="-40" r="1.1" fill="#fff" />
         </g>
-        <path class="eye-star" d="M42,-52 L44.4,-46 L50.5,-45.4 L45.8,-41.4 L47.3,-35.3 L42,-38.6 L36.7,-35.3 L38.2,-41.4 L33.5,-45.4 L39.6,-46 Z" />
+        <path
+          class="eye-star"
+          d="M42,-52 L44.4,-46 L50.5,-45.4 L45.8,-41.4 L47.3,-35.3 L42,-38.6 L36.7,-35.3 L38.2,-41.4 L33.5,-45.4 L39.6,-46 Z"
+        />
         <path class="eye-happy" d="M36,-42 Q42,-50 48,-42" fill="none" stroke-width="3" stroke-linecap="round" />
       </g>
       {/* Sunglasses, worn from Gerbrilliant (80%) onwards. */}
@@ -162,8 +165,20 @@ function Champion({ refs }: { refs: ChampionRefs }) {
         </clipPath>
       </defs>
       <g ref={refs.tail}>
-        <path d="M16,-14 C44,-12 60,-28 62,-60" class="g-outline" stroke-width={TAIL_WIDTH + 6.4} fill="none" stroke-linecap="round" />
-        <path d="M16,-14 C44,-12 60,-28 62,-60" class="g-tail" stroke-width={TAIL_WIDTH} fill="none" stroke-linecap="round" />
+        <path
+          d="M16,-14 C44,-12 60,-28 62,-60"
+          class="g-outline"
+          stroke-width={TAIL_WIDTH + 6.4}
+          fill="none"
+          stroke-linecap="round"
+        />
+        <path
+          d="M16,-14 C44,-12 60,-28 62,-60"
+          class="g-tail"
+          stroke-width={TAIL_WIDTH}
+          fill="none"
+          stroke-linecap="round"
+        />
       </g>
       <g transform="translate(-19 -64) rotate(-22)">
         <ellipse rx="9" ry="11.5" class="g-ear" />
@@ -535,7 +550,12 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey, animate }: Props
               />
             ))}
             {rungs.map((t) => (
-              <circle cx={WHEEL.x + Math.cos(t) * (WHEEL.r - 5)} cy={WHEEL.y + Math.sin(t) * (WHEEL.r - 5)} r="2.4" class="wheel-rung" />
+              <circle
+                cx={WHEEL.x + Math.cos(t) * (WHEEL.r - 5)}
+                cy={WHEEL.y + Math.sin(t) * (WHEEL.r - 5)}
+                r="2.4"
+                class="wheel-rung"
+              />
             ))}
             <circle cx={WHEEL.x} cy={WHEEL.y} r="13" class="wheel-hub" />
           </g>
@@ -551,7 +571,10 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey, animate }: Props
         <Champion refs={champ} />
         <g ref={dizzy} class="dizzy" opacity="0">
           {[0, 120, 240].map((d) => (
-            <path transform={`rotate(${d}) translate(16 0) scale(0.55)`} d="M0,-10 L2.9,-4 L9.5,-3.1 L4.7,1.5 L5.9,8 L0,5 L-5.9,8 L-4.7,1.5 L-9.5,-3.1 L-2.9,-4 Z" />
+            <path
+              transform={`rotate(${d}) translate(16 0) scale(0.55)`}
+              d="M0,-10 L2.9,-4 L9.5,-3.1 L4.7,1.5 L5.9,8 L0,5 L-5.9,8 L-4.7,1.5 L-9.5,-3.1 L-2.9,-4 Z"
+            />
           ))}
         </g>
       </svg>
