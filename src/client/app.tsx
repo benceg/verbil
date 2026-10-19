@@ -339,8 +339,9 @@ export function App() {
               <span class="entry-note">Every word found!</span>
             ) : (
               <>
-                <span class="entry-text">{entry}</span>
+                {entry && <span class="entry-text">{entry}</span>}
                 <span class="caret" />
+                {!entry && <span class="entry-placeholder">Enter a word</span>}
               </>
             )}
           </div>

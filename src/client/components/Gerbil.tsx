@@ -331,7 +331,19 @@ export function Gerbil({ pct, finished, brilliantKey, smashKey, animate }: Props
       const rect = stage.current!.getBoundingClientRect();
       size = { w: rect.width, h: rect.height, dpr: window.devicePixelRatio || 1 };
       const scale = Math.min(rect.width / 400, rect.height / 300);
-      ground = (rect.height - 300 * scale) / 2 + 284 * scale;
+      const top = (rect.height - 300 * scale) / 2;
+      ground = top + 284 * scale;
+      // Where the top of the wheel's rim sits, relative to the stage, so the desktop
+      // layout can line the word list up with it.
+      const rimTop = top + (WHEEL.y - WHEEL.r - 4.5) * scale;
+      document.documentElement.style.setProperty("--wheel-top", `${Math.round(rimTop)}px`);
+      // From the top of the rim down to the bottom of the stand's base bar (y 286, 9 wide).
+      const standBottom = top + 290.5 * scale;
+      document.documentElement.style.setProperty("--wheel-height", `${Math.round(standBottom - rimTop)}px`);
+      // Empty canvas either side of the drawing (the ground spans x 50-350 of 400), which
+      // the desktop layout trims so the wheel and word list sit together.
+      const slack = (rect.width - 310 * scale) / 2;
+      document.documentElement.style.setProperty("--stage-slack", `${Math.max(0, Math.round(slack))}px`);
       for (const c of [canvas.current!, backCanvas.current!]) {
         c.width = rect.width * size.dpr;
         c.height = rect.height * size.dpr;
