@@ -11,6 +11,7 @@
   --bg: #fff4e6;
   --surface: #fffaf3;
   --sheet: #fff8ee; /* panels: a touch lighter than the page */
+  --sheet-shadow: rgba(91, 58, 41, 0.35); /* warm brown, from the background's hue */
   --ink: #4a2e1f;
   --ink-soft: #8a6a57;
   --line: #ead8c4;
@@ -38,6 +39,7 @@
     --bg: #1e1612;
     --surface: #2a201a;
     --sheet: #251c17;
+    --sheet-shadow: var(--bg);
     --ink: #f7e9da;
     --ink-soft: #bfa592;
     --line: #3d2f26;
@@ -54,6 +56,7 @@
   --bg: #1e1612;
   --surface: #2a201a;
   --sheet: #251c17;
+  --sheet-shadow: var(--bg);
   --ink: #f7e9da;
   --ink-soft: #bfa592;
   --line: #3d2f26;
@@ -609,7 +612,7 @@ button {
   display: flex;
   flex-direction: column;
   background: var(--sheet);
-  box-shadow: 0 0 28px 6px var(--bg);
+  box-shadow: 0 0 28px 6px var(--sheet-shadow);
   border-radius: 20px 20px 0 0;
   padding-bottom: env(safe-area-inset-bottom);
   animation: slide 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
