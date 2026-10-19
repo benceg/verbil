@@ -249,7 +249,7 @@ export function App() {
 
   const statsButton = (
     <button type="button" class="btn small" onClick={() => setPanel("stats")} disabled={!puzzle}>
-      📊 Stats
+      Stats
     </button>
   );
   const shareButton = canShare && (

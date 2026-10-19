@@ -56,7 +56,7 @@ describe("judge", () => {
 
 describe("scoring", () => {
   it("maps progress to tiers", () => {
-    expect(tierFor(0, 40).label).toBe("Parking");
+    expect(tierFor(0, 40).label).toBe("Parked");
     expect(tierFor(1, 40).label).toBe("Scampering");
     expect(tierFor(32, 40).label).toBe("Sprinting");
     expect(tierFor(40, 40).label).toBe("Smashdown!");
@@ -111,14 +111,13 @@ describe("hints", () => {
 });
 
 describe("share text", () => {
-  it("matches the agreed format", () => {
-    expect(shareText(30, 49)).toBe("🐭 Verbil (verbil.fun)\nCantering 🟧🟧🟧🟧🟧🟧⬜⬜⬜⬜\n30/49 words - 61%");
+  it("shows four cheeses for Gerbrilliant", () => {
+    expect(shareText(27, 33)).toBe("🐭 Verbil (verbil.fun)\nGerbrilliant! 🧀🧀🧀🧀\n27/33 words - 81%");
+    expect(shareText(32, 33)).toContain("Gerbrilliant! 🧀🧀🧀🧀");
   });
 
-  it("fills the bar only when every word is found", () => {
-    expect(shareText(49, 49)).toContain("Smashdown! " + "🟧".repeat(10));
-    expect(shareText(48, 49)).toContain("🟧".repeat(9) + "⬜");
-    expect(shareText(1, 49)).toContain("Scampering 🟧" + "⬜".repeat(9));
+  it("shows five cheeses for a Smashdown", () => {
+    expect(shareText(33, 33)).toBe("🐭 Verbil (verbil.fun)\nSmashdown! 🧀🧀🧀🧀🧀\n33/33 words - 100%");
   });
 });
 

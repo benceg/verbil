@@ -4,7 +4,7 @@ export interface Tier {
 }
 
 export const TIERS: Tier[] = [
-  { min: 0, label: "Parking" },
+  { min: 0, label: "Parked" },
   { min: 1, label: "Scampering" },
   { min: 25, label: "Scurrying" },
   { min: 50, label: "Cantering" },
