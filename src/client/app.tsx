@@ -390,7 +390,14 @@ export function App() {
             onClose={closePanel}
           />
         )}
-        {panel === "help" && <Help animate={animate} onToggleAnimate={toggleAnimate} onClose={closePanel} />}
+        {panel === "help" && (
+          <Help
+            animate={animate}
+            onToggleAnimate={toggleAnimate}
+            onOpenPuzzles={() => setPanel("archive")}
+            onClose={closePanel}
+          />
+        )}
       </div>
       <aside class="side" aria-label="Words found">
         <h2>

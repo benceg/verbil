@@ -3,35 +3,37 @@ import { Sheet } from "./Sheet";
 interface Props {
   animate: boolean;
   onToggleAnimate: () => void;
+  onOpenPuzzles: () => void;
   onClose: () => void;
 }
 
-export function Help({ animate, onToggleAnimate, onClose }: Props) {
+export function Help({ animate, onToggleAnimate, onOpenPuzzles, onClose }: Props) {
   return (
     <Sheet title="How to play" onClose={onClose}>
       <div class="help">
-        <p>
-          Every day there's a new word, usually a verb, with the meaning you're looking for underneath. Find as many{" "}
-          <b>single-word synonyms</b> as you can. For verbs, particular ways of doing it count too: for <b>RUN</b> as in
-          “move fast on foot”, that's <b>SPRINT</b>, <b>JOG</b>, <b>TROT</b>, <b>GALLOP</b> and more.
-        </p>
-        <p>Any form of a word works: JOGGING counts as JOG, HAPPIER as HAPPY.</p>
-        <p>Each word you find makes the gerbil run faster.</p>
+        <p>Find as many synonyms as you can for the daily word.</p>
+        <p>Each word you find gives Verbil the Furball Gerbil an energy boost!</p>
         <ul>
           <li>
             <b>80%</b>: Gerbrilliant!
           </li>
           <li>
-            <b>100%</b>: Gerbil Smashdown. Find out for yourself.
+            <b>100%</b>: Gerbil Smashdown!
           </li>
         </ul>
         <p>
-          Stuck? Ask for a <b>hint</b> just above the keyboard, and <b>Stats</b> shows how many words of each length are
-          left.
+          Use hints freely and check your <b>Stats</b> to see how many words are left.
+        </p>
+        <p>
+          There's a new word every day, and you can{" "}
+          <button type="button" class="text-link" onClick={onOpenPuzzles}>
+            play past puzzles
+          </button>
+          . All progress is saved on your device.
         </p>
         <p class="muted small">
-          You can replay any past day, but tomorrow's puzzle stays locked until tomorrow. Your progress is saved on this
-          device. Word lists are built from Princeton WordNet, checked against a thesaurus and curated by hand.
+          Some synonym lists contain a small selection of obscure or less commonly used synonyms. Try to find them all!
+          And if you think of a synonym we happen to have missed, congratulations! You are the Big Cheese!
         </p>
         <div class="setting">
           <div>
