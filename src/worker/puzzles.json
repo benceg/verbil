@@ -136,9 +136,15 @@
       "RUMBLE",
       "EXPLODE",
       "DETONATE",
-      "BURST"
+      "BURST",
+      "BASH",
+      "HAMMER",
+      "POUND",
+      "RATTLE",
+      "BEAT"
     ],
     "forms": {
+      "BEATEN": "BEAT",
       "CLAPPED": "CLAP",
       "CLAPPING": "CLAP",
       "POPPED": "POP",
@@ -176,9 +182,23 @@
       "MINIMAL",
       "MINIMALIST",
       "UNEMBELLISHED",
-      "UNORNAMENTED"
+      "UNORNAMENTED",
+      "CHASTE",
+      "HOMELY",
+      "FEATURELESS",
+      "RUSTIC",
+      "UNVARNISHED",
+      "UNDECORATED",
+      "DRAB",
+      "SOBER",
+      "FRUGAL"
     ],
-    "forms": {}
+    "forms": {
+      "DRABBER": "DRAB",
+      "DRABBEST": "DRAB",
+      "HOMELIER": "HOMELY",
+      "HOMELIEST": "HOMELY"
+    }
   },
   {
     "number": 5,
@@ -206,7 +226,13 @@
       "ADVENTUROUS",
       "FASCINATING",
       "COMPELLING",
-      "ABSORBING"
+      "ABSORBING",
+      "ELECTRIC",
+      "GALVANIZING",
+      "TITILLATING",
+      "EVENTFUL",
+      "INSPIRING",
+      "ENERGIZING"
     ],
     "forms": {
       "HEADIER": "HEADY",
@@ -246,7 +272,13 @@
       "INVIGORATE",
       "REVITALIZE",
       "AMPLIFY",
-      "DEEPEN"
+      "DEEPEN",
+      "BATTEN",
+      "ENHANCE",
+      "SOLIDIFY",
+      "STABILIZE",
+      "SECURE",
+      "TONE"
     ],
     "forms": {
       "AMPLIFIED": "AMPLIFY",
@@ -256,7 +288,9 @@
       "INTENSIFIED": "INTENSIFY",
       "PROPPED": "PROP",
       "PROPPING": "PROP",
-      "REVITALISE": "REVITALIZE"
+      "REVITALISE": "REVITALIZE",
+      "SOLIDIFIED": "SOLIDIFY",
+      "STABILISE": "STABILIZE"
     }
   },
   {
@@ -287,7 +321,14 @@
       "INSTRUCTION",
       "ORDER",
       "PROTOCOL",
-      "CONVENTION"
+      "CONVENTION",
+      "ACT",
+      "MANDATE",
+      "RULING",
+      "TENET",
+      "STIPULATION",
+      "REQUIREMENT",
+      "RESTRICTION"
     ],
     "forms": {
       "DICTA": "DICTUM"
@@ -317,7 +358,10 @@
       "PROPER",
       "APPROPRIATE",
       "FITTING",
-      "RIGHT"
+      "RIGHT",
+      "FAULTLESS",
+      "IMPECCABLE",
+      "TRUTHFUL"
     ],
     "forms": {
       "TRUER": "TRUE",
@@ -355,7 +399,9 @@
       "CONVERT",
       "NUDGE",
       "ENCOURAGE",
-      "PROD"
+      "PROD",
+      "WOO",
+      "ALLURE"
     ],
     "forms": {
       "LOBBIED": "LOBBY",
@@ -397,11 +443,16 @@
       "SPUNKY",
       "HARDY",
       "RESOLUTE",
-      "GAME"
+      "GAME",
+      "SPIRITED",
+      "UNAFRAID",
+      "FEISTY"
     ],
     "forms": {
       "DOUGHTIER": "DOUGHTY",
       "DOUGHTIEST": "DOUGHTY",
+      "FEISTIER": "FEISTY",
+      "FEISTIEST": "FEISTY",
       "GRITTIER": "GRITTY",
       "GRITTIEST": "GRITTY",
       "GUTSIER": "GUTSY",
@@ -436,7 +487,12 @@
       "ERSATZ",
       "SIMULATED",
       "PRETEND",
-      "PIRATED"
+      "PIRATED",
+      "IMITATION",
+      "UNREAL",
+      "PRETENDED",
+      "FICTITIOUS",
+      "FEIGNED"
     ],
     "forms": {
       "PHONY": "PHONEY"
@@ -511,7 +567,13 @@
       "SOLECISM",
       "FAULT",
       "INACCURACY",
-      "MISSTEP"
+      "MISSTEP",
+      "BOTCH",
+      "BUNGLE",
+      "MISUNDERSTANDING",
+      "MISREADING",
+      "MISAPPREHENSION",
+      "MISCUE"
     ],
     "forms": {}
   },
@@ -546,6 +608,7 @@
       "DAINTIEST": "DAINTY",
       "NATTIER": "NATTY",
       "NATTIEST": "NATTY",
+      "ORGANISED": "ORGANIZED",
       "TIDIER": "TIDY",
       "TIDIEST": "TIDY",
       "TRIMMER": "TRIM",
@@ -557,7 +620,7 @@
     "date": "2026-11-01",
     "starter": "WRAP",
     "pos": "verb",
-    "definition": "cover by winding round",
+    "definition": "fold material all around",
     "words": [
       "BUNDLE",
       "SWADDLE",
@@ -581,7 +644,12 @@
       "CASE",
       "MUMMIFY",
       "SEAL",
-      "TIE"
+      "TIE",
+      "WIND",
+      "ROLL",
+      "ENCLOSE",
+      "DRAPE",
+      "COVER"
     ],
     "forms": {
       "BAGGED": "BAG",
@@ -589,6 +657,7 @@
       "BOUND": "BIND",
       "MUMMIFIED": "MUMMIFY",
       "TYING": "TIE",
+      "WOUND": "WIND",
       "WRAPPED": "WRAP",
       "WRAPPING": "WRAP"
     }
@@ -617,7 +686,10 @@
       "STARK",
       "EVACUATED",
       "CLEARED",
-      "VACATED"
+      "VACATED",
+      "STRIPPED",
+      "DRAINED",
+      "UNUSED"
     ],
     "forms": {
       "EMPTIER": "EMPTY",
@@ -652,16 +724,24 @@
       "DECRY",
       "DEPRECATE",
       "DERIDE",
-      "SNIPE"
+      "SNIPE",
+      "DISS",
+      "PILLORY",
+      "VILIFY",
+      "CENSURE",
+      "CASTIGATE",
+      "SLATE"
     ],
     "forms": {
       "DECRIED": "DECRY",
       "PANNED": "PAN",
       "PANNING": "PAN",
+      "PILLORIED": "PILLORY",
       "RIPPED": "RIP",
       "RIPPING": "RIP",
       "SLAMMED": "SLAM",
-      "SLAMMING": "SLAM"
+      "SLAMMING": "SLAM",
+      "VILIFIED": "VILIFY"
     }
   },
   {
@@ -693,7 +773,10 @@
       "VACATION",
       "HITCHHIKE",
       "TRAMP",
-      "ROAM"
+      "ROAM",
+      "JAUNT",
+      "TRAVERSE",
+      "CARAVAN"
     ],
     "forms": {
       "DRIVEN": "DRIVE",
@@ -739,7 +822,10 @@
       "PRESS",
       "IMPOSE",
       "EXTORT",
-      "BADGER"
+      "BADGER",
+      "OBLIGATE",
+      "BULLDOZE",
+      "STEAMROLLER"
     ],
     "forms": {
       "BROWBEATEN": "BROWBEAT",
@@ -816,13 +902,21 @@
       "SHAFT",
       "SCREW",
       "VICTIMIZE",
-      "EXPLOIT"
+      "EXPLOIT",
+      "HOAX",
+      "HUMBUG",
+      "FIDDLE",
+      "RIG"
     ],
     "forms": {
       "CHISELLED": "CHISEL",
       "CHISELLING": "CHISEL",
       "CONNED": "CON",
       "CONNING": "CON",
+      "HUMBUGGED": "HUMBUG",
+      "HUMBUGGING": "HUMBUG",
+      "RIGGED": "RIG",
+      "RIGGING": "RIG",
       "STUNG": "STING",
       "VICTIMISE": "VICTIMIZE"
     }
@@ -865,7 +959,10 @@
       "ANTAGONIZE",
       "AGGRAVATE",
       "RUFFLE",
-      "FRUSTRATE"
+      "FRUSTRATE",
+      "TEASE",
+      "BAIT",
+      "TORMENT"
     ],
     "forms": {
       "ANTAGONISE": "ANTAGONIZE",
@@ -900,9 +997,20 @@
       "VOCIFEROUS",
       "TUMULTUOUS",
       "RACKETY",
-      "STENTORIAN"
+      "STENTORIAN",
+      "BLASTING",
+      "SHATTERING",
+      "BRASSY",
+      "FORTE",
+      "FORTISSIMO",
+      "CACOPHONOUS",
+      "HOWLING",
+      "SCREAMING",
+      "THUMPING"
     ],
     "forms": {
+      "BRASSIER": "BRASSY",
+      "BRASSIEST": "BRASSY",
       "NOISIER": "NOISY",
       "NOISIEST": "NOISY",
       "ROWDIER": "ROWDY",
@@ -940,9 +1048,17 @@
       "UNCLEAN",
       "SLOVENLY",
       "SCRUFFY",
-      "UNKEMPT"
+      "UNKEMPT",
+      "DINGY",
+      "DEFILED",
+      "SCUMMY",
+      "BEGRIMED",
+      "CRUDDY",
+      "MUDDIED"
     ],
     "forms": {
+      "DINGIER": "DINGY",
+      "DINGIEST": "DINGY",
       "DIRTIER": "DIRTY",
       "DIRTIEST": "DIRTY",
       "DUSTIER": "DUSTY",
@@ -994,7 +1110,9 @@
       "BEND",
       "BEHAVE",
       "SERVE",
-      "ACCEDE"
+      "ACCEDE",
+      "ACCEPT",
+      "OBLIGE"
     ],
     "forms": {
       "ABODE": "ABIDE",
@@ -1041,7 +1159,14 @@
       "HOEDOWN",
       "SOCIAL",
       "FETE",
-      "CAROUSAL"
+      "CAROUSAL",
+      "MASQUERADE",
+      "MIXER",
+      "CEILIDH",
+      "BARBECUE",
+      "HOUSEWARMING",
+      "LUAU",
+      "CARNIVAL"
     ],
     "forms": {}
   },
@@ -1074,7 +1199,8 @@
       "PASTEURIZE",
       "STERILIZE",
       "CHILL",
-      "JERK"
+      "JERK",
+      "CONSERVE"
     ],
     "forms": {
       "CANDIED": "CANDY",
@@ -1120,16 +1246,23 @@
       "EXTEND",
       "MAXIMIZE",
       "STEP",
-      "ENHANCE"
+      "ENHANCE",
+      "COMPOUND",
+      "BUILD",
+      "RAMP",
+      "BUMP",
+      "SWELL"
     ],
     "forms": {
       "AMPLIFIED": "AMPLIFY",
+      "BUILT": "BUILD",
       "INTENSIFIED": "INTENSIFY",
       "MAGNIFIED": "MAGNIFY",
       "MAXIMISE": "MAXIMIZE",
       "MULTIPLIED": "MULTIPLY",
       "STEPPED": "STEP",
-      "STEPPING": "STEP"
+      "STEPPING": "STEP",
+      "SWOLLEN": "SWELL"
     }
   },
   {
@@ -1169,7 +1302,13 @@
       "FLIP",
       "TURN",
       "UPDATE",
-      "OVERHAUL"
+      "OVERHAUL",
+      "MORPH",
+      "TRANSPOSE",
+      "REVOLUTIONIZE",
+      "REVAMP",
+      "RESHUFFLE",
+      "TRANSITION"
     ],
     "forms": {
       "CUSTOMISE": "CUSTOMIZE",
@@ -1177,6 +1316,7 @@
       "FLIPPING": "FLIP",
       "MODIFIED": "MODIFY",
       "REORGANISE": "REORGANIZE",
+      "REVOLUTIONISE": "REVOLUTIONIZE",
       "VARIED": "VARY"
     }
   },
@@ -1210,7 +1350,13 @@
       "MUDDY",
       "RAINY",
       "SHOWERY",
-      "DRIZZLY"
+      "DRIZZLY",
+      "FLOODED",
+      "SUBMERGED",
+      "SLICK",
+      "DOUSED",
+      "WATERY",
+      "SOPPY"
     ],
     "forms": {
       "CLAMMIER": "CLAMMY",
@@ -1229,6 +1375,8 @@
       "SLIMIEST": "SLIMY",
       "SOGGIER": "SOGGY",
       "SOGGIEST": "SOGGY",
+      "SOPPIER": "SOPPY",
+      "SOPPIEST": "SOPPY",
       "STEAMIER": "STEAMY",
       "STEAMIEST": "STEAMY",
       "WETTER": "WET",
@@ -1259,7 +1407,12 @@
       "STURDY",
       "ATHLETIC",
       "TRIM",
-      "WHOLESOME"
+      "WHOLESOME",
+      "SPRY",
+      "SPRIGHTLY",
+      "LIVELY",
+      "STRAPPING",
+      "TONED"
     ],
     "forms": {
       "BETTER": "WELL",
@@ -1271,10 +1424,16 @@
       "HEALTHIEST": "HEALTHY",
       "HEARTIER": "HEARTY",
       "HEARTIEST": "HEARTY",
+      "LIVELIER": "LIVELY",
+      "LIVELIEST": "LIVELY",
       "ROSIER": "ROSY",
       "ROSIEST": "ROSY",
       "RUDDIER": "RUDDY",
       "RUDDIEST": "RUDDY",
+      "SPRIER": "SPRY",
+      "SPRIEST": "SPRY",
+      "SPRIGHTLIER": "SPRIGHTLY",
+      "SPRIGHTLIEST": "SPRIGHTLY",
       "STRONGER": "STRONG",
       "STRONGEST": "STRONG",
       "STURDIER": "STURDY",
@@ -1306,9 +1465,13 @@
       "COUNTERFEIT",
       "POSTURE",
       "PLAY",
-      "IMAGINE"
+      "IMAGINE",
+      "MIMIC",
+      "IMITATE"
     ],
     "forms": {
+      "MIMICKED": "MIMIC",
+      "MIMICKING": "MIMIC",
       "SHAMMED": "SHAM",
       "SHAMMING": "SHAM"
     }
@@ -1340,9 +1503,16 @@
       "DEFERENTIAL",
       "OBLIGING",
       "PROPER",
-      "DECOROUS"
+      "DECOROUS",
+      "CIVILIZED",
+      "CULTIVATED",
+      "COURTLY",
+      "POLISHED"
     ],
-    "forms": {}
+    "forms": {
+      "COURTLIER": "COURTLY",
+      "COURTLIEST": "COURTLY"
+    }
   },
   {
     "number": 34,
@@ -1373,7 +1543,10 @@
       "DEPART",
       "LAM",
       "BAIL",
-      "ESCAPE"
+      "ESCAPE",
+      "SCOOT",
+      "OUTRUN",
+      "BUNK"
     ],
     "forms": {
       "FLED": "FLEE",
@@ -1382,6 +1555,8 @@
       "LAMMED": "LAM",
       "LAMMING": "LAM",
       "LEFT": "LEAVE",
+      "OUTRAN": "OUTRUN",
+      "OUTRUNNING": "OUTRUN",
       "SCRAMMED": "SCRAM",
       "SCRAMMING": "SCRAM",
       "SKIPPED": "SKIP",
@@ -1419,7 +1594,13 @@
       "SCAN",
       "MONITOR",
       "OBSERVE",
-      "CANVASS"
+      "CANVASS",
+      "SIFT",
+      "WEIGH",
+      "ASSAY",
+      "PORE",
+      "GAUGE",
+      "CRITIQUE"
     ],
     "forms": {
       "SCANNED": "SCAN",
@@ -1461,7 +1642,13 @@
       "ENERVATED",
       "TORPID",
       "HAGGARD",
-      "BLEARY"
+      "BLEARY",
+      "FLAGGING",
+      "DROOPING",
+      "WEARIED",
+      "DRAWN",
+      "RAGGED",
+      "WIPED"
     ],
     "forms": {
       "BLEARIER": "BLEARY",
@@ -1506,12 +1693,17 @@
       "NAIL",
       "APPREHEND",
       "ARREST",
-      "SNAG"
+      "SNAG",
+      "COP",
+      "LATCH",
+      "COMMANDEER"
     ],
     "forms": {
       "BAGGED": "BAG",
       "BAGGING": "BAG",
       "CAUGHT": "CATCH",
+      "COPPED": "COP",
+      "COPPING": "COP",
       "GRABBED": "GRAB",
       "GRABBING": "GRAB",
       "GRIPPED": "GRIP",
@@ -1552,7 +1744,9 @@
       "COMMIT",
       "PLUMP",
       "ADOPT",
-      "CLINCH"
+      "CLINCH",
+      "ORDAIN",
+      "ELECT"
     ],
     "forms": {
       "CHOSE": "CHOOSE",
@@ -1591,10 +1785,18 @@
       "TATTLE",
       "GRASS",
       "SHOP",
-      "REPORT"
+      "REPORT",
+      "PIN",
+      "TAX",
+      "RAT",
+      "REPROACH"
     ],
     "forms": {
       "CRITICISE": "CRITICIZE",
+      "PINNED": "PIN",
+      "PINNING": "PIN",
+      "RATTED": "RAT",
+      "RATTING": "RAT",
       "SHOPPED": "SHOP",
       "SHOPPING": "SHOP"
     }
@@ -1629,11 +1831,18 @@
       "COMPREHEND",
       "DIGEST",
       "IMBIBE",
-      "GLEAN"
+      "GLEAN",
+      "HEAR",
+      "BONE",
+      "GET"
     ],
     "forms": {
       "CRAMMED": "CRAM",
       "CRAMMING": "CRAM",
+      "GETTING": "GET",
+      "GOT": "GET",
+      "GOTTEN": "GET",
+      "HEARD": "HEAR",
       "LEARNT": "LEARN",
       "MEMORISE": "MEMORIZE",
       "PRACTICE": "PRACTISE",
@@ -1672,7 +1881,8 @@
       "YOWL",
       "GROAN",
       "BEWAIL",
-      "SORROW"
+      "SORROW",
+      "SNUFFLE"
     ],
     "forms": {
       "BLUBBED": "BLUB",
@@ -1792,7 +2002,12 @@
       "TAP",
       "CLOG",
       "HOOF",
-      "PIROUETTE"
+      "PIROUETTE",
+      "TWERK",
+      "PRANCE",
+      "STEP",
+      "SWING",
+      "CHARLESTON"
     ],
     "forms": {
       "BOPPED": "BOP",
@@ -1808,6 +2023,9 @@
       "QUICKSTEPPED": "QUICKSTEP",
       "QUICKSTEPPING": "QUICKSTEP",
       "SHIMMIED": "SHIMMY",
+      "STEPPED": "STEP",
+      "STEPPING": "STEP",
+      "SWUNG": "SWING",
       "TAPPED": "TAP",
       "TAPPING": "TAP"
     }
@@ -1848,7 +2066,13 @@
       "BREATHTAKING",
       "PICTURESQUE",
       "SCENIC",
-      "FINE"
+      "FINE",
+      "GLORIOUS",
+      "RESPLENDENT",
+      "BEAUTEOUS",
+      "PERSONABLE",
+      "MAGNIFICENT",
+      "ANGELIC"
     ],
     "forms": {
       "BONNIER": "BONNY",
@@ -1901,7 +2125,10 @@
       "FRANCHISE",
       "SMUGGLE",
       "BOOTLEG",
-      "FENCE"
+      "FENCE",
+      "TRAFFIC",
+      "DIVEST",
+      "OFFLOAD"
     ],
     "forms": {
       "ADVERTIZE": "ADVERTISE",
@@ -1911,7 +2138,9 @@
       "FLOGGED": "FLOG",
       "FLOGGING": "FLOG",
       "SOLD": "SELL",
-      "SUPPLIED": "SUPPLY"
+      "SUPPLIED": "SUPPLY",
+      "TRAFFICKED": "TRAFFIC",
+      "TRAFFICKING": "TRAFFIC"
     }
   },
   {
@@ -1942,7 +2171,8 @@
       "SPRAY",
       "KILL",
       "WOUND",
-      "VOLLEY"
+      "VOLLEY",
+      "BLAZE"
     ],
     "forms": {
       "GUNNED": "GUN",
@@ -1984,9 +2214,16 @@
       "FLAG",
       "DROOP",
       "DIE",
-      "DISAPPEAR"
+      "DISAPPEAR",
+      "DISSIPATE",
+      "RECEDE",
+      "DULL",
+      "SOFTEN",
+      "BLUR"
     ],
     "forms": {
+      "BLURRED": "BLUR",
+      "BLURRING": "BLUR",
       "DIMMED": "DIM",
       "DIMMING": "DIM",
       "DYING": "DIE",
@@ -2026,7 +2263,8 @@
       "GASH",
       "PEEL",
       "STRIP",
-      "FLAY"
+      "FLAY",
+      "WRENCH"
     ],
     "forms": {
       "RAVELLED": "RAVEL",
@@ -2119,7 +2357,15 @@
       "LUDICROUS",
       "NONSENSICAL",
       "HAREBRAINED",
-      "RASH"
+      "RASH",
+      "SIMPLE",
+      "SLOW",
+      "DULL",
+      "IRRATIONAL",
+      "INEPT",
+      "UNINTELLIGENT",
+      "IGNORANT",
+      "DOLTISH"
     ],
     "forms": {
       "DIMMER": "DIM",
@@ -2160,14 +2406,22 @@
       "CHAUFFEUR",
       "TOW",
       "DRIVE",
-      "ATTEND"
+      "ATTEND",
+      "TAKE",
+      "BRING",
+      "ROUTE",
+      "PRECEDE",
+      "SIGNPOST"
     ],
     "forms": {
+      "BROUGHT": "BRING",
       "DRIVEN": "DRIVE",
       "DROVE": "DRIVE",
       "LED": "LEAD",
       "MARSHALLED": "MARSHAL",
-      "MARSHALLING": "MARSHAL"
+      "MARSHALLING": "MARSHAL",
+      "TAKEN": "TAKE",
+      "TOOK": "TAKE"
     }
   },
   {
@@ -2211,12 +2465,22 @@
       "SNAFFLE",
       "THIEVE",
       "BAG",
-      "EXTORT"
+      "EXTORT",
+      "COP",
+      "GRAB",
+      "ANNEX",
+      "USURP",
+      "NOBBLE",
+      "BOOST"
     ],
     "forms": {
       "BAGGED": "BAG",
       "BAGGING": "BAG",
       "BURGLARISE": "BURGLARIZE",
+      "COPPED": "COP",
+      "COPPING": "COP",
+      "GRABBED": "GRAB",
+      "GRABBING": "GRAB",
       "MUGGED": "MUG",
       "MUGGING": "MUG",
       "NABBED": "NAB",
@@ -2254,7 +2518,8 @@
       "LEARN",
       "THINK",
       "MIND",
-      "HONOR"
+      "HONOR",
+      "REFLECT"
     ],
     "forms": {
       "HONOUR": "HONOR",
@@ -2296,7 +2561,10 @@
       "DAZZLE",
       "ADDLE",
       "CONFOUND",
-      "OBFUSCATE"
+      "OBFUSCATE",
+      "DISCONCERT",
+      "BAMBOOZLE",
+      "FLOOR"
     ],
     "forms": {
       "MYSTIFIED": "MYSTIFY",
@@ -2331,7 +2599,11 @@
       "SLIPPERY",
       "VELVETY",
       "HAIRLESS",
-      "SHAVEN"
+      "SHAVEN",
+      "SANDED",
+      "IRONED",
+      "PLANED",
+      "BURNISHED"
     ],
     "forms": {
       "FLATTER": "FLAT",
@@ -2367,7 +2639,11 @@
       "SPEECHLESS",
       "NONPLUSSED",
       "DAZED",
-      "INCREDULOUS"
+      "INCREDULOUS",
+      "UNPREPARED",
+      "STUPEFIED",
+      "THROWN",
+      "WOWED"
     ],
     "forms": {}
   },
@@ -2401,7 +2677,10 @@
       "BURN",
       "LIGHT",
       "ILLUMINATE",
-      "WINK"
+      "WINK",
+      "REFLECT",
+      "BLINK",
+      "FLAME"
     ],
     "forms": {
       "BURNT": "BURN",
@@ -2439,14 +2718,17 @@
       "SWEET",
       "HEAVENLY",
       "DIVINE",
-      "AMBROSIAL"
+      "AMBROSIAL",
+      "FLAVORSOME"
     ],
     "forms": {
+      "APPETISING": "APPETIZING",
       "DAINTIER": "DAINTY",
       "DAINTIEST": "DAINTY",
       "FLAVORFUL": "FLAVOURFUL",
       "JUICIER": "JUICY",
       "JUICIEST": "JUICY",
+      "SAVORY": "SAVOURY",
       "SPICIER": "SPICY",
       "SPICIEST": "SPICY",
       "TANGIER": "TANGY",
@@ -2490,13 +2772,18 @@
       "BANKROLL",
       "BRIBE",
       "REDEEM",
-      "RANSOM"
+      "RANSOM",
+      "SECURE",
+      "GET"
     ],
     "forms": {
       "BADE": "BID",
       "BIDDEN": "BID",
       "BIDDING": "BID",
       "BOUGHT": "BUY",
+      "GETTING": "GET",
+      "GOT": "GET",
+      "GOTTEN": "GET",
       "SHOPPED": "SHOP",
       "SHOPPING": "SHOP",
       "SPENT": "SPEND"
@@ -2532,7 +2819,11 @@
       "IMPART",
       "LEAK",
       "TIP",
-      "SIGNAL"
+      "SIGNAL",
+      "STATE",
+      "CLUE",
+      "MENTION",
+      "INTIMATE"
     ],
     "forms": {
       "ADMITTED": "ADMIT",
@@ -2572,12 +2863,19 @@
       "PROCRASTINATE",
       "HEDGE",
       "QUIBBLE",
-      "WONDER"
+      "WONDER",
+      "WAIT",
+      "HANG",
+      "WOBBLE",
+      "SHY",
+      "DELIBERATE"
     ],
     "forms": {
       "DALLIED": "DALLY",
       "DEMURRED": "DEMUR",
-      "DEMURRING": "DEMUR"
+      "DEMURRING": "DEMUR",
+      "HUNG": "HANG",
+      "SHIED": "SHY"
     }
   },
   {
@@ -2609,7 +2907,15 @@
       "FEVERISH",
       "HEATED",
       "TOASTY",
-      "BALMY"
+      "BALMY",
+      "BURNING",
+      "ROASTING",
+      "STEAMING",
+      "ABLAZE",
+      "OVERHEATED",
+      "FLAMING",
+      "AFIRE",
+      "PIPING"
     ],
     "forms": {
       "BALMIER": "BALMY",
@@ -2663,7 +2969,16 @@
       "JUNK",
       "FIDDLESTICKS",
       "BLARNEY",
-      "BUNCOMBE"
+      "BUNCOMBE",
+      "HUMBUG",
+      "HOKUM",
+      "JABBERWOCKY",
+      "CROCK",
+      "MOONSHINE",
+      "BABBLE",
+      "PRATTLE",
+      "BLAH",
+      "ABSURDITY"
     ],
     "forms": {
       "BOLONEY": "BALONEY",
@@ -2700,12 +3015,14 @@
       "CHASTEN",
       "NAG",
       "RAIL",
-      "HARANGUE"
+      "HARANGUE",
+      "RATE"
     ],
     "forms": {
       "CHID": "CHIDE",
       "CHIDDEN": "CHIDE",
       "CRITICISE": "CRITICIZE",
+      "LAMBAST": "LAMBASTE",
       "NAGGED": "NAG",
       "NAGGING": "NAG"
     }
@@ -2734,7 +3051,12 @@
       "SNARL",
       "WRECK",
       "DISARRAY",
-      "TIP"
+      "TIP",
+      "MUSS",
+      "WELTER",
+      "MORASS",
+      "DISORGANIZATION",
+      "DUMP"
     ],
     "forms": {}
   },
@@ -2764,7 +3086,12 @@
       "PRIMP",
       "PREEN",
       "KIT",
-      "RIG"
+      "RIG",
+      "GEAR",
+      "VEST",
+      "MANTLE",
+      "FROCK",
+      "HABIT"
     ],
     "forms": {
       "CLAD": "CLOTHE",
@@ -2804,7 +3131,12 @@
       "INAUGURATION",
       "KICKOFF",
       "DEBUT",
-      "START"
+      "START",
+      "THRESHOLD",
+      "SOURCE",
+      "ADVENT",
+      "OPENER",
+      "CRADLE"
     ],
     "forms": {
       "GENESES": "GENESIS"
@@ -2815,7 +3147,7 @@
     "date": "2026-12-25",
     "starter": "IMPORTANT",
     "pos": "adjective",
-    "definition": "of great significance",
+    "definition": "mattering a great deal",
     "words": [
       "MAJOR",
       "KEY",
@@ -2840,9 +3172,19 @@
       "NOTABLE",
       "NOTEWORTHY",
       "HISTORIC",
-      "EPOCHAL"
+      "EPOCHAL",
+      "SIGNIFICANT",
+      "CONSEQUENTIAL",
+      "MEANINGFUL",
+      "CARDINAL",
+      "MATERIAL",
+      "VALUABLE",
+      "IMPERATIVE",
+      "BIG"
     ],
     "forms": {
+      "BIGGER": "BIG",
+      "BIGGEST": "BIG",
       "WEIGHTIER": "WEIGHTY",
       "WEIGHTIEST": "WEIGHTY"
     }
@@ -2875,9 +3217,14 @@
       "PESTLE",
       "GRATE",
       "MINCE",
-      "SHRED"
+      "SHRED",
+      "SHATTER",
+      "SPLINTER",
+      "SQUELCH",
+      "ATOMIZE"
     ],
     "forms": {
+      "ATOMISE": "ATOMIZE",
       "GROUND": "GRIND",
       "PULVERISE": "PULVERIZE",
       "SHREDDED": "SHRED",
@@ -2924,7 +3271,12 @@
       "TREMENDOUS",
       "PRODIGIOUS",
       "ELEPHANTINE",
-      "GARGANTUAN"
+      "GARGANTUAN",
+      "OVERSIZE",
+      "OUTSIZE",
+      "EXTENSIVE",
+      "CAPACIOUS",
+      "SPACIOUS"
     ],
     "forms": {
       "BIGGER": "BIG",
@@ -2935,6 +3287,8 @@
       "HEFTIEST": "HEFTY",
       "MIGHTIER": "MIGHTY",
       "MIGHTIEST": "MIGHTY",
+      "OUTSISE": "OUTSIZE",
+      "OVERSISE": "OVERSIZE",
       "SIZABLE": "SIZEABLE"
     }
   },
@@ -3004,7 +3358,9 @@
       "DEFER",
       "ACQUIESCE",
       "BUCKLE",
-      "CRUMBLE"
+      "CRUMBLE",
+      "TRUCKLE",
+      "KOWTOW"
     ],
     "forms": {
       "DEFERRED": "DEFER",
@@ -3090,7 +3446,11 @@
       "COURIER",
       "TELEGRAPH",
       "BEAM",
-      "REDIRECT"
+      "REDIRECT",
+      "AIRMAIL",
+      "AIRLIFT",
+      "FREIGHT",
+      "MESSAGE"
     ],
     "forms": {
       "REMITTED": "REMIT",
@@ -3131,7 +3491,10 @@
       "QUAKE",
       "SHUDDER",
       "BLANCH",
-      "CRINGE"
+      "CRINGE",
+      "FREAK",
+      "STRESS",
+      "RUMINATE"
     ],
     "forms": {
       "AGONISE": "AGONIZE",
@@ -3177,11 +3540,15 @@
       "REASSURE",
       "COMPOSE",
       "TEMPER",
-      "SUBDUE"
+      "SUBDUE",
+      "COOL",
+      "STEADY",
+      "DEFUSE"
     ],
     "forms": {
       "MOLLIFIED": "MOLLIFY",
       "PACIFIED": "PACIFY",
+      "STEADIED": "STEADY",
       "TRANQUILISE": "TRANQUILIZE"
     }
   },
@@ -3216,7 +3583,12 @@
       "HOBBLE",
       "PINION",
       "FETTER",
-      "LEASH"
+      "LEASH",
+      "LASSO",
+      "NOOSE",
+      "YOKE",
+      "HARNESS",
+      "BUNDLE"
     ],
     "forms": {
       "BOUND": "BIND",
@@ -3262,7 +3634,14 @@
       "TEARFUL",
       "SOMBRE",
       "LUGUBRIOUS",
-      "DESOLATE"
+      "DESOLATE",
+      "SORRY",
+      "RUEFUL",
+      "MELANCHOLIC",
+      "CRUSHED",
+      "DEVASTATED",
+      "BEREFT",
+      "WOEBEGONE"
     ],
     "forms": {
       "BLUER": "BLUE",
@@ -3274,6 +3653,8 @@
       "SADDER": "SAD",
       "SADDEST": "SAD",
       "SOMBER": "SOMBRE",
+      "SORRIER": "SORRY",
+      "SORRIEST": "SORRY",
       "UNHAPPIER": "UNHAPPY",
       "UNHAPPIEST": "UNHAPPY"
     }
@@ -3307,7 +3688,8 @@
       "CAPTAIN",
       "PILOT",
       "FLOAT",
-      "DRIFT"
+      "DRIFT",
+      "CIRCUMNAVIGATE"
     ],
     "forms": {
       "FERRIED": "FERRY"
@@ -3353,7 +3735,13 @@
       "LIQUIDATE",
       "ANNIHILATE",
       "ERADICATE",
-      "DECIMATE"
+      "DECIMATE",
+      "SMITE",
+      "GARROTTE",
+      "FELL",
+      "STAB",
+      "SNUFF",
+      "ZAP"
     ],
     "forms": {
       "CRUCIFIED": "CRUCIFY",
@@ -3363,7 +3751,14 @@
       "HUNG": "HANG",
       "SHOT": "SHOOT",
       "SLAIN": "SLAY",
-      "SLEW": "SLAY"
+      "SLEW": "SLAY",
+      "SMIT": "SMITE",
+      "SMITTEN": "SMITE",
+      "SMOTE": "SMITE",
+      "STABBED": "STAB",
+      "STABBING": "STAB",
+      "ZAPPED": "ZAP",
+      "ZAPPING": "ZAP"
     }
   },
   {
@@ -3439,7 +3834,8 @@
       "LEAPFROG",
       "CLEAR",
       "SKYDIVE",
-      "PARACHUTE"
+      "PARACHUTE",
+      "BUCK"
     ],
     "forms": {
       "DOVE": "DIVE",
@@ -3491,11 +3887,21 @@
       "HORRIBLE",
       "HORRID",
       "WICKED",
-      "EVIL"
+      "EVIL",
+      "CUTTING",
+      "NASTY",
+      "MALIGN",
+      "UNCHARITABLE",
+      "BEASTLY",
+      "ROTTEN"
     ],
     "forms": {
+      "BEASTLIER": "BEASTLY",
+      "BEASTLIEST": "BEASTLY",
       "CATTIER": "CATTY",
-      "CATTIEST": "CATTY"
+      "CATTIEST": "CATTY",
+      "NASTIER": "NASTY",
+      "NASTIEST": "NASTY"
     }
   },
   {
@@ -3521,7 +3927,8 @@
       "THORNY",
       "ACUTE",
       "TAPERING",
-      "BRISTLY"
+      "BRISTLY",
+      "PENETRATING"
     ],
     "forms": {
       "PRICKLIER": "PRICKLY",
@@ -3563,7 +3970,9 @@
       "ARCHIVE",
       "STOW",
       "BOTTLE",
-      "PICKLE"
+      "PICKLE",
+      "TREASURE",
+      "MAINTAIN"
     ],
     "forms": {
       "HELD": "HOLD",
@@ -3600,9 +4009,17 @@
       "CONCEIVE",
       "APPREHEND",
       "ASSIMILATE",
-      "INTUIT"
+      "INTUIT",
+      "READ",
+      "SENSE",
+      "CATCH",
+      "DIG",
+      "GATHER"
     ],
     "forms": {
+      "CAUGHT": "CATCH",
+      "DIGGING": "DIG",
+      "DUG": "DIG",
       "GETTING": "GET",
       "GOT": "GET",
       "GOTTEN": "GET",
@@ -3646,7 +4063,13 @@
       "LOOP",
       "SAG",
       "DROOP",
-      "COIL"
+      "COIL",
+      "CROUCH",
+      "SKEW",
+      "VEER",
+      "SWERVE",
+      "TURN",
+      "DEFLECT"
     ],
     "forms": {
       "BENT": "BEND",
@@ -3682,12 +4105,20 @@
       "OOZE",
       "TRICKLE",
       "CASCADE",
-      "GUSH"
+      "GUSH",
+      "SPILL",
+      "POUR",
+      "WELL",
+      "GURGLE",
+      "DRIBBLE",
+      "SPURT",
+      "DRIFT"
     ],
     "forms": {
       "EDDIED": "EDDY",
       "RAN": "RUN",
       "RUNNING": "RUN",
+      "SPILT": "SPILL",
       "SWEPT": "SWEEP",
       "SWOLLEN": "SWELL",
       "WOUND": "WIND"
@@ -3718,7 +4149,10 @@
       "UNNERVED",
       "SKITTISH",
       "SHAKEN",
-      "AGHAST"
+      "AGHAST",
+      "APPALLED",
+      "FREAKED",
+      "RATTLED"
     ],
     "forms": {}
   },
@@ -3751,9 +4185,15 @@
       "IRRIGATE",
       "FLOOD",
       "DELUGE",
-      "INUNDATE"
+      "INUNDATE",
+      "DIP",
+      "SWAMP",
+      "SLUICE"
     ],
     "forms": {
+      "DIPPED": "DIP",
+      "DIPPING": "DIP",
+      "DOWSE": "DOUSE",
       "SOPPED": "SOP",
       "SOPPING": "SOP",
       "WETTED": "WET",
@@ -3788,7 +4228,10 @@
       "SOAR",
       "PEAK",
       "STAR",
-      "WORK"
+      "WORK",
+      "CONQUER",
+      "CLICK",
+      "PROFIT"
     ],
     "forms": {
       "EXCELLED": "EXCEL",
@@ -3866,14 +4309,17 @@
       "DEBUT",
       "PREMIERE",
       "ACTIVATE",
-      "IGNITE"
+      "IGNITE",
+      "UNDERTAKE"
     ],
     "forms": {
       "ARISEN": "ARISE",
       "AROSE": "ARISE",
       "BEGAN": "BEGIN",
       "BEGINNING": "BEGIN",
-      "BEGUN": "BEGIN"
+      "BEGUN": "BEGIN",
+      "UNDERTAKEN": "UNDERTAKE",
+      "UNDERTOOK": "UNDERTAKE"
     }
   },
   {
@@ -3909,7 +4355,12 @@
       "RENDER",
       "HATCH",
       "STIPPLE",
-      "STENCIL"
+      "STENCIL",
+      "RULE",
+      "SCRAWL",
+      "LIMN",
+      "SILHOUETTE",
+      "CARTOON"
     ],
     "forms": {
       "DIAGRAMMED": "DIAGRAM",
@@ -4005,13 +4456,18 @@
       "DROP",
       "UNLOAD",
       "OFFLOAD",
-      "SHUCK"
+      "SHUCK",
+      "FLING",
+      "RELINQUISH",
+      "LOSE"
     ],
     "forms": {
       "BINNED": "BIN",
       "BINNING": "BIN",
       "DROPPED": "DROP",
       "DROPPING": "DROP",
+      "FLUNG": "FLING",
+      "LOST": "LOSE",
       "SCRAPPED": "SCRAP",
       "SCRAPPING": "SCRAP",
       "SHEDDING": "SHED"
@@ -4041,7 +4497,9 @@
       "MASTERSTROKE",
       "BREAKTHROUGH",
       "WALKOVER",
-      "LANDSLIDE"
+      "LANDSLIDE",
+      "BOOM",
+      "SELLOUT"
     ],
     "forms": {}
   },
@@ -4082,7 +4540,10 @@
       "PUZZLE",
       "RECKON",
       "SUPPOSE",
-      "BELIEVE"
+      "BELIEVE",
+      "OPINE",
+      "CONCEIVE",
+      "COGITATE"
     ],
     "forms": {
       "DREAMT": "DREAM",
@@ -4126,9 +4587,18 @@
       "RISE",
       "BOOM",
       "SPREAD",
-      "SWELL"
+      "SWELL",
+      "WAX",
+      "BUD",
+      "GERMINATE",
+      "RIPEN",
+      "FLOWER",
+      "PROLIFERATE",
+      "EXPAND"
     ],
     "forms": {
+      "BUDDED": "BUD",
+      "BUDDING": "BUD",
       "GREW": "GROW",
       "GROWN": "GROW",
       "RISEN": "RISE",
@@ -4167,10 +4637,20 @@
       "ASSEMBLY",
       "CONGREGATION",
       "AUDIENCE",
-      "RABBLE"
+      "RABBLE",
+      "TROOP",
+      "GANG",
+      "HUDDLE",
+      "PHALANX",
+      "GROUP",
+      "CLUSTER",
+      "COHORT",
+      "RUCK",
+      "BUNCH"
     ],
     "forms": {
-      "MASSES": "MASS"
+      "MASSES": "MASS",
+      "PHALANGES": "PHALANX"
     }
   },
   {
@@ -4199,7 +4679,12 @@
       "INSUBORDINATE",
       "CHEEKY",
       "SAUCY",
-      "RUDE"
+      "RUDE",
+      "BAD",
+      "ERRANT",
+      "UNMANAGEABLE",
+      "OBSTREPEROUS",
+      "DISORDERLY"
     ],
     "forms": {
       "CHEEKIER": "CHEEKY",
@@ -4210,7 +4695,9 @@
       "SAUCIEST": "SAUCY",
       "UNRULIER": "UNRULY",
       "UNRULIEST": "UNRULY",
-      "WILLFUL": "WILFUL"
+      "WILLFUL": "WILFUL",
+      "WORSE": "BAD",
+      "WORST": "BAD"
     }
   },
   {
@@ -4281,7 +4768,9 @@
       "SKIM",
       "BALLOON",
       "PARACHUTE",
-      "FLOAT"
+      "FLOAT",
+      "ROCKET",
+      "SPIRAL"
     ],
     "forms": {
       "DOVE": "DIVE",
@@ -4294,7 +4783,9 @@
       "JETTED": "JET",
       "JETTING": "JET",
       "SKIMMED": "SKIM",
-      "SKIMMING": "SKIM"
+      "SKIMMING": "SKIM",
+      "SPIRALLED": "SPIRAL",
+      "SPIRALLING": "SPIRAL"
     }
   },
   {
@@ -4322,7 +4813,14 @@
       "CASUAL",
       "CAVALIER",
       "SHODDY",
-      "UNTHINKING"
+      "UNTHINKING",
+      "CURSORY",
+      "OFFHAND",
+      "NEGLECTFUL",
+      "PERFUNCTORY",
+      "DISTRACTED",
+      "UNGUARDED",
+      "INDISCREET"
     ],
     "forms": {
       "HASTIER": "HASTY",
@@ -4362,7 +4860,10 @@
       "SUNDER",
       "CRUNCH",
       "POP",
-      "PUNCTURE"
+      "PUNCTURE",
+      "REND",
+      "SHIVER",
+      "BREACH"
     ],
     "forms": {
       "BROKE": "BREAK",
@@ -4372,6 +4873,7 @@
       "POPPED": "POP",
       "POPPING": "POP",
       "PULVERISE": "PULVERIZE",
+      "RENT": "REND",
       "RIPPED": "RIP",
       "RIPPING": "RIP",
       "SNAPPED": "SNAP",
@@ -4408,7 +4910,8 @@
       "USHER",
       "SMILE",
       "WAVE",
-      "TOAST"
+      "TOAST",
+      "SALAAM"
     ],
     "forms": {
       "ADDREST": "ADDRESS",
@@ -4448,7 +4951,12 @@
       "PROUD",
       "HUBRISTIC",
       "PRESUMPTUOUS",
-      "SNOTTY"
+      "SNOTTY",
+      "SUPERIOR",
+      "EGOTISTICAL",
+      "ENTITLED",
+      "SWAGGERING",
+      "OVERWEENING"
     ],
     "forms": {
       "COCKIER": "COCKY",
@@ -4499,7 +5007,9 @@
       "SPOIL",
       "HUMOR",
       "APPEAL",
-      "CONTENT"
+      "CONTENT",
+      "SUIT",
+      "TITILLATE"
     ],
     "forms": {
       "ENTHRALLED": "ENTHRALL",
@@ -4541,7 +5051,13 @@
       "VACCINATE",
       "FORTIFY",
       "ARMOR",
-      "BARRICADE"
+      "BARRICADE",
+      "SAVE",
+      "FEND",
+      "FENCE",
+      "CUSHION",
+      "BUFFER",
+      "COCOON"
     ],
     "forms": {
       "ARMOUR": "ARMOR",
@@ -4584,7 +5100,10 @@
       "WIRY",
       "VIGOROUS",
       "POTENT",
-      "FORCEFUL"
+      "FORCEFUL",
+      "MEATY",
+      "HULKING",
+      "SOLID"
     ],
     "forms": {
       "BEEFIER": "BEEFY",
@@ -4601,6 +5120,8 @@
       "HEFTIEST": "HEFTY",
       "HUSKIER": "HUSKY",
       "HUSKIEST": "HUSKY",
+      "MEATIER": "MEATY",
+      "MEATIEST": "MEATY",
       "MIGHTIER": "MIGHTY",
       "MIGHTIEST": "MIGHTY",
       "STRONGER": "STRONG",
@@ -4637,7 +5158,8 @@
       "HAUL",
       "BUOY",
       "SNATCH",
-      "PRESS"
+      "PRESS",
+      "CRANE"
     ],
     "forms": {
       "HOVE": "HEAVE",
@@ -4673,12 +5195,21 @@
       "PRUNE",
       "CLEAR",
       "SHIFT",
-      "CONFISCATE"
+      "CONFISCATE",
+      "PULL",
+      "DISPLACE",
+      "DEDUCT",
+      "SUBTRACT",
+      "DOFF",
+      "LIFT",
+      "SHED",
+      "EXPUNGE"
     ],
     "forms": {
       "CUTTING": "CUT",
       "EXPELLED": "EXPEL",
       "EXPELLING": "EXPEL",
+      "SHEDDING": "SHED",
       "STRIPPED": "STRIP",
       "STRIPPING": "STRIP",
       "WITHDRAWN": "WITHDRAW",
@@ -4712,13 +5243,16 @@
       "STALL",
       "DELAY",
       "PROCRASTINATE",
-      "STAND"
+      "STAND",
+      "SIT"
     ],
     "forms": {
       "ABODE": "ABIDE",
       "DALLIED": "DALLY",
       "HELD": "HOLD",
       "HUNG": "HANG",
+      "SAT": "SIT",
+      "SITTING": "SIT",
       "STOOD": "STAND",
       "TARRIED": "TARRY"
     }
@@ -4752,7 +5286,13 @@
       "MODERATE",
       "ABATE",
       "ALLEVIATE",
-      "RELIEVE"
+      "RELIEVE",
+      "LIGHTEN",
+      "ABRIDGE",
+      "ABBREVIATE",
+      "MITIGATE",
+      "SLACKEN",
+      "TRUNCATE"
     ],
     "forms": {
       "CUTTING": "CUT",
@@ -4794,9 +5334,13 @@
       "VINTAGE",
       "MATURE",
       "DECREPIT",
-      "SENILE"
+      "SENILE",
+      "AGING",
+      "GERIATRIC",
+      "VETERAN"
     ],
     "forms": {
+      "AGEING": "AGING",
       "GRAY": "GREY",
       "HOARIER": "HOARY",
       "HOARIEST": "HOARY"
@@ -4824,7 +5368,10 @@
       "WINSOME",
       "ENGAGING",
       "FETCHING",
-      "SWEET"
+      "SWEET",
+      "CHERUBIC",
+      "TWEE",
+      "LOVELY"
     ],
     "forms": {
       "BONNIER": "BONNY",
@@ -4834,6 +5381,8 @@
       "DAINTIEST": "DAINTY",
       "DINKIER": "DINKY",
       "DINKIEST": "DINKY",
+      "LOVELIER": "LOVELY",
+      "LOVELIEST": "LOVELY",
       "PRETTIER": "PRETTY",
       "PRETTIEST": "PRETTY"
     }
@@ -4870,10 +5419,13 @@
       "GALVANIZE",
       "REASSURE",
       "COMFORT",
-      "UPLIFT"
+      "UPLIFT",
+      "ASSURE",
+      "FORTIFY"
     ],
     "forms": {
       "ENERGISE": "ENERGIZE",
+      "FORTIFIED": "FORTIFY",
       "GALVANISE": "GALVANIZE",
       "RALLIED": "RALLY",
       "SPURRED": "SPUR",
@@ -4907,7 +5459,14 @@
       "GRAINY",
       "GRITTY",
       "ABRASIVE",
-      "SCALY"
+      "SCALY",
+      "TEXTURED",
+      "RASPY",
+      "UNPOLISHED",
+      "CRACKED",
+      "PITTED",
+      "CORRUGATED",
+      "HARSH"
     ],
     "forms": {
       "BUMPIER": "BUMPY",
@@ -4954,11 +5513,17 @@
       "PRICELESS",
       "PREMIUM",
       "DELUXE",
-      "UPMARKET"
+      "UPMARKET",
+      "UPSCALE",
+      "EXCLUSIVE",
+      "STIFF",
+      "RUINOUS",
+      "PROHIBITIVE"
     ],
     "forms": {
       "COSTLIER": "COSTLY",
-      "COSTLIEST": "COSTLY"
+      "COSTLIEST": "COSTLY",
+      "PRICY": "PRICEY"
     }
   },
   {
@@ -4989,7 +5554,10 @@
       "CAULK",
       "PADLOCK",
       "BOARD",
-      "SHUTTER"
+      "SHUTTER",
+      "OCCLUDE",
+      "DRAW",
+      "SECURE"
     ],
     "forms": {
       "BARRED": "BAR",
@@ -4998,6 +5566,8 @@
       "CAPPING": "CAP",
       "CLOGGED": "CLOG",
       "CLOGGING": "CLOG",
+      "DRAWN": "DRAW",
+      "DREW": "DRAW",
       "PLUGGED": "PLUG",
       "PLUGGING": "PLUG",
       "SHUTTING": "SHUT",
@@ -5014,7 +5584,7 @@
     "date": "2027-02-16",
     "starter": "LUCK",
     "pos": "noun",
-    "definition": "things happening by chance",
+    "definition": "the way events fall out without any plan",
     "words": [
       "FORTUNE",
       "FATE",
@@ -5031,7 +5601,10 @@
       "WINDFALL",
       "LOT",
       "HAP",
-      "KARMA"
+      "KARMA",
+      "CHANCE",
+      "MISFORTUNE",
+      "HAPPENSTANCE"
     ],
     "forms": {}
   },
@@ -5061,7 +5634,10 @@
       "SYMPATHIZE",
       "ALIGN",
       "SIDE",
-      "ALLY"
+      "ALLY",
+      "ACCORD",
+      "OKAY",
+      "APPROVE"
     ],
     "forms": {
       "ALLIED": "ALLY",
@@ -5100,11 +5676,13 @@
       "WONDER",
       "CHALLENGE",
       "TEST",
-      "SOUND"
+      "SOUND",
+      "PRY"
     ],
     "forms": {
       "CATECHISE": "CATECHIZE",
       "ENQUIRE": "INQUIRE",
+      "PRIED": "PRY",
       "QUERIED": "QUERY",
       "QUIZZED": "QUIZ",
       "QUIZZES": "QUIZ",
@@ -5138,12 +5716,19 @@
       "BEWILDER",
       "NONPLUS",
       "OVERWHELM",
-      "BOWL"
+      "BOWL",
+      "DISCONCERT",
+      "FAZE",
+      "CONFOUND",
+      "SHAKE",
+      "AMBUSH"
     ],
     "forms": {
       "NONPLUSSED": "NONPLUS",
       "NONPLUSSES": "NONPLUS",
       "NONPLUSSING": "NONPLUS",
+      "SHAKEN": "SHAKE",
+      "SHOOK": "SHAKE",
       "STUNNED": "STUN",
       "STUNNING": "STUN",
       "STUPEFIED": "STUPEFY"
@@ -5188,7 +5773,15 @@
       "TIE",
       "HINGE",
       "DOVETAIL",
-      "CEMENT"
+      "CEMENT",
+      "PAIR",
+      "CHAIN",
+      "MATE",
+      "INTEGRATE",
+      "SEAM",
+      "INTERLINK",
+      "CONCATENATE",
+      "GRAFT"
     ],
     "forms": {
       "CLIPPED": "CLIP",
@@ -5231,15 +5824,28 @@
       "LUDICROUS",
       "ENTERTAINING",
       "DIVERTING",
-      "PRICELESS"
+      "PRICELESS",
+      "UPROARIOUS",
+      "SILLY",
+      "WRY",
+      "CORNY"
     ],
     "forms": {
+      "CORNIER": "CORNY",
+      "CORNIEST": "CORNY",
       "FUNNIER": "FUNNY",
       "FUNNIEST": "FUNNY",
+      "HUMOUROUS": "HUMOROUS",
+      "SILLIER": "SILLY",
+      "SILLIEST": "SILLY",
       "WACKIER": "WACKY",
       "WACKIEST": "WACKY",
       "WITTIER": "WITTY",
       "WITTIEST": "WITTY",
+      "WRIER": "WRY",
+      "WRIEST": "WRY",
+      "WRYER": "WRY",
+      "WRYEST": "WRY",
       "ZANIER": "ZANY",
       "ZANIEST": "ZANY"
     }
@@ -5266,7 +5872,9 @@
       "CONTROL",
       "LEGISLATE",
       "ADMINISTER",
-      "LEAD"
+      "LEAD",
+      "BOSS",
+      "MASTER"
     ],
     "forms": {
       "CONTROLLED": "CONTROL",
@@ -5306,7 +5914,10 @@
       "SHEKELS",
       "LUCRE",
       "FINANCE",
-      "TENDER"
+      "TENDER",
+      "SCRATCH",
+      "PELF",
+      "SAVINGS"
     ],
     "forms": {
       "BUCK": "BUCKS",
@@ -5338,7 +5949,9 @@
       "STRAPPED",
       "DOWNTRODDEN",
       "BEGGARLY",
-      "HOMELESS"
+      "HOMELESS",
+      "PINCHED",
+      "BEGGARED"
     ],
     "forms": {
       "NEEDIER": "NEEDY",
@@ -5368,7 +5981,10 @@
       "HOOK",
       "MOUNT",
       "HOIST",
-      "STRING"
+      "STRING",
+      "SWAY",
+      "FESTOON",
+      "SLING"
     ],
     "forms": {
       "FLAPPED": "FLAP",
@@ -5380,6 +5996,7 @@
       "PINNING": "PIN",
       "SAGGED": "SAG",
       "SAGGING": "SAG",
+      "SLUNG": "SLING",
       "STRUNG": "STRING",
       "SWUNG": "SWING"
     }
@@ -5413,13 +6030,20 @@
       "TENDER",
       "MUSHY",
       "PULPY",
-      "DOUGHY"
+      "DOUGHY",
+      "WOOLLY",
+      "FLACCID",
+      "COMPRESSIBLE",
+      "FLABBY",
+      "SPRINGY"
     ],
     "forms": {
       "DOUGHIER": "DOUGHY",
       "DOUGHIEST": "DOUGHY",
       "DOWNIER": "DOWNY",
       "DOWNIEST": "DOWNY",
+      "FLABBIER": "FLABBY",
+      "FLABBIEST": "FLABBY",
       "FLEECIER": "FLEECY",
       "FLEECIEST": "FLEECY",
       "FLUFFIER": "FLUFFY",
@@ -5436,8 +6060,12 @@
       "SILKIEST": "SILKY",
       "SPONGIER": "SPONGY",
       "SPONGIEST": "SPONGY",
+      "SPRINGIER": "SPRINGY",
+      "SPRINGIEST": "SPRINGY",
       "SQUASHIER": "SQUASHY",
-      "SQUASHIEST": "SQUASHY"
+      "SQUASHIEST": "SQUASHY",
+      "WOOLLIER": "WOOLLY",
+      "WOOLLIEST": "WOOLLY"
     }
   },
   {
@@ -5505,7 +6133,9 @@
       "SINK",
       "PLUMMET",
       "SLUMP",
-      "ATROPHY"
+      "ATROPHY",
+      "COMPACT",
+      "MINIATURIZE"
     ],
     "forms": {
       "ATROPHIED": "ATROPHY",
@@ -5513,6 +6143,7 @@
       "DROPPING": "DROP",
       "FALLEN": "FALL",
       "FELL": "FALL",
+      "MINIATURISE": "MINIATURIZE",
       "SANK": "SINK",
       "SHRANK": "SHRINK",
       "SHRIVELLED": "SHRIVEL",
@@ -5554,12 +6185,24 @@
       "FROST",
       "ICE",
       "BEAD",
-      "ENHANCE"
+      "ENHANCE",
+      "TINSEL",
+      "PRETTIFY",
+      "SPRUCE",
+      "GLAMORIZE",
+      "BEJEWEL",
+      "PAINT"
     ],
     "forms": {
       "BEAUTIFIED": "BEAUTIFY",
+      "BEJEWELLED": "BEJEWEL",
+      "BEJEWELLING": "BEJEWEL",
       "GILT": "GILD",
+      "GLAMORISE": "GLAMORIZE",
       "INLAID": "INLAY",
+      "PRETTIFIED": "PRETTIFY",
+      "TINSELLED": "TINSEL",
+      "TINSELLING": "TINSEL",
       "TRIMMED": "TRIM",
       "TRIMMING": "TRIM"
     }
@@ -5590,7 +6233,10 @@
       "DIGEST",
       "CONDONE",
       "LUMP",
-      "BRAVE"
+      "BRAVE",
+      "ACCOMMODATE",
+      "INDULGE",
+      "SHOULDER"
     ],
     "forms": {
       "ABODE": "ABIDE",
@@ -5636,7 +6282,8 @@
       "STRIP",
       "EXPEL",
       "VENT",
-      "DISCHARGE"
+      "DISCHARGE",
+      "DISGORGE"
     ],
     "forms": {
       "EMPTIED": "EMPTY",
@@ -5677,7 +6324,10 @@
       "ANOINT",
       "FRET",
       "SHINE",
-      "NUZZLE"
+      "NUZZLE",
+      "GRAZE",
+      "SANDPAPER",
+      "WAX"
     ],
     "forms": {
       "FRETTED": "FRET",
@@ -5715,12 +6365,21 @@
       "BLUNT",
       "OUTSPOKEN",
       "PLAIN",
-      "TRUE"
+      "TRUE",
+      "FAIR",
+      "STRAIGHTFORWARD",
+      "RELIABLE",
+      "DEPENDABLE",
+      "TRUSTY",
+      "VERACIOUS",
+      "INCORRUPTIBLE"
     ],
     "forms": {
       "HONORABLE": "HONOURABLE",
       "TRUER": "TRUE",
-      "TRUEST": "TRUE"
+      "TRUEST": "TRUE",
+      "TRUSTIER": "TRUSTY",
+      "TRUSTIEST": "TRUSTY"
     }
   },
   {
@@ -5755,7 +6414,11 @@
       "FORMULATE",
       "FORESEE",
       "PREMEDITATE",
-      "BOOK"
+      "BOOK",
+      "PROJECT",
+      "HATCH",
+      "CHART",
+      "MASTERMIND"
     ],
     "forms": {
       "FORESAW": "FORESEE",
@@ -5802,7 +6465,9 @@
       "PUNCH",
       "SLUG",
       "STRIVE",
-      "QUARREL"
+      "QUARREL",
+      "TOURNEY",
+      "TANGLE"
     ],
     "forms": {
       "COMBATTED": "COMBAT",
@@ -5852,7 +6517,10 @@
       "IMPOTENT",
       "HELPLESS",
       "VULNERABLE",
-      "ANAEMIC"
+      "ANAEMIC",
+      "EFFETE",
+      "DECREPIT",
+      "FAILING"
     ],
     "forms": {
       "ANEMIC": "ANAEMIC",
@@ -5899,12 +6567,15 @@
       "HURT",
       "SHAME",
       "DEFAME",
-      "CURSE"
+      "CURSE",
+      "SLUR"
     ],
     "forms": {
       "CURST": "CURSE",
       "LIBELLED": "LIBEL",
       "LIBELLING": "LIBEL",
+      "SLURRED": "SLUR",
+      "SLURRING": "SLUR",
       "SNUBBED": "SNUB",
       "SNUBBING": "SNUB",
       "VILIFIED": "VILIFY"
@@ -5944,7 +6615,11 @@
       "GROPE",
       "FUMBLE",
       "FIDDLE",
-      "TOY"
+      "TOY",
+      "PRESS",
+      "PINCH",
+      "RUB",
+      "PALPATE"
     ],
     "forms": {
       "DABBED": "DAB",
@@ -5956,6 +6631,8 @@
       "PETTING": "PET",
       "PRODDED": "PROD",
       "PRODDING": "PROD",
+      "RUBBED": "RUB",
+      "RUBBING": "RUB",
       "TAPPED": "TAP",
       "TAPPING": "TAP"
     }
@@ -5965,7 +6642,7 @@
     "date": "2027-03-11",
     "starter": "TROUBLE",
     "pos": "noun",
-    "definition": "a situation full of difficulty",
+    "definition": "a situation that is hard to deal with",
     "words": [
       "PROBLEM",
       "BOTHER",
@@ -5990,7 +6667,14 @@
       "TRIBULATION",
       "ADVERSITY",
       "WOE",
-      "MISFORTUNE"
+      "MISFORTUNE",
+      "INCONVENIENCE",
+      "FUSS",
+      "HARDSHIP",
+      "DIFFICULTY",
+      "WORRY",
+      "DISTRESS",
+      "STRIFE"
     ],
     "forms": {}
   },
@@ -6020,7 +6704,9 @@
       "BIND",
       "AVOW",
       "AFFIRM",
-      "OFFER"
+      "OFFER",
+      "PLIGHT",
+      "VOUCH"
     ],
     "forms": {
       "BOUND": "BIND",
@@ -6097,7 +6783,10 @@
       "MIND",
       "CONTROL",
       "LEAD",
-      "ADMINISTER"
+      "ADMINISTER",
+      "GUIDE",
+      "PRESIDE",
+      "SKIPPER"
     ],
     "forms": {
       "CONTROLLED": "CONTROL",
@@ -6133,7 +6822,12 @@
       "DRIFT",
       "HAYSTACK",
       "PYRAMID",
-      "TOWER"
+      "TOWER",
+      "BATCH",
+      "WAD",
+      "BUNDLE",
+      "BALE",
+      "HILLOCK"
     ],
     "forms": {
       "MASSES": "MASS"
@@ -6172,7 +6866,9 @@
       "ADJOURN",
       "ANNUL",
       "ELIMINATE",
-      "SHUT"
+      "SHUT",
+      "DISBAND",
+      "KILL"
     ],
     "forms": {
       "ANNULLED": "ANNUL",
@@ -6222,13 +6918,18 @@
       "ENGAGE",
       "ENTRANCE",
       "MESMERIZE",
-      "DRAW"
+      "DRAW",
+      "TANTALIZE",
+      "BECKON",
+      "BAIT",
+      "DECOY"
     ],
     "forms": {
       "DRAWN": "DRAW",
       "DREW": "DRAW",
       "MAGNETISE": "MAGNETIZE",
-      "MESMERISE": "MESMERIZE"
+      "MESMERISE": "MESMERIZE",
+      "TANTALISE": "TANTALIZE"
     }
   },
   {
@@ -6261,7 +6962,10 @@
       "TENDER",
       "POSTULATE",
       "PROPOUND",
-      "VENTURE"
+      "VENTURE",
+      "PROFFER",
+      "ADVANCE",
+      "INDICATE"
     ],
     "forms": {
       "COUNSELLED": "COUNSEL",
@@ -6302,7 +7006,11 @@
       "EXHUME",
       "DREDGE",
       "SCRAPE",
-      "CLAW"
+      "CLAW",
+      "HARROW",
+      "BULLDOZE",
+      "TROWEL",
+      "PROSPECT"
     ],
     "forms": {
       "DIGGING": "DIG",
@@ -6313,6 +7021,8 @@
       "QUARRIED": "QUARRY",
       "SHOVELLED": "SHOVEL",
       "SHOVELLING": "SHOVEL",
+      "TROWELLED": "TROWEL",
+      "TROWELLING": "TROWEL",
       "TUNNELLED": "TUNNEL",
       "TUNNELLING": "TUNNEL"
     }
@@ -6345,9 +7055,17 @@
       "DIAGNOSE",
       "STERILIZE",
       "DISINFECT",
-      "REHABILITATE"
+      "REHABILITATE",
+      "ATTEND",
+      "TEND",
+      "CAUTERIZE",
+      "SEDATE",
+      "ANESTHETIZE"
     ],
     "forms": {
+      "ANAESTHETIZE": "ANESTHETIZE",
+      "ANESTHETISE": "ANESTHETIZE",
+      "CAUTERISE": "CAUTERIZE",
       "IMMUNISE": "IMMUNIZE",
       "STERILISE": "STERILIZE"
     }
@@ -6388,7 +7106,12 @@
       "INCINERATE",
       "WIPE",
       "ERASE",
-      "EXTINGUISH"
+      "EXTINGUISH",
+      "DYNAMITE",
+      "BLIGHT",
+      "LIQUIDATE",
+      "DECIMATE",
+      "TORCH"
     ],
     "forms": {
       "LEVELLED": "LEVEL",
@@ -6423,7 +7146,10 @@
       "TURN",
       "DETERIORATE",
       "DEGENERATE",
-      "DEGRADE"
+      "DEGRADE",
+      "GANGRENE",
+      "CANKER",
+      "MILDEW"
     ],
     "forms": {
       "MOLDER": "MOULDER",
@@ -6465,7 +7191,8 @@
       "HECTOR",
       "BROWBEAT",
       "AFFRIGHT",
-      "OVERAWE"
+      "OVERAWE",
+      "FREAK"
     ],
     "forms": {
       "APPALLED": "APPALL",
@@ -6487,7 +7214,7 @@
     "date": "2027-03-24",
     "starter": "WRITE",
     "pos": "verb",
-    "definition": "set down in words on a page",
+    "definition": "put down on paper",
     "words": [
       "PEN",
       "SCRIBBLE",
@@ -6513,7 +7240,10 @@
       "SCRIPT",
       "TEXT",
       "EMAIL",
-      "BLOG"
+      "BLOG",
+      "WORD",
+      "PHRASE",
+      "CORRESPOND"
     ],
     "forms": {
       "COPIED": "COPY",
@@ -6551,7 +7281,9 @@
       "PANTOMIME",
       "UNDERSTUDY",
       "DOUBLE",
-      "REPRESENT"
+      "REPRESENT",
+      "EMOTE",
+      "UPSTAGE"
     ],
     "forms": {
       "DRAMATISE": "DRAMATIZE",
@@ -6588,9 +7320,15 @@
       "FAMED",
       "NOTORIOUS",
       "STORIED",
-      "IMMORTAL"
+      "IMMORTAL",
+      "PRESTIGIOUS",
+      "RECOGNIZED",
+      "LIONIZED"
     ],
-    "forms": {}
+    "forms": {
+      "LIONISED": "LIONIZED",
+      "RECOGNISED": "RECOGNIZED"
+    }
   },
   {
     "number": 161,
@@ -6617,11 +7355,15 @@
       "EMPLOYED",
       "WORKING",
       "INDUSTRIOUS",
-      "DILIGENT"
+      "DILIGENT",
+      "TOILING",
+      "LABORING",
+      "BUSTLING"
     ],
     "forms": {
       "BUSIER": "BUSY",
-      "BUSIEST": "BUSY"
+      "BUSIEST": "BUSY",
+      "LABOURING": "LABORING"
     }
   },
   {
@@ -6657,12 +7399,17 @@
       "CONVULSE",
       "PALPITATE",
       "OSCILLATE",
-      "BOUNCE"
+      "BOUNCE",
+      "TWITCH",
+      "WAVER",
+      "SHIMMY",
+      "THRASH"
     ],
     "forms": {
       "JARRED": "JAR",
       "JARRING": "JAR",
       "SHAKEN": "SHAKE",
+      "SHIMMIED": "SHIMMY",
       "SHOOK": "SHAKE",
       "WAGGED": "WAG",
       "WAGGING": "WAG"
@@ -6708,13 +7455,20 @@
       "STUFF",
       "GNAW",
       "SWALLOW",
-      "MASTICATE"
+      "MASTICATE",
+      "TASTE",
+      "PICK",
+      "SCARF",
+      "PARTAKE",
+      "SAMPLE"
     ],
     "forms": {
       "ATE": "EAT",
       "EATEN": "EAT",
       "FED": "FEED",
       "GNAWN": "GNAW",
+      "PARTAKEN": "PARTAKE",
+      "PARTOOK": "PARTAKE",
       "PICNICKED": "PICNIC",
       "PICNICKING": "PICNIC",
       "SUPPED": "SUP",
@@ -6750,15 +7504,23 @@
       "INFIRM",
       "BEDRIDDEN",
       "LOUSY",
-      "FRAIL"
+      "FRAIL",
+      "UNHEALTHY",
+      "AFFLICTED",
+      "INVALID",
+      "GROGGY"
     ],
     "forms": {
+      "GROGGIER": "GROGGY",
+      "GROGGIEST": "GROGGY",
       "LOUSIER": "LOUSY",
       "LOUSIEST": "LOUSY",
       "QUEASIER": "QUEASY",
       "QUEASIEST": "QUEASY",
       "SICKLIER": "SICKLY",
       "SICKLIEST": "SICKLY",
+      "UNHEALTHIER": "UNHEALTHY",
+      "UNHEALTHIEST": "UNHEALTHY",
       "WANNER": "WAN",
       "WANNEST": "WAN"
     }
@@ -6785,9 +7547,16 @@
       "COMMITTED",
       "UNWAVERING",
       "SOLID",
-      "PATRIOTIC"
+      "PATRIOTIC",
+      "STEADY",
+      "UNSWERVING",
+      "DUTIFUL",
+      "SUPPORTIVE",
+      "FAST"
     ],
     "forms": {
+      "STEADIER": "STEADY",
+      "STEADIEST": "STEADY",
       "TRUER": "TRUE",
       "TRUEST": "TRUE",
       "TRUSTIER": "TRUSTY",
@@ -6818,7 +7587,9 @@
       "HOLLER",
       "YELL",
       "SHOUT",
-      "SQUEAK"
+      "SQUEAK",
+      "WHOOP",
+      "YIP"
     ],
     "forms": {
       "CRIED": "CRY"
@@ -6856,10 +7627,17 @@
       "PARAPHRASE",
       "RATIONALIZE",
       "ANNOTATE",
-      "GLOSS"
+      "GLOSS",
+      "ENLIGHTEN",
+      "ELABORATE",
+      "UNPACK",
+      "DEMYSTIFY",
+      "EXEMPLIFY"
     ],
     "forms": {
       "CLARIFIED": "CLARIFY",
+      "DEMYSTIFIED": "DEMYSTIFY",
+      "EXEMPLIFIED": "EXEMPLIFY",
       "JUSTIFIED": "JUSTIFY",
       "RATIONALISE": "RATIONALIZE",
       "SHOWN": "SHOW",
@@ -6903,7 +7681,10 @@
       "CATEGORIZE",
       "CODIFY",
       "STACK",
-      "NEATEN"
+      "NEATEN",
+      "LIST",
+      "PRIORITIZE",
+      "STRAIGHTEN"
     ],
     "forms": {
       "ALPHABETISE": "ALPHABETIZE",
@@ -6913,6 +7694,7 @@
       "CODIFIED": "CODIFY",
       "MARSHALLED": "MARSHAL",
       "MARSHALLING": "MARSHAL",
+      "PRIORITISE": "PRIORITIZE",
       "SYSTEMATISE": "SYSTEMATIZE",
       "TIDIED": "TIDY"
     }
@@ -6943,11 +7725,17 @@
       "IDENTIFY",
       "REMARK",
       "HEED",
-      "MARK"
+      "MARK",
+      "CATCH",
+      "REALIZE",
+      "DESCRY"
     ],
     "forms": {
+      "CAUGHT": "CATCH",
+      "DESCRIED": "DESCRY",
       "ESPIED": "ESPY",
       "IDENTIFIED": "IDENTIFY",
+      "REALISE": "REALIZE",
       "RECOGNISE": "RECOGNIZE",
       "SAW": "SEE",
       "SEEN": "SEE",
@@ -6992,7 +7780,13 @@
       "PUZZLING",
       "PERPLEXING",
       "PROBLEMATIC",
-      "HAIRY"
+      "HAIRY",
+      "AWKWARD",
+      "TRYING",
+      "TROUBLESOME",
+      "TICKLISH",
+      "DELICATE",
+      "THANKLESS"
     ],
     "forms": {
       "GRUELING": "GRUELLING",
@@ -7034,7 +7828,8 @@
       "SLUE",
       "SWISH",
       "SWITCH",
-      "SWIPE"
+      "SWIPE",
+      "RECIPROCATE"
     ],
     "forms": {
       "FLAPPED": "FLAP",
@@ -7087,7 +7882,11 @@
       "ALLEGE",
       "OPINE",
       "AVER",
-      "AFFIRM"
+      "AFFIRM",
+      "ENUNCIATE",
+      "VOCALIZE",
+      "PHRASE",
+      "INTONE"
     ],
     "forms": {
       "AVERRED": "AVER",
@@ -7097,7 +7896,8 @@
       "SPOKE": "SPEAK",
       "SPOKEN": "SPEAK",
       "TOLD": "TELL",
-      "VERBALISE": "VERBALIZE"
+      "VERBALISE": "VERBALIZE",
+      "VOCALISE": "VOCALIZE"
     }
   },
   {
@@ -7127,7 +7927,10 @@
       "CERTIFY",
       "ACCREDIT",
       "LEGALIZE",
-      "DECRIMINALIZE"
+      "DECRIMINALIZE",
+      "WARRANT",
+      "CLEAR",
+      "PASS"
     ],
     "forms": {
       "ADMITTED": "ADMIT",
@@ -7172,9 +7975,17 @@
       "RESOLUTE",
       "ADAMANT",
       "UNCOOPERATIVE",
-      "DIFFICULT"
+      "DIFFICULT",
+      "UNCOMPROMISING",
+      "UNRELENTING",
+      "IMMOVABLE",
+      "CANTANKEROUS",
+      "HARDHEADED",
+      "BALKY"
     ],
     "forms": {
+      "BALKIER": "BALKY",
+      "BALKIEST": "BALKY",
       "WILLFUL": "WILFUL"
     }
   },
@@ -7214,7 +8025,11 @@
       "WALLOP",
       "HAMMER",
       "SKUNK",
-      "PIP"
+      "PIP",
+      "DEMOLISH",
+      "SMASH",
+      "THUMP",
+      "SLAUGHTER"
     ],
     "forms": {
       "BEATEN": "BEAT",
@@ -7261,7 +8076,8 @@
       "PLOP",
       "ENSCONCE",
       "ALIGHT",
-      "REPOSE"
+      "REPOSE",
+      "SINK"
     ],
     "forms": {
       "BESTRID": "BESTRIDE",
@@ -7271,10 +8087,13 @@
       "FLOPPING": "FLOP",
       "PLOPPED": "PLOP",
       "PLOPPING": "PLOP",
+      "SANK": "SINK",
       "SAT": "SIT",
       "SITTING": "SIT",
       "SQUATTED": "SQUAT",
-      "SQUATTING": "SQUAT"
+      "SQUATTING": "SQUAT",
+      "SUNK": "SINK",
+      "SUNKEN": "SINK"
     }
   },
   {
@@ -7282,7 +8101,7 @@
     "date": "2027-04-12",
     "starter": "FANCY",
     "pos": "adjective",
-    "definition": "highly decorated",
+    "definition": "covered in ornament",
     "words": [
       "ORNATE",
       "ELABORATE",
@@ -7303,9 +8122,15 @@
       "SWANKY",
       "RITZY",
       "PLUSH",
-      "LAVISH"
+      "LAVISH",
+      "FLORID",
+      "DECORATED",
+      "INTRICATE",
+      "BUSY"
     ],
     "forms": {
+      "BUSIER": "BUSY",
+      "BUSIEST": "BUSY",
       "FANCIER": "FANCY",
       "FANCIEST": "FANCY",
       "FLASHIER": "FLASHY",
@@ -7350,7 +8175,10 @@
       "WILY",
       "SLY",
       "ACCOMPLISHED",
-      "TALENTED"
+      "TALENTED",
+      "APT",
+      "ADROIT",
+      "PRECOCIOUS"
     ],
     "forms": {
       "BRAINIER": "BRAINY",
@@ -7396,7 +8224,8 @@
       "ADVERTISE",
       "NOTIFY",
       "BRUIT",
-      "PROMULGATE"
+      "PROMULGATE",
+      "UNVEIL"
     ],
     "forms": {
       "ADVERTIZE": "ADVERTISE",
@@ -7480,7 +8309,9 @@
       "SPATTER",
       "STIPPLE",
       "DAB",
-      "COLOR"
+      "COLOR",
+      "GLAZE",
+      "WATERCOLOR"
     ],
     "forms": {
       "COLOUR": "COLOR",
@@ -7490,7 +8321,8 @@
       "ENAMELLING": "ENAMEL",
       "GILT": "GILD",
       "STENCILLED": "STENCIL",
-      "STENCILLING": "STENCIL"
+      "STENCILLING": "STENCIL",
+      "WATERCOLOUR": "WATERCOLOR"
     }
   },
   {
@@ -7523,7 +8355,9 @@
       "TRAIPSE",
       "MILL",
       "POTTER",
-      "PUTTER"
+      "PUTTER",
+      "VAGABOND",
+      "SWAN"
     ],
     "forms": {
       "GADDED": "GAD",
@@ -7565,7 +8399,8 @@
       "PERPETUATE",
       "RESTART",
       "RENEW",
-      "REPEAT"
+      "REPEAT",
+      "PURSUE"
     ],
     "forms": {
       "CARRIED": "CARRY",
@@ -7605,9 +8440,17 @@
       "PASSION",
       "SPLEEN",
       "BILE",
-      "CHOLER"
+      "CHOLER",
+      "UMBRAGE",
+      "PETULANCE",
+      "RANCOR",
+      "ACRIMONY",
+      "ANIMOSITY",
+      "OUTBURST"
     ],
-    "forms": {}
+    "forms": {
+      "RANCOUR": "RANCOR"
+    }
   },
   {
     "number": 185,
@@ -7635,9 +8478,13 @@
       "CONSTRUE",
       "REVIEW",
       "CONSULT",
-      "PARSE"
+      "PARSE",
+      "DIP",
+      "WADE"
     ],
     "forms": {
+      "DIPPED": "DIP",
+      "DIPPING": "DIP",
       "SCANNED": "SCAN",
       "SCANNING": "SCAN",
       "SCRUTINISE": "SCRUTINIZE",
@@ -7671,7 +8518,11 @@
       "MOUSY",
       "QUIET",
       "HESITANT",
-      "WARY"
+      "WARY",
+      "UNSURE",
+      "UNASSUMING",
+      "AWKWARD",
+      "SKITTISH"
     ],
     "forms": {
       "MOUSIER": "MOUSY",
@@ -7708,7 +8559,9 @@
       "MIASMA",
       "WAFT",
       "TANG",
-      "MUSK"
+      "MUSK",
+      "FUNK",
+      "ESSENCE"
     ],
     "forms": {
       "MIASMATA": "MIASMA",
@@ -7748,16 +8601,25 @@
       "BEAT",
       "RUSH",
       "TORPEDO",
-      "RAM"
+      "RAM",
+      "SIC",
+      "MOB",
+      "PUMMEL"
     ],
     "forms": {
       "BEATEN": "BEAT",
       "BESETTING": "BESET",
       "HITTING": "HIT",
+      "MOBBED": "MOB",
+      "MOBBING": "MOB",
       "MUGGED": "MUG",
       "MUGGING": "MUG",
+      "PUMMELLED": "PUMMEL",
+      "PUMMELLING": "PUMMEL",
       "RAMMED": "RAM",
       "RAMMING": "RAM",
+      "SICKED": "SIC",
+      "SICKING": "SIC",
       "STRUCK": "STRIKE"
     }
   },
@@ -7829,7 +8691,10 @@
       "FAN",
       "SPLATTER",
       "SPATTER",
-      "RADIATE"
+      "RADIATE",
+      "CAST",
+      "SHED",
+      "SPLAY"
     ],
     "forms": {
       "DISPELLED": "DISPEL",
@@ -7839,6 +8704,7 @@
       "FANNED": "FAN",
       "FANNING": "FAN",
       "FLUNG": "FLING",
+      "SHEDDING": "SHED",
       "SOWN": "SOW",
       "STREWN": "STREW"
     }
@@ -7948,13 +8814,17 @@
       "BUTT",
       "WHEEL",
       "TRUNDLE",
-      "ROLL"
+      "ROLL",
+      "JOLT",
+      "HEAVE",
+      "KNOCK"
     ],
     "forms": {
       "CRAMMED": "CRAM",
       "CRAMMING": "CRAM",
       "DRIVEN": "DRIVE",
       "DROVE": "DRIVE",
+      "HOVE": "HEAVE",
       "JABBED": "JAB",
       "JABBING": "JAB",
       "PRODDED": "PROD",
@@ -7997,7 +8867,9 @@
       "SMUGGLE",
       "STOW",
       "TUCK",
-      "BLOCK"
+      "BLOCK",
+      "BLANKET",
+      "HOLE"
     ],
     "forms": {
       "BURIED": "BURY",
@@ -8034,7 +8906,13 @@
       "FROZEN",
       "SNOWY",
       "SLEETY",
-      "BLEAK"
+      "BLEAK",
+      "CRISP",
+      "NIPPING",
+      "UNHEATED",
+      "CUTTING",
+      "ICED",
+      "CHILLED"
     ],
     "forms": {
       "CHILLIER": "CHILLY",
@@ -8079,7 +8957,8 @@
       "HEDGE",
       "PLUNGE",
       "DOUBLE",
-      "RAISE"
+      "RAISE",
+      "FLUTTER"
     ],
     "forms": {
       "BADE": "BID",
@@ -8116,7 +8995,19 @@
       "CLATTER",
       "RATTLE",
       "RUMBLE",
-      "DISTURBANCE"
+      "DISTURBANCE",
+      "CRASH",
+      "CLASH",
+      "ROAR",
+      "BOOM",
+      "BANG",
+      "DISCORD",
+      "DISSONANCE",
+      "LOUDNESS",
+      "CLANG",
+      "CLANK",
+      "THUNDER",
+      "SCREECH"
     ],
     "forms": {
       "CLAMOUR": "CLAMOR"
@@ -8148,7 +9039,13 @@
       "STILL",
       "MELLOW",
       "EASYGOING",
-      "NONCHALANT"
+      "NONCHALANT",
+      "POISED",
+      "DISPASSIONATE",
+      "SETTLED",
+      "STOIC",
+      "UNWORRIED",
+      "UNEXCITED"
     ],
     "forms": {
       "STEADIER": "STEADY",
@@ -8189,9 +9086,14 @@
       "AUGMENT",
       "CULTIVATE",
       "HONE",
-      "SHARPEN"
+      "SHARPEN",
+      "BENEFIT",
+      "AMELIORATE",
+      "EMEND"
     ],
     "forms": {
+      "BENEFITTED": "BENEFIT",
+      "BENEFITTING": "BENEFIT",
       "MODERNISE": "MODERNIZE",
       "RALLIED": "RALLY"
     }
@@ -8224,7 +9126,9 @@
       "QUARTER",
       "PEOPLE",
       "POPULATE",
-      "COLONIZE"
+      "COLONIZE",
+      "DOMICILE",
+      "DOSS"
     ],
     "forms": {
       "ABODE": "ABIDE",
@@ -8297,13 +9201,18 @@
       "SKID",
       "CORNER",
       "NAVIGATE",
-      "PILOT"
+      "PILOT",
+      "TRUNDLE",
+      "TRUCK",
+      "REV"
     ],
     "forms": {
       "DRIVEN": "DRIVE",
       "DROVE": "DRIVE",
       "OVERTAKEN": "OVERTAKE",
       "OVERTOOK": "OVERTAKE",
+      "REVVED": "REV",
+      "REVVING": "REV",
       "SKIDDED": "SKID",
       "SKIDDING": "SKID",
       "SPED": "SPEED",
@@ -8369,7 +9278,9 @@
       "FLOUT",
       "DEFY",
       "FORGET",
-      "DISOBEY"
+      "DISOBEY",
+      "SHRUG",
+      "DISDAIN"
     ],
     "forms": {
       "CUTTING": "CUT",
@@ -8379,6 +9290,8 @@
       "FORGOTTEN": "FORGET",
       "OMITTED": "OMIT",
       "OMITTING": "OMIT",
+      "SHRUGGED": "SHRUG",
+      "SHRUGGING": "SHRUG",
       "SHUNNED": "SHUN",
       "SHUNNING": "SHUN",
       "SKIPPED": "SKIP",
@@ -8415,7 +9328,10 @@
       "HARMONIZE",
       "DESCANT",
       "SOLO",
-      "WASSAIL"
+      "WASSAIL",
+      "BELT",
+      "LILT",
+      "HYMN"
     ],
     "forms": {
       "CAROLLED": "CAROL",
@@ -8463,7 +9379,9 @@
       "SUPPORTER",
       "BROTHER",
       "SISTER",
-      "AMIGO"
+      "AMIGO",
+      "SOULMATE",
+      "ASSOCIATE"
     ],
     "forms": {
       "BRETHREN": "BROTHER",
@@ -8493,7 +9411,8 @@
       "STOKE",
       "MULL",
       "ANNEAL",
-      "TEMPER"
+      "TEMPER",
+      "FIRE"
     ],
     "forms": {
       "MOLTEN": "MELT"
@@ -8523,7 +9442,13 @@
       "BASE",
       "ADDRESS",
       "HOMESTEAD",
-      "HEARTH"
+      "HEARTH",
+      "SHELTER",
+      "LODGE",
+      "HABITAT",
+      "DEN",
+      "LAIR",
+      "CRIB"
     ],
     "forms": {
       "BASES": "BASE"
@@ -8552,7 +9477,8 @@
       "STILL",
       "PEACEFUL",
       "DAMPENED",
-      "STIFLED"
+      "STIFLED",
+      "WHISPERED"
     ],
     "forms": {}
   },
@@ -8620,7 +9546,9 @@
       "SCUD",
       "SAIL",
       "DRIFT",
-      "AQUAPLANE"
+      "AQUAPLANE",
+      "GLISSADE",
+      "SWEEP"
     ],
     "forms": {
       "SCUDDED": "SCUD",
@@ -8634,7 +9562,8 @@
       "SLIDDEN": "SLIDE",
       "SLIPPED": "SLIP",
       "SLIPPING": "SLIP",
-      "SLUNK": "SLINK"
+      "SLUNK": "SLINK",
+      "SWEPT": "SWEEP"
     }
   },
   {
@@ -8666,11 +9595,14 @@
       "DUNK",
       "SCOUR",
       "SWAB",
-      "IRRIGATE"
+      "IRRIGATE",
+      "LAVE",
+      "BATH"
     ],
     "forms": {
       "DIPPED": "DIP",
       "DIPPING": "DIP",
+      "DOWSE": "DOUSE",
       "MOPPED": "MOP",
       "MOPPING": "MOP",
       "SCRUBBED": "SCRUB",
@@ -8706,12 +9638,16 @@
       "GLIDE",
       "SNOOP",
       "SPY",
-      "INFILTRATE"
+      "INFILTRATE",
+      "SLIDE",
+      "PUSSYFOOT"
     ],
     "forms": {
       "CREPT": "CREEP",
       "PADDED": "PAD",
       "PADDING": "PAD",
+      "SLID": "SLIDE",
+      "SLIDDEN": "SLIDE",
       "SLIPPED": "SLIP",
       "SLIPPING": "SLIP",
       "SLUNK": "SLINK",
@@ -8745,7 +9681,10 @@
       "LETDOWN",
       "DOWNFALL",
       "MISFIRE",
-      "NONSTARTER"
+      "NONSTARTER",
+      "FIZZLE",
+      "BREAKDOWN",
+      "STINKER"
     ],
     "forms": {
       "FIASCOES": "FIASCO"
@@ -8776,7 +9715,8 @@
       "REVOLVE",
       "WHEEL",
       "TURN",
-      "BARREL"
+      "BARREL",
+      "TOPPLE"
     ],
     "forms": {
       "BARRELLED": "BARREL",
@@ -8813,9 +9753,20 @@
       "SUNLIT",
       "LIT",
       "ILLUMINATED",
-      "FLUORESCENT"
+      "FLUORESCENT",
+      "LUSTROUS",
+      "LUCENT",
+      "SPARKLY",
+      "SHINY",
+      "BLINDING",
+      "BEAMING",
+      "GLISTENING",
+      "SCINTILLATING",
+      "CORUSCANT"
     ],
     "forms": {
+      "SHINIER": "SHINY",
+      "SHINIEST": "SHINY",
       "SUNNIER": "SUNNY",
       "SUNNIEST": "SUNNY"
     }
@@ -8849,7 +9800,8 @@
       "CRUMPLE",
       "GNARL",
       "CRINKLE",
-      "MANGLE"
+      "MANGLE",
+      "DEFORM"
     ],
     "forms": {
       "KNOTTED": "KNOT",
@@ -8893,7 +9845,11 @@
       "UNDERMINE",
       "SABOTAGE",
       "HOBBLE",
-      "BOTCH"
+      "BOTCH",
+      "FLAW",
+      "TAINT",
+      "DISFIGURE",
+      "RUIN"
     ],
     "forms": {
       "BROKE": "BREAK",
@@ -8939,7 +9895,9 @@
       "LADLE",
       "SPEW",
       "RAIN",
-      "TIP"
+      "TIP",
+      "DISCHARGE",
+      "SLUICE"
     ],
     "forms": {
       "DRIPPED": "DRIP",
@@ -8983,7 +9941,12 @@
       "INTIMIDATING",
       "DAUNTING",
       "UNNERVING",
-      "NIGHTMARISH"
+      "NIGHTMARISH",
+      "FRIGHTFUL",
+      "DISQUIETING",
+      "DISTURBING",
+      "HAUNTING",
+      "GHOSTLY"
     ],
     "forms": {
       "CREEPIER": "CREEPY",
@@ -8992,6 +9955,8 @@
       "EERIEST": "EERIE",
       "GHASTLIER": "GHASTLY",
       "GHASTLIEST": "GHASTLY",
+      "GHOSTLIER": "GHOSTLY",
+      "GHOSTLIEST": "GHOSTLY",
       "SCARIER": "SCARY",
       "SCARIEST": "SCARY",
       "SPOOKIER": "SPOOKY",
@@ -9067,7 +10032,11 @@
       "ALLEGORY",
       "FAIRYTALE",
       "THRILLER",
-      "MYSTERY"
+      "MYSTERY",
+      "NARRATION",
+      "FICTION",
+      "PLOT",
+      "VERSION"
     ],
     "forms": {}
   },
@@ -9108,13 +10077,27 @@
       "INEXPLICABLE",
       "UNACCOUNTABLE",
       "FISHY",
-      "RUM"
+      "RUM",
+      "EXOTIC",
+      "SINGULAR",
+      "REMARKABLE",
+      "SURPRISING",
+      "UNNATURAL",
+      "UNCONVENTIONAL",
+      "FREAKY",
+      "GROTESQUE",
+      "UNEXPLAINED",
+      "QUAINT",
+      "IDIOSYNCRATIC",
+      "ALIEN"
     ],
     "forms": {
       "EERIER": "EERIE",
       "EERIEST": "EERIE",
       "FISHIER": "FISHY",
       "FISHIEST": "FISHY",
+      "FREAKIER": "FREAKY",
+      "FREAKIEST": "FREAKY",
       "FUNNIER": "FUNNY",
       "FUNNIEST": "FUNNY",
       "KOOKIER": "KOOKY",
@@ -9160,7 +10143,10 @@
       "OVERTURN",
       "SWOOP",
       "CASCADE",
-      "TOTTER"
+      "TOTTER",
+      "SPILL",
+      "FOUNDER",
+      "CAVE"
     ],
     "forms": {
       "CAPSISE": "CAPSIZE",
@@ -9178,6 +10164,7 @@
       "SANK": "SINK",
       "SLIPPED": "SLIP",
       "SLIPPING": "SLIP",
+      "SPILT": "SPILL",
       "SUNK": "SINK",
       "SUNKEN": "SINK",
       "TRIPPED": "TRIP",
@@ -9210,7 +10197,11 @@
       "DIRTY",
       "MUDDLED",
       "HAPHAZARD",
-      "DISORGANIZED"
+      "DISORGANIZED",
+      "TANGLED",
+      "LITTERED",
+      "STREWN",
+      "SCRAPPY"
     ],
     "forms": {
       "DIRTIER": "DIRTY",
@@ -9220,6 +10211,8 @@
       "GRUBBIEST": "GRUBBY",
       "MESSIER": "MESSY",
       "MESSIEST": "MESSY",
+      "SCRAPPIER": "SCRAPPY",
+      "SCRAPPIEST": "SCRAPPY",
       "SCRUFFIER": "SCRUFFY",
       "SCRUFFIEST": "SCRUFFY",
       "SLOPPIER": "SLOPPY",
@@ -9254,7 +10247,10 @@
       "RIGOROUS",
       "STRINGENT",
       "PUNCTILIOUS",
-      "PRECISE"
+      "PRECISE",
+      "TYRANNICAL",
+      "SPARTAN",
+      "DICTATORIAL"
     ],
     "forms": {}
   },
@@ -9286,7 +10282,8 @@
       "RIP",
       "WREST",
       "TWITCH",
-      "SNATCH"
+      "SNATCH",
+      "TRAWL"
     ],
     "forms": {
       "DRAGGED": "DRAG",
@@ -9330,7 +10327,12 @@
       "WEED",
       "PRUNE",
       "MOW",
-      "THRESH"
+      "THRESH",
+      "RAISE",
+      "HUSBAND",
+      "MANURE",
+      "SHEAR",
+      "MILK"
     ],
     "forms": {
       "BRED": "BREED",
@@ -9368,7 +10370,12 @@
       "TUCKER",
       "SCRAN",
       "FODDER",
-      "FEED"
+      "FEED",
+      "REFRESHMENTS",
+      "MUNCHIES",
+      "VITTLES",
+      "PROVENDER",
+      "VIANDS"
     ],
     "forms": {
       "RATION": "RATIONS"
@@ -9406,7 +10413,10 @@
       "CUBE",
       "ROUND",
       "APPROXIMATE",
-      "TABULATE"
+      "TABULATE",
+      "CIPHER",
+      "CRUNCH",
+      "DETERMINE"
     ],
     "forms": {
       "MULTIPLIED": "MULTIPLY",
@@ -9447,7 +10457,11 @@
       "WASTED",
       "HAGGARD",
       "PETITE",
-      "SPINDLY"
+      "SPINDLY",
+      "UNDERWEIGHT",
+      "REEDY",
+      "SPARE",
+      "PINCHED"
     ],
     "forms": {
       "BONIER": "BONY",
@@ -9456,6 +10470,8 @@
       "LANKIEST": "LANKY",
       "RANGIER": "RANGY",
       "RANGIEST": "RANGY",
+      "REEDIER": "REEDY",
+      "REEDIEST": "REEDY",
       "SCRAWNIER": "SCRAWNY",
       "SCRAWNIEST": "SCRAWNY",
       "SKINNIER": "SKINNY",
@@ -9500,7 +10516,9 @@
       "CRIMINALIZE",
       "TABOO",
       "ENJOIN",
-      "DEBAR"
+      "DEBAR",
+      "PRECLUDE",
+      "NIX"
     ],
     "forms": {
       "BANNED": "BAN",
@@ -9545,7 +10563,8 @@
       "DISTIL",
       "SLOBBER",
       "SWEAT",
-      "SPLASH"
+      "SPLASH",
+      "PATTER"
     ],
     "forms": {
       "BLED": "BLEED",
@@ -9588,11 +10607,16 @@
       "ROCK",
       "LOLLOP",
       "WADDLE",
-      "CAREEN"
+      "CAREEN",
+      "WAVER",
+      "WEAVE",
+      "PITCH"
     ],
     "forms": {
       "TRIPPED": "TRIP",
-      "TRIPPING": "TRIP"
+      "TRIPPING": "TRIP",
+      "WOVE": "WEAVE",
+      "WOVEN": "WEAVE"
     }
   },
   {
@@ -9631,7 +10655,13 @@
       "STROPPY",
       "SHIRTY",
       "RATTY",
-      "SORE"
+      "SORE",
+      "RAGING",
+      "PROVOKED",
+      "AGGRAVATED",
+      "MIFFED",
+      "WROTH",
+      "OFFENDED"
     ],
     "forms": {
       "ANGRIER": "ANGRY",
@@ -9762,7 +10792,21 @@
       "GOOSE",
       "NINNY",
       "MUGGINS",
-      "PLONKER"
+      "PLONKER",
+      "SAP",
+      "ASS",
+      "JACKASS",
+      "JERK",
+      "MUG",
+      "DONKEY",
+      "SUCKER",
+      "PATSY",
+      "NIT",
+      "GULL",
+      "LOON",
+      "BOOBY",
+      "DUMBBELL",
+      "CLOD"
     ],
     "forms": {
       "GEESE": "GOOSE"
@@ -9800,9 +10844,15 @@
       "ROUTINE",
       "PROSAIC",
       "SOPORIFIC",
-      "LACKLUSTRE"
+      "LACKLUSTRE",
+      "UNINTERESTING",
+      "IRKSOME",
+      "SLOW",
+      "DRAB"
     ],
     "forms": {
+      "DRABBER": "DRAB",
+      "DRABBEST": "DRAB",
       "DREARIER": "DREARY",
       "DREARIEST": "DREARY",
       "DRIER": "DRY",
@@ -9849,7 +10899,9 @@
       "OVERLAP",
       "ROLL",
       "FURL",
-      "CURL"
+      "CURL",
+      "GATHER",
+      "RUFFLE"
     ],
     "forms": {
       "BENT": "BEND",
@@ -9893,7 +10945,9 @@
       "LOFT",
       "SKY",
       "JUGGLE",
-      "DEFENESTRATE"
+      "DEFENESTRATE",
+      "PEG",
+      "FIRE"
     ],
     "forms": {
       "FLIPPED": "FLIP",
@@ -9902,6 +10956,8 @@
       "HOVE": "HEAVE",
       "LOBBED": "LOB",
       "LOBBING": "LOB",
+      "PEGGED": "PEG",
+      "PEGGING": "PEG",
       "PROPELLED": "PROPEL",
       "PROPELLING": "PROPEL",
       "SHIED": "SHY",
@@ -9938,7 +10994,8 @@
       "CHURN",
       "BEAD",
       "ROIL",
-      "WELL"
+      "WELL",
+      "PERCOLATE"
     ],
     "forms": {}
   },
@@ -9976,13 +11033,16 @@
       "DEBUG",
       "HEAL",
       "CURE",
-      "ADJUST"
+      "ADJUST",
+      "DOCTOR",
+      "RESET"
     ],
     "forms": {
       "DEBUGGED": "DEBUG",
       "DEBUGGING": "DEBUG",
       "REBUILT": "REBUILD",
       "RECTIFIED": "RECTIFY",
+      "RESETTING": "RESET",
       "SEWN": "SEW"
     }
   },
@@ -10018,7 +11078,9 @@
       "DEVASTATE",
       "AGGRIEVE",
       "ANGUISH",
-      "TORMENT"
+      "TORMENT",
+      "OFFEND",
+      "SHATTER"
     ],
     "forms": {
       "DEMORALISE": "DEMORALIZE",
@@ -10101,7 +11163,8 @@
       "PLEAT",
       "GATHER",
       "BEAD",
-      "WEAVE"
+      "WEAVE",
+      "LACE"
     ],
     "forms": {
       "BOUND": "BIND",
@@ -10142,7 +11205,11 @@
       "PLEASANT",
       "NICE",
       "CHEERY",
-      "CLUBBABLE"
+      "CLUBBABLE",
+      "SOCIAL",
+      "AMICABLE",
+      "AFFECTIONATE",
+      "COMRADELY"
     ],
     "forms": {
       "CHATTIER": "CHATTY",
@@ -10192,9 +11259,12 @@
       "REBUT",
       "REFUTE",
       "OBJECT",
-      "PROTEST"
+      "PROTEST",
+      "BANDY",
+      "REMONSTRATE"
     ],
     "forms": {
+      "BANDIED": "BANDY",
       "FOUGHT": "FIGHT",
       "QUARRELLED": "QUARREL",
       "QUARRELLING": "QUARREL",
@@ -10234,7 +11304,9 @@
       "MESS",
       "DISTURB",
       "SHUFFLE",
-      "TRASH"
+      "TRASH",
+      "BEDRAGGLE",
+      "MIX"
     ],
     "forms": {
       "DISHEVELLED": "DISHEVEL",
@@ -10275,7 +11347,11 @@
       "MUDDLE",
       "INFUSE",
       "INTEGRATE",
-      "COMPOUND"
+      "COMPOUND",
+      "UNIFY",
+      "SYNTHESIZE",
+      "MASH",
+      "LACE"
     ],
     "forms": {
       "BEATEN": "BEAT",
@@ -10283,7 +11359,9 @@
       "SHAKEN": "SHAKE",
       "SHOOK": "SHAKE",
       "STIRRED": "STIR",
-      "STIRRING": "STIR"
+      "STIRRING": "STIR",
+      "SYNTHESISE": "SYNTHESIZE",
+      "UNIFIED": "UNIFY"
     }
   },
   {
@@ -10318,11 +11396,15 @@
       "CULTIVATE",
       "EDIFY",
       "DISCIPLINE",
-      "INCULCATE"
+      "INCULCATE",
+      "INITIATE",
+      "INSTILL",
+      "BRIEF"
     ],
     "forms": {
       "CATECHISE": "CATECHIZE",
       "EDIFIED": "EDIFY",
+      "INSTIL": "INSTILL",
       "SHOWN": "SHOW",
       "TAUGHT": "TEACH"
     }
@@ -10356,7 +11438,8 @@
       "PLANT",
       "SETTLE",
       "PLOP",
-      "STOW"
+      "STOW",
+      "PERCH"
     ],
     "forms": {
       "DROPPED": "DROP",
@@ -10407,7 +11490,11 @@
       "HISS",
       "CHAFF",
       "BAIT",
-      "NEEDLE"
+      "NEEDLE",
+      "JOSH",
+      "TWIT",
+      "JEST",
+      "BURLESQUE"
     ],
     "forms": {
       "GIBE": "JIBE",
@@ -10420,7 +11507,9 @@
       "RAGGING": "RAG",
       "RIBBED": "RIB",
       "RIBBING": "RIB",
-      "SATIRISE": "SATIRIZE"
+      "SATIRISE": "SATIRIZE",
+      "TWITTED": "TWIT",
+      "TWITTING": "TWIT"
     }
   },
   {
@@ -10450,7 +11539,13 @@
       "FUNK",
       "PHOBIA",
       "SCARE",
-      "SHOCK"
+      "SHOCK",
+      "AWE",
+      "ANGST",
+      "CONCERN",
+      "DISQUIET",
+      "FOREBODING",
+      "CONSTERNATION"
     ],
     "forms": {}
   },
@@ -10519,7 +11614,10 @@
       "CODDLE",
       "SPOIL",
       "HOUSE",
-      "SUPPORT"
+      "SUPPORT",
+      "MINISTER",
+      "COSSET",
+      "MOLLYCODDLE"
     ],
     "forms": {
       "CLAD": "CLOTHE",
@@ -10554,7 +11652,12 @@
       "PROMPT",
       "SNAPPY",
       "LIVELY",
-      "ACCELERATED"
+      "ACCELERATED",
+      "FLYING",
+      "SPEEDING",
+      "WINGED",
+      "RACING",
+      "EXPEDITIOUS"
     ],
     "forms": {
       "HASTIER": "HASTY",
@@ -10608,7 +11711,9 @@
       "HYPE",
       "BOOST",
       "BLESS",
-      "EXALT"
+      "EXALT",
+      "HERALD",
+      "TOUT"
     ],
     "forms": {
       "BLEST": "BLESS",
@@ -10649,7 +11754,11 @@
       "SET",
       "CRUSTY",
       "CRISP",
-      "BRITTLE"
+      "BRITTLE",
+      "DURABLE",
+      "TAUT",
+      "INELASTIC",
+      "CALLOUSED"
     ],
     "forms": {
       "CRUSTIER": "CRUSTY",
@@ -10699,7 +11808,9 @@
       "BROWSE",
       "SKIM",
       "GLIMPSE",
-      "SPY"
+      "SPY",
+      "RUBBERNECK",
+      "CONTEMPLATE"
     ],
     "forms": {
       "BEHELD": "BEHOLD",
@@ -10740,7 +11851,10 @@
       "CHECK",
       "SHOW",
       "AFFIRM",
-      "UPHOLD"
+      "UPHOLD",
+      "EVINCE",
+      "MANIFEST",
+      "CLINCH"
     ],
     "forms": {
       "CERTIFIED": "CERTIFY",
@@ -10776,7 +11890,13 @@
       "TRIUMPH",
       "EXHILARATION",
       "THRILL",
-      "GAIETY"
+      "GAIETY",
+      "ENJOYMENT",
+      "CHEERFULNESS",
+      "BEATITUDE",
+      "JOLLITY",
+      "EXUBERANCE",
+      "FELICITY"
     ],
     "forms": {
       "GAYETY": "GAIETY"
@@ -10806,7 +11926,8 @@
       "UNFURL",
       "REACH",
       "TENSE",
-      "DRAW"
+      "DRAW",
+      "RACK"
     ],
     "forms": {
       "DRAWN": "DRAW",
@@ -10844,7 +11965,9 @@
       "FIDDLE",
       "TINKER",
       "SKYLARK",
-      "JUGGLE"
+      "JUGGLE",
+      "ROLLICK",
+      "DISPORT"
     ],
     "forms": {
       "DALLIED": "DALLY",
@@ -10932,7 +12055,10 @@
       "DESIGN",
       "COMPOSE",
       "ERECT",
-      "HATCH"
+      "HATCH",
+      "PREPARE",
+      "CONCOCT",
+      "FORMULATE"
     ],
     "forms": {
       "BUILT": "BUILD",
@@ -10972,7 +12098,8 @@
       "PILOT",
       "AUDITION",
       "BID",
-      "DARE"
+      "DARE",
+      "ASSAY"
     ],
     "forms": {
       "BADE": "BID",
@@ -11026,11 +12153,19 @@
       "SUBLIME",
       "MAGNIFICENT",
       "PRIME",
-      "CHOICE"
+      "CHOICE",
+      "DANDY",
+      "GRAND",
+      "GROOVY",
+      "SOUND"
     ],
     "forms": {
       "BEST": "GOOD",
       "BETTER": "GOOD",
+      "DANDIER": "DANDY",
+      "DANDIEST": "DANDY",
+      "GROOVIER": "GROOVY",
+      "GROOVIEST": "GROOVY",
       "MARVELOUS": "MARVELLOUS",
       "PEACHIER": "PEACHY",
       "PEACHIEST": "PEACHY"
@@ -11063,7 +12198,8 @@
       "EXULT",
       "GLORY",
       "ROISTER",
-      "RAVE"
+      "RAVE",
+      "SALUTE"
     ],
     "forms": {
       "GLORIED": "GLORY",
@@ -11107,7 +12243,12 @@
       "FAULTY",
       "USELESS",
       "HOPELESS",
-      "DISMAL"
+      "DISMAL",
+      "MEDIOCRE",
+      "STINKING",
+      "ABOMINABLE",
+      "SHABBY",
+      "RUBBISHY"
     ],
     "forms": {
       "CRUMMIER": "CRUMMY",
@@ -11116,6 +12257,8 @@
       "FAULTIEST": "FAULTY",
       "LOUSIER": "LOUSY",
       "LOUSIEST": "LOUSY",
+      "SHABBIER": "SHABBY",
+      "SHABBIEST": "SHABBY",
       "SHODDIER": "SHODDY",
       "SHODDIEST": "SHODDY",
       "TACKIER": "TACKY",
@@ -11192,7 +12335,16 @@
       "ROTTEN",
       "RANK",
       "PUTRID",
-      "FETID"
+      "FETID",
+      "DISTASTEFUL",
+      "HATEFUL",
+      "DESPICABLE",
+      "HEINOUS",
+      "ABHORRENT",
+      "REPELLENT",
+      "ABOMINABLE",
+      "DETESTABLE",
+      "SHOCKING"
     ],
     "forms": {
       "GHASTLIER": "GHASTLY",
@@ -11236,7 +12388,10 @@
       "SCHLEP",
       "DRAG",
       "TOW",
-      "HEFT"
+      "HEFT",
+      "CRADLE",
+      "PACK",
+      "PORT"
     ],
     "forms": {
       "BORE": "BEAR",
@@ -11317,7 +12472,8 @@
       "KNELL",
       "BLARE",
       "TING",
-      "DONG"
+      "DONG",
+      "BONG"
     ],
     "forms": {
       "RANG": "RING",
@@ -11352,10 +12508,14 @@
       "CARTWHEEL",
       "SOMERSAULT",
       "SWING",
-      "CORKSCREW"
+      "CORKSCREW",
+      "REV",
+      "CHURN"
     ],
     "forms": {
       "EDDIED": "EDDY",
+      "REVVED": "REV",
+      "REVVING": "REV",
       "SPINNING": "SPIN",
       "SPIRALLED": "SPIRAL",
       "SPIRALLING": "SPIRAL",
@@ -11400,7 +12560,9 @@
       "CHAR",
       "GRIDDLE",
       "NUKE",
-      "SMOKE"
+      "SMOKE",
+      "FIX",
+      "SCALD"
     ],
     "forms": {
       "CARAMELISE": "CARAMELIZE",
@@ -11482,7 +12644,9 @@
       "CAN",
       "DEMOTE",
       "FURLOUGH",
-      "EXPEL"
+      "EXPEL",
+      "RETIRE",
+      "PURGE"
     ],
     "forms": {
       "CANNED": "CAN",
@@ -11519,7 +12683,12 @@
       "RAGING",
       "VEHEMENT",
       "PASSIONATE",
-      "ARDENT"
+      "ARDENT",
+      "FERAL",
+      "BARBARIC",
+      "BRUTISH",
+      "BARBAROUS",
+      "UNTAMED"
     ],
     "forms": {
       "BLOODTHIRSTIER": "BLOODTHIRSTY",
@@ -11569,14 +12738,25 @@
       "BUTT",
       "KICK",
       "CLUB",
-      "BLUDGEON"
+      "BLUDGEON",
+      "BAT",
+      "SMITE",
+      "BIFF",
+      "CLIP",
+      "RAP",
+      "SMASH",
+      "PELT"
     ],
     "forms": {
+      "BATTED": "BAT",
+      "BATTING": "BAT",
       "BEATEN": "BEAT",
       "BOPPED": "BOP",
       "BOPPING": "BOP",
       "CHOPPED": "CHOP",
       "CHOPPING": "CHOP",
+      "CLIPPED": "CLIP",
+      "CLIPPING": "CLIP",
       "CLUBBED": "CLUB",
       "CLUBBING": "CLUB",
       "FLOGGED": "FLOG",
@@ -11588,10 +12768,15 @@
       "PUMMELLING": "PUMMEL",
       "RAMMED": "RAM",
       "RAMMING": "RAM",
+      "RAPPED": "RAP",
+      "RAPPING": "RAP",
       "SLAPPED": "SLAP",
       "SLAPPING": "SLAP",
       "SLUGGED": "SLUG",
       "SLUGGING": "SLUG",
+      "SMIT": "SMITE",
+      "SMITTEN": "SMITE",
+      "SMOTE": "SMITE",
       "SWATTED": "SWAT",
       "SWATTING": "SWAT",
       "TAPPED": "TAP",
@@ -11727,7 +12912,13 @@
       "MUTILATE",
       "TORTURE",
       "TORMENT",
-      "ABUSE"
+      "ABUSE",
+      "PRICK",
+      "STAB",
+      "WRENCH",
+      "LAME",
+      "AFFLICT",
+      "CONCUSS"
     ],
     "forms": {
       "BIT": "BITE",
@@ -11736,6 +12927,8 @@
       "BROKEN": "BREAK",
       "BURNT": "BURN",
       "CUTTING": "CUT",
+      "STABBED": "STAB",
+      "STABBING": "STAB",
       "STUNG": "STING"
     }
   },
@@ -11768,7 +12961,10 @@
       "GREET",
       "REUNITE",
       "CONSULT",
-      "PARLEY"
+      "PARLEY",
+      "FLOCK",
+      "THRONG",
+      "CROWD"
     ],
     "forms": {
       "CONFERRED": "CONFER",
@@ -11814,7 +13010,12 @@
       "TREAT",
       "SPARE",
       "LEND",
-      "LOAN"
+      "LOAN",
+      "RENDER",
+      "IMPART",
+      "AFFORD",
+      "FURNISH",
+      "EXTEND"
     ],
     "forms": {
       "ALLOTTED": "ALLOT",
@@ -11891,9 +13092,15 @@
       "EPILOGUE",
       "CODA",
       "FINIS",
-      "STOP"
+      "STOP",
+      "TERMINUS",
+      "CLOSING",
+      "CONSUMMATION",
+      "CURTAIN"
     ],
-    "forms": {}
+    "forms": {
+      "TERMINI": "TERMINUS"
+    }
   },
   {
     "number": 289,
@@ -11921,7 +13128,8 @@
       "STALE",
       "GAMY",
       "OFF",
-      "RIPE"
+      "RIPE",
+      "STINKING"
     ],
     "forms": {
       "FUNKIER": "FUNKY",
@@ -12037,7 +13245,12 @@
       "SATED",
       "SATIATED",
       "GORGED",
-      "BLOATED"
+      "BLOATED",
+      "CONGESTED",
+      "ENGORGED",
+      "BULGING",
+      "BRIMFUL",
+      "STOCKED"
     ],
     "forms": {}
   },
@@ -12068,7 +13281,11 @@
       "REASONABLE",
       "SANE",
       "THOUGHTFUL",
-      "CIRCUMSPECT"
+      "CIRCUMSPECT",
+      "POLITIC",
+      "PROVIDENT",
+      "SAPIENT",
+      "CONSIDERED"
     ],
     "forms": {}
   },
@@ -12138,7 +13355,9 @@
       "BARREN",
       "STERILE",
       "SERE",
-      "CRISP"
+      "CRISP",
+      "DRIED",
+      "TORRID"
     ],
     "forms": {
       "DRIER": "DRY",
@@ -12178,7 +13397,11 @@
       "EARNEST",
       "INTENT",
       "DESIROUS",
-      "WISHFUL"
+      "WISHFUL",
+      "AGOG",
+      "EXCITED",
+      "EXPECTANT",
+      "MOTIVATED"
     ],
     "forms": {
       "HUNGRIER": "HUNGRY",
@@ -12218,7 +13441,13 @@
       "ESTRANGE",
       "QUARANTINE",
       "CLEAVE",
-      "SUNDER"
+      "SUNDER",
+      "SEQUESTER",
+      "DISJOINT",
+      "DEMARCATE",
+      "DISTINGUISH",
+      "DISSOCIATE",
+      "DISUNITE"
     ],
     "forms": {
       "CLEFT": "CLEAVE",
@@ -12252,7 +13481,11 @@
       "RAW",
       "INEXPERIENCED",
       "FRESH",
-      "SPRIGHTLY"
+      "SPRIGHTLY",
+      "MINOR",
+      "INFANTILE",
+      "TEENAGED",
+      "PUBESCENT"
     ],
     "forms": {
       "SPRIGHTLIER": "SPRIGHTLY",
@@ -12287,9 +13520,13 @@
       "VEILED",
       "DISGUISED",
       "UNDISCLOSED",
-      "UNKNOWN"
+      "UNKNOWN",
+      "PRIVY",
+      "UNDERHAND"
     ],
     "forms": {
+      "PRIVIER": "PRIVY",
+      "PRIVIEST": "PRIVY",
       "SLIER": "SLY",
       "SLIEST": "SLY",
       "SLYER": "SLY",
@@ -12327,7 +13564,10 @@
       "COCOON",
       "MOB",
       "SWARM",
-      "ENFOLD"
+      "ENFOLD",
+      "ENVIRON",
+      "BELEAGUER",
+      "ENGULF"
     ],
     "forms": {
       "BESETTING": "BESET",
@@ -12376,7 +13616,11 @@
       "DISSENT",
       "QUIBBLE",
       "SQUAWK",
-      "RAIL"
+      "RAIL",
+      "KICK",
+      "GROUCH",
+      "BEMOAN",
+      "LAMENT"
     ],
     "forms": {
       "CAVILLED": "CAVIL",
@@ -12411,7 +13655,10 @@
       "GRADUAL",
       "STAGNANT",
       "GLACIAL",
-      "SLUGGISH"
+      "SLUGGISH",
+      "SLACK",
+      "LANGUID",
+      "LEADEN"
     ],
     "forms": {
       "TARDIER": "TARDY",
@@ -12448,11 +13695,17 @@
       "BEERY",
       "BLIND",
       "FUDDLED",
-      "WOOZY"
+      "WOOZY",
+      "STEAMING",
+      "OILED",
+      "BOOZY",
+      "BESOTTED"
     ],
     "forms": {
       "BEERIER": "BEERY",
       "BEERIEST": "BEERY",
+      "BOOZIER": "BOOZY",
+      "BOOZIEST": "BOOZY",
       "MERRIER": "MERRY",
       "MERRIEST": "MERRY",
       "TIPSIER": "TIPSY",
@@ -12494,7 +13747,10 @@
       "TRUMPET",
       "WHINE",
       "WOOF",
-      "OINK"
+      "OINK",
+      "RUMBLE",
+      "CHATTER",
+      "BUGLE"
     ],
     "forms": {
       "MIAOW": "MEOW",
@@ -12538,7 +13794,10 @@
       "SNOOP",
       "NOSE",
       "SCAVENGE",
-      "GOOGLE"
+      "GOOGLE",
+      "LOOK",
+      "SCRABBLE",
+      "POKE"
     ],
     "forms": {
       "DIGGING": "DIG",
@@ -12582,10 +13841,13 @@
       "OXIDIZE",
       "BRAND",
       "CAUTERIZE",
-      "SCALD"
+      "SCALD",
+      "BLACKEN",
+      "CARBONIZE"
     ],
     "forms": {
       "BURNT": "BURN",
+      "CARBONISE": "CARBONIZE",
       "CAUTERISE": "CAUTERIZE",
       "CHARRED": "CHAR",
       "CHARRING": "CHAR",
@@ -12621,7 +13883,9 @@
       "SNAG",
       "CAGE",
       "HOOK",
-      "BAG"
+      "BAG",
+      "WAYLAY",
+      "LASSO"
     ],
     "forms": {
       "BAGGED": "BAG",
@@ -12636,7 +13900,8 @@
       "SNAGGED": "SNAG",
       "SNAGGING": "SNAG",
       "TRAPPED": "TRAP",
-      "TRAPPING": "TRAP"
+      "TRAPPING": "TRAP",
+      "WAYLAID": "WAYLAY"
     }
   },
   {
@@ -12666,7 +13931,12 @@
       "GRACIOUS",
       "OBLIGING",
       "LOVING",
-      "BENIGN"
+      "BENIGN",
+      "UNDERSTANDING",
+      "MERCIFUL",
+      "WARMHEARTED",
+      "NICE",
+      "LENIENT"
     ],
     "forms": {
       "BEST": "GOOD",
@@ -12700,9 +13970,11 @@
       "FANCY",
       "CONCOCT",
       "SPECULATE",
-      "FABRICATE"
+      "FABRICATE",
+      "CONCEPTUALIZE"
     ],
     "forms": {
+      "CONCEPTUALISE": "CONCEPTUALIZE",
       "DREAMT": "DREAM",
       "FANCIED": "FANCY",
       "FANTASISE": "FANTASIZE",
@@ -12749,7 +14021,9 @@
       "VOLUNTEER",
       "COLLABORATE",
       "COOPERATE",
-      "CONTRIBUTE"
+      "CONTRIBUTE",
+      "AVAIL",
+      "BOLSTER"
     ],
     "forms": {
       "ABETTED": "ABET",
@@ -12797,7 +14071,9 @@
       "PERVADE",
       "CROWD",
       "THRONG",
-      "SWARM"
+      "SWARM",
+      "IMBUE",
+      "SUFFUSE"
     ],
     "forms": {
       "BRIMMED": "BRIM",
@@ -12846,7 +14122,11 @@
       "TOXIC",
       "POISONOUS",
       "VENOMOUS",
-      "HARMFUL"
+      "HARMFUL",
+      "INSIDIOUS",
+      "PERNICIOUS",
+      "NOXIOUS",
+      "UNSTABLE"
     ],
     "forms": {
       "CHANCIER": "CHANCY",
@@ -12891,11 +14171,17 @@
       "UNSHACKLE",
       "UNBIND",
       "UNLOCK",
-      "EXONERATE"
+      "EXONERATE",
+      "DISENGAGE",
+      "UNTANGLE",
+      "UNFASTEN",
+      "SPRING"
     ],
     "forms": {
       "ACQUITTED": "ACQUIT",
       "ACQUITTING": "ACQUIT",
+      "SPRANG": "SPRING",
+      "SPRUNG": "SPRING",
       "UNBOUND": "UNBIND",
       "UNTYING": "UNTIE"
     }
@@ -12930,7 +14216,10 @@
       "BURNISH",
       "SHINE",
       "SPRUCE",
-      "NEATEN"
+      "NEATEN",
+      "DEGREASE",
+      "DECONTAMINATE",
+      "FUMIGATE"
     ],
     "forms": {
       "MOPPED": "MOP",
@@ -12977,7 +14266,12 @@
       "CONFRONT",
       "DISOBEY",
       "FLOUT",
-      "STONEWALL"
+      "STONEWALL",
+      "STAND",
+      "BATTLE",
+      "CONTEST",
+      "DISPUTE",
+      "STRUGGLE"
     ],
     "forms": {
       "COMBATTED": "COMBAT",
@@ -12988,6 +14282,7 @@
       "REBELLING": "REBEL",
       "REPELLED": "REPEL",
       "REPELLING": "REPEL",
+      "STOOD": "STAND",
       "STRUCK": "STRIKE",
       "WITHSTOOD": "WITHSTAND"
     }
@@ -13030,7 +14325,9 @@
       "FINAGLE",
       "SCROUNGE",
       "CADGE",
-      "BORROW"
+      "BORROW",
+      "GARNER",
+      "CLINCH"
     ],
     "forms": {
       "BAGGED": "BAG",
@@ -13077,7 +14374,11 @@
       "REISSUE",
       "REBROADCAST",
       "RESUME",
-      "REDOUBLE"
+      "REDOUBLE",
+      "REMAKE",
+      "ENCORE",
+      "DITTO",
+      "RECOUNT"
     ],
     "forms": {
       "RECAPPED": "RECAP",
@@ -13086,6 +14387,7 @@
       "RECURRING": "RECUR",
       "REDID": "REDO",
       "REDONE": "REDO",
+      "REMADE": "REMAKE",
       "REPRIZE": "REPRISE",
       "RERAN": "RERUN",
       "RERUNNING": "RERUN",
@@ -13123,7 +14425,8 @@
       "UNTRIED",
       "UNTESTED",
       "REVOLUTIONARY",
-      "ULTRAMODERN"
+      "ULTRAMODERN",
+      "UNPRECEDENTED"
     ],
     "forms": {
       "YOUNGER": "YOUNG",
@@ -13157,7 +14460,10 @@
       "PRECISE",
       "DELIBERATE",
       "MINDFUL",
-      "HEEDFUL"
+      "HEEDFUL",
+      "DISCREET",
+      "PARTICULAR",
+      "THOUGHTFUL"
     ],
     "forms": {
       "CHARIER": "CHARY",
@@ -13210,10 +14516,16 @@
       "PROMENADE",
       "SASHAY",
       "SHAMBLE",
-      "TREAD"
+      "TREAD",
+      "PAD",
+      "HOOF",
+      "PERAMBULATE",
+      "STUMP"
     ],
     "forms": {
       "CREPT": "CREEP",
+      "PADDED": "PAD",
+      "PADDING": "PAD",
       "PLODDED": "PLOD",
       "PLODDING": "PLOD",
       "SLOGGED": "SLOG",
@@ -13388,7 +14700,12 @@
       "BRASH",
       "SASSY",
       "SAUCY",
-      "LIPPY"
+      "LIPPY",
+      "GAUCHE",
+      "CRASS",
+      "CHURLISH",
+      "SURLY",
+      "UNGRACIOUS"
     ],
     "forms": {
       "CHEEKIER": "CHEEKY",
@@ -13398,7 +14715,9 @@
       "SASSIER": "SASSY",
       "SASSIEST": "SASSY",
       "SAUCIER": "SAUCY",
-      "SAUCIEST": "SAUCY"
+      "SAUCIEST": "SAUCY",
+      "SURLIER": "SURLY",
+      "SURLIEST": "SURLY"
     }
   },
   {
@@ -13428,9 +14747,11 @@
       "DABBLE",
       "DRIZZLE",
       "HOSE",
-      "MIST"
+      "MIST",
+      "SWASH"
     ],
     "forms": {
+      "DOWSE": "DOUSE",
       "SLOPPED": "SLOP",
       "SLOPPING": "SLOP",
       "WETTED": "WET",
@@ -13469,7 +14790,8 @@
       "UNWRAP",
       "DISCLOSE",
       "SPORT",
-      "FLASH"
+      "FLASH",
+      "PROJECT"
     ],
     "forms": {
       "MODELLED": "MODEL",
@@ -13503,7 +14825,9 @@
       "DEFORMED",
       "MISSHAPEN",
       "HORRID",
-      "UNPREPOSSESSING"
+      "UNPREPOSSESSING",
+      "DISFIGURED",
+      "HORRIBLE"
     ],
     "forms": {
       "GHASTLIER": "GHASTLY",
@@ -13538,7 +14862,8 @@
       "NOD",
       "WINK",
       "SHRUG",
-      "BOW"
+      "BOW",
+      "INDICATE"
     ],
     "forms": {
       "FLAGGED": "FLAG",
@@ -13579,7 +14904,12 @@
       "FLOTSAM",
       "CLUTTER",
       "DUMP",
-      "SLOPS"
+      "SLOPS",
+      "JETSAM",
+      "RUBBLE",
+      "WRECKAGE",
+      "LEAVINGS",
+      "REJECTS"
     ],
     "forms": {}
   },
@@ -13608,7 +14938,9 @@
       "REMISS",
       "DOZY",
       "LACKADAISICAL",
-      "SLOVENLY"
+      "SLOVENLY",
+      "SUPINE",
+      "LOAFING"
     ],
     "forms": {
       "DOZIER": "DOZY",
@@ -13647,7 +14979,9 @@
       "WHALE",
       "SEAL",
       "SCAVENGE",
-      "PREY"
+      "PREY",
+      "TRACE",
+      "RABBIT"
     ],
     "forms": {
       "BAGGED": "BAG",
@@ -13685,7 +15019,12 @@
       "PALPABLE",
       "DISTINCT",
       "MARKED",
-      "STARK"
+      "STARK",
+      "OPEN",
+      "EXPLICIT",
+      "DISCERNIBLE",
+      "PROMINENT",
+      "UNDENIABLE"
     ],
     "forms": {}
   },
@@ -13713,7 +15052,11 @@
       "CONCRETE",
       "PHYSICAL",
       "MATERIAL",
-      "SOLID"
+      "SOLID",
+      "NATURAL",
+      "EXISTENT",
+      "SUBSTANTIAL",
+      "PALPABLE"
     ],
     "forms": {
       "TRUER": "TRUE",
@@ -13748,7 +15091,9 @@
       "STICK",
       "SPIT",
       "JAB",
-      "KNIFE"
+      "KNIFE",
+      "BROACH",
+      "POKE"
     ],
     "forms": {
       "JABBED": "JAB",
@@ -13790,9 +15135,15 @@
       "BUNDLE",
       "CULL",
       "FORAGE",
-      "SCAVENGE"
+      "SCAVENGE",
+      "BUNCH",
+      "AGGREGATE",
+      "CROP",
+      "CONSOLIDATE"
     ],
     "forms": {
+      "CROPPED": "CROP",
+      "CROPPING": "CROP",
       "MARSHALLED": "MARSHAL",
       "MARSHALLING": "MARSHAL"
     }
@@ -13824,7 +15175,12 @@
       "BEGRIME",
       "BLOT",
       "SPOT",
-      "DEFILE"
+      "DEFILE",
+      "MUCK",
+      "BLEMISH",
+      "BEFOUL",
+      "SMIRCH",
+      "STREAK"
     ],
     "forms": {
       "BLOTTED": "BLOT",
@@ -13871,7 +15227,9 @@
       "SCHMOOZE",
       "BLAB",
       "PALAVER",
-      "GABBLE"
+      "GABBLE",
+      "RABBIT",
+      "YAP"
     ],
     "forms": {
       "BLABBED": "BLAB",
@@ -13885,7 +15243,9 @@
       "SPOKE": "SPEAK",
       "SPOKEN": "SPEAK",
       "YAKKED": "YAK",
-      "YAKKING": "YAK"
+      "YAKKING": "YAK",
+      "YAPPED": "YAP",
+      "YAPPING": "YAP"
     }
   },
   {
@@ -13914,7 +15274,10 @@
       "STOCKY",
       "PODGY",
       "BLOATED",
-      "BULKY"
+      "BULKY",
+      "DUMPY",
+      "HEFTY",
+      "THICKSET"
     ],
     "forms": {
       "BEEFIER": "BEEFY",
@@ -13927,12 +15290,16 @@
       "CHUBBIEST": "CHUBBY",
       "CHUNKIER": "CHUNKY",
       "CHUNKIEST": "CHUNKY",
+      "DUMPIER": "DUMPY",
+      "DUMPIEST": "DUMPY",
       "FATTER": "FAT",
       "FATTEST": "FAT",
       "FLESHIER": "FLESHY",
       "FLESHIEST": "FLESHY",
       "HEAVIER": "HEAVY",
       "HEAVIEST": "HEAVY",
+      "HEFTIER": "HEFTY",
+      "HEFTIEST": "HEFTY",
       "PODGIER": "PODGY",
       "PODGIEST": "PODGY",
       "PORTLIER": "PORTLY",
@@ -13969,7 +15336,8 @@
       "CAPSIZE",
       "CRUMPLE",
       "BULLDOZE",
-      "BARREL"
+      "BARREL",
+      "SLAM"
     ],
     "forms": {
       "BARRELLED": "BARREL",
@@ -13982,6 +15350,8 @@
       "RAMMING": "RAM",
       "SKIDDED": "SKID",
       "SKIDDING": "SKID",
+      "SLAMMED": "SLAM",
+      "SLAMMING": "SLAM",
       "TOTALLED": "TOTAL",
       "TOTALLING": "TOTAL"
     }
@@ -14016,9 +15386,12 @@
       "BOTCH",
       "BLUNDER",
       "FLUFF",
-      "MUFF"
+      "MUFF",
+      "FALL"
     ],
     "forms": {
+      "FALLEN": "FALL",
+      "FELL": "FALL",
       "FLOPPED": "FLOP",
       "FLOPPING": "FLOP",
       "LOST": "LOSE",
@@ -14059,7 +15432,11 @@
       "SQUISH",
       "CONDENSE",
       "MASH",
-      "EXTRUDE"
+      "EXTRUDE",
+      "COMPACT",
+      "CLASP",
+      "CINCH",
+      "SANDWICH"
     ],
     "forms": {
       "CRAMMED": "CRAM",
@@ -14105,7 +15482,8 @@
       "WHOOP",
       "HOOT",
       "BRAY",
-      "CRY"
+      "CRY",
+      "TRUMPET"
     ],
     "forms": {
       "CLAMOUR": "CLAMOR",
@@ -14145,9 +15523,16 @@
       "WARD",
       "STAVE",
       "DISRUPT",
-      "NEUTRALIZE"
+      "NEUTRALIZE",
+      "OBVIATE",
+      "BAR",
+      "SCOTCH",
+      "FORECLOSE",
+      "PREEMPT"
     ],
     "forms": {
+      "BARRED": "BAR",
+      "BARRING": "BAR",
       "DETERRED": "DETER",
       "DETERRING": "DETER",
       "NEUTRALISE": "NEUTRALIZE",
@@ -14185,7 +15570,8 @@
       "HOPE",
       "ASPIRE",
       "YEN",
-      "DROOL"
+      "DROOL",
+      "PANT"
     ],
     "forms": {
       "DREAMT": "DREAM",
@@ -14219,7 +15605,8 @@
       "SELFISH",
       "MISERLY",
       "STINGY",
-      "ENVIOUS"
+      "ENVIOUS",
+      "GRABBY"
     ],
     "forms": {
       "GREEDIER": "GREEDY",
@@ -14250,9 +15637,14 @@
       "CLEAR",
       "MANAGEABLE",
       "ACHIEVABLE",
-      "DOABLE"
+      "DOABLE",
+      "SOFT",
+      "BREEZY",
+      "FOOLPROOF"
     ],
     "forms": {
+      "BREEZIER": "BREEZY",
+      "BREEZIEST": "BREEZY",
       "EASIER": "EASY",
       "EASIEST": "EASY"
     }
@@ -14288,7 +15680,9 @@
       "STAKE",
       "ANTE",
       "WAGER",
-      "BET"
+      "BET",
+      "TENDER",
+      "DEFRAY"
     ],
     "forms": {
       "BETTED": "BET",
@@ -14324,9 +15718,12 @@
       "FLUKY",
       "SERENDIPITOUS",
       "SUCCESSFUL",
-      "PROSPEROUS"
+      "PROSPEROUS",
+      "FAVORABLE",
+      "GOLDEN"
     ],
     "forms": {
+      "FAVOURABLE": "FAVORABLE",
       "FAVOURED": "FAVORED",
       "FLUKIER": "FLUKY",
       "FLUKIEST": "FLUKY",
@@ -14369,13 +15766,18 @@
       "BASK",
       "LOAF",
       "PUTTER",
-      "POTTER"
+      "POTTER",
+      "UNBEND",
+      "EASE",
+      "DECOMPRESS",
+      "LOOSEN"
     ],
     "forms": {
       "BROKE": "BREAK",
       "BROKEN": "BREAK",
       "NAPPED": "NAP",
       "NAPPING": "NAP",
+      "UNBENT": "UNBEND",
       "UNWOUND": "UNWIND"
     }
   },
@@ -14407,7 +15809,11 @@
       "VISION",
       "DREAM",
       "INTENTION",
-      "BRAINCHILD"
+      "BRAINCHILD",
+      "FANCY",
+      "CONCEIT",
+      "BRAINSTORM",
+      "PROPOSITION"
     ],
     "forms": {
       "BRAINCHILDREN": "BRAINCHILD",
@@ -14441,10 +15847,16 @@
       "JILT",
       "DUMP",
       "DITCH",
-      "BLACKBALL"
+      "BLACKBALL",
+      "REPEL",
+      "REPULSE",
+      "DISCLAIM",
+      "DISOWN"
     ],
     "forms": {
       "DENIED": "DENY",
+      "REPELLED": "REPEL",
+      "REPELLING": "REPEL",
       "SHUNNED": "SHUN",
       "SHUNNING": "SHUN",
       "SNUBBED": "SNUB",
@@ -14522,7 +15934,10 @@
       "PERTURBED",
       "BOTHERED",
       "DISTRAUGHT",
-      "FRANTIC"
+      "FRANTIC",
+      "UPSET",
+      "UNSETTLED",
+      "DISTURBED"
     ],
     "forms": {
       "EDGIER": "EDGY",
@@ -14565,11 +15980,15 @@
       "GAPE",
       "YAWN",
       "DILATE",
-      "WIDEN"
+      "WIDEN",
+      "UNBAR",
+      "SPREAD"
     ],
     "forms": {
       "PRIZE": "PRISE",
       "SPLITTING": "SPLIT",
+      "UNBARRED": "UNBAR",
+      "UNBARRING": "UNBAR",
       "UNCAPPED": "UNCAP",
       "UNCAPPING": "UNCAP",
       "UNDID": "UNDO",
@@ -14608,7 +16027,10 @@
       "CAVERNOUS",
       "SABLE",
       "EBONY",
-      "JET"
+      "JET",
+      "OPAQUE",
+      "DISMAL",
+      "CREPUSCULAR"
     ],
     "forms": {
       "CLOUDIER": "CLOUDY",
@@ -14701,15 +16123,25 @@
       "BUBBLY",
       "CHUFFED",
       "GRATIFIED",
-      "BEAMING"
+      "BEAMING",
+      "JOYOUS",
+      "LAUGHING",
+      "CHEERY",
+      "SMILING",
+      "CHIPPER",
+      "JAUNTY"
     ],
     "forms": {
       "BUBBLIER": "BUBBLY",
       "BUBBLIEST": "BUBBLY",
+      "CHEERIER": "CHEERY",
+      "CHEERIEST": "CHEERY",
       "GLADDER": "GLAD",
       "GLADDEST": "GLAD",
       "HAPPIER": "HAPPY",
       "HAPPIEST": "HAPPY",
+      "JAUNTIER": "JAUNTY",
+      "JAUNTIEST": "JAUNTY",
       "JOLLIER": "JOLLY",
       "JOLLIEST": "JOLLY",
       "MERRIER": "MERRY",
@@ -14749,7 +16181,11 @@
       "HOBBLE",
       "HAMSTRING",
       "UNDERCUT",
-      "ATTENUATE"
+      "ATTENUATE",
+      "DISABLE",
+      "SUBVERT",
+      "DAMPEN",
+      "COMPROMISE"
     ],
     "forms": {
       "HAMSTRUNG": "HAMSTRING",
@@ -14826,7 +16262,10 @@
       "STUNTED",
       "WEENY",
       "TEENSY",
-      "BITTY"
+      "BITTY",
+      "UNDERSIZED",
+      "BANTAM",
+      "ELFIN"
     ],
     "forms": {
       "BITTIER": "BITTY",
@@ -14868,10 +16307,12 @@
       "LAVISH",
       "SUMPTUOUS",
       "FLASH",
-      "WELL"
+      "WELL",
+      "PROPERTIED"
     ],
     "forms": {
       "BETTER": "WELL",
+      "MONIED": "MONEYED",
       "RITZIER": "RITZY",
       "RITZIEST": "RITZY",
       "SWANKIER": "SWANKY",
@@ -14910,7 +16351,9 @@
       "EMULATE",
       "MIRROR",
       "IMPERSONATE",
-      "CRIB"
+      "CRIB",
+      "SIMULATE",
+      "FACSIMILE"
     ],
     "forms": {
       "BOOTLEGGED": "BOOTLEG",
@@ -14967,9 +16410,16 @@
       "BISECT",
       "DISSECT",
       "AMPUTATE",
-      "SCYTHE"
+      "SCYTHE",
+      "SECTION",
+      "CHISEL",
+      "GOUGE",
+      "SCISSOR",
+      "QUARTER"
     ],
     "forms": {
+      "CHISELLED": "CHISEL",
+      "CHISELLING": "CHISEL",
       "CHOPPED": "CHOP",
       "CHOPPING": "CHOP",
       "CLEFT": "CLEAVE",
@@ -15024,7 +16474,8 @@
       "WORRY",
       "PERTURB",
       "DISCOMFIT",
-      "FAZE"
+      "FAZE",
+      "BURDEN"
     ],
     "forms": {
       "BEDEVILLED": "BEDEVIL",
