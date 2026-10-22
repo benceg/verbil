@@ -112,12 +112,12 @@ describe("hints", () => {
 
 describe("share text", () => {
   it("shows four cheeses for Gerbrilliant", () => {
-    expect(shareText(27, 33)).toBe("🐭 Verbil (verbil.fun)\nGerbrilliant! 🧀🧀🧀🧀\n27/33 words - 81%");
+    expect(shareText(27, 33)).toBe("🐭 Verbil (https://verbil.fun)\nGerbrilliant! 🧀🧀🧀🧀\n27/33 words - 81%");
     expect(shareText(32, 33)).toContain("Gerbrilliant! 🧀🧀🧀🧀");
   });
 
   it("shows five cheeses for a Smashdown", () => {
-    expect(shareText(33, 33)).toBe("🐭 Verbil (verbil.fun)\nSmashdown! 🧀🧀🧀🧀🧀\n33/33 words - 100%");
+    expect(shareText(33, 33)).toBe("🐭 Verbil (https://verbil.fun)\nSmashdown! 🧀🧀🧀🧀🧀\n33/33 words - 100%");
   });
 });
 
