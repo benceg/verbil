@@ -132,11 +132,11 @@ export function App() {
     setPanel(null);
   };
 
-  // e.g. "Verbil #24, Tue 10 Nov: a daily synonym word game"
+  // Past puzzles get their number and date, e.g. "Verbil #24, Tue 10 Nov: a daily synonym word game".
   useEffect(() => {
-    if (!puzzle) return;
-    document.title = `Verbil #${puzzle.number}, ${formatDate(puzzle.date)}: a daily synonym word game`;
-  }, [puzzle]);
+    const past = puzzle && puzzle.date !== today ? `Verbil #${puzzle.number}, ${formatDate(puzzle.date)}` : "Verbil";
+    document.title = `${past}: a daily synonym word game`;
+  }, [puzzle, today]);
 
   const answers = useMemo(() => puzzle?.words ?? [], [puzzle]);
   const answerSet = useMemo(() => new Set(answers), [answers]);
