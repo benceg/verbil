@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { isDate, latestPlayableDate } from "../shared/dates";
+import { isDate, todayGmt } from "../shared/dates";
 import type { ArchiveEntry, Puzzle } from "../shared/types";
 import data from "./puzzles.json";
 
@@ -24,18 +24,18 @@ app.use("*", async (c, next) => {
   if (production) c.header("Strict-Transport-Security", "max-age=31536000");
 });
 
-// Nothing dated after today (in the earliest timezone) is ever served, so tomorrow's
-// words can't be fetched early. The answers aren't in the client bundle either.
+// Nothing dated after today (GMT) is ever served, so tomorrow's words can't be fetched
+// early. The answers aren't in the client bundle either.
 app.get("/api/puzzle/:date", (c) => {
   const date = c.req.param("date");
-  const puzzle = isDate(date) && date <= latestPlayableDate() ? byDate.get(date) : undefined;
+  const puzzle = isDate(date) && date <= todayGmt() ? byDate.get(date) : undefined;
   if (!puzzle) return c.json({ error: "No puzzle for that date" }, 404);
   c.header("Cache-Control", "public, max-age=300");
   return c.json(puzzle);
 });
 
 app.get("/api/archive", (c) => {
-  const latest = latestPlayableDate();
+  const latest = todayGmt();
   const entries: ArchiveEntry[] = puzzles
     .filter((p) => p.date <= latest)
     .map((p) => ({

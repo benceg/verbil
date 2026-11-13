@@ -22,10 +22,10 @@ describe("puzzle API", () => {
     expect((await app.request("/api/puzzle/2026-10-20")).status).toBe(404);
   });
 
-  it("allows the next day once it has begun in UTC+14", async () => {
-    at("2026-10-18T10:00:00Z"); // already 00:00 on the 19th in Kiribati
+  it("allows the next day once it has begun in GMT", async () => {
+    at("2026-10-19T00:00:00Z");
     expect((await app.request("/api/puzzle/2026-10-19")).status).toBe(200);
-    at("2026-10-18T09:59:00Z");
+    at("2026-10-18T23:59:00Z");
     expect((await app.request("/api/puzzle/2026-10-19")).status).toBe(404);
   });
 

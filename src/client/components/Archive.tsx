@@ -16,7 +16,7 @@ interface Props {
 }
 
 export function Archive({ entries: all, failed, progress, today, current, streak, onPick, onClose }: Props) {
-  // The server lists every day that has begun anywhere on Earth; only show the player's own days.
+  // Guards against a cached or clock-skewed list: never show a day after today (GMT).
   const entries = all?.filter((e) => e.date <= today) ?? null;
   const finished = entries?.filter((e) => (progress[e.date]?.found.length ?? 0) >= e.total).length ?? 0;
   const played = entries?.filter((e) => (progress[e.date]?.found.length ?? 0) > 0).length ?? 0;

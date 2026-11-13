@@ -48,12 +48,10 @@ A custom domain can be attached in the Cloudflare dashboard.
 
 ## No peeking at tomorrow
 
-The answers aren't in the client bundle. `GET /api/puzzle/:date` only returns a puzzle whose
-date has begun in **UTC+14**, the earliest timezone, so everyone gets their new puzzle at
-local midnight. The client never shows or navigates to a date after the player's local
-today. (Someone determined could call the API by hand during the hours when it's already
-"tomorrow" in Kiribati. Without accounts, any scheme has to trust the clock at one end, and
-this one is the friendliest.)
+The answers aren't in the client bundle. All puzzle dates are GMT: `GET /api/puzzle/:date`
+only returns a puzzle whose date has begun in GMT, and the client never shows or navigates to
+a date after today in GMT. So everyone gets the new puzzle at the same moment (midnight GMT),
+and a shared link to today's puzzle works for everyone.
 
 ## Puzzle data
 

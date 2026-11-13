@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
-import { formatDate, isDate, LAUNCH, localToday } from "../shared/dates";
+import { formatDate, isDate, LAUNCH, todayGmt } from "../shared/dates";
 import type { ArchiveEntry, Puzzle } from "../shared/types";
 import { fetchArchive, fetchPuzzle, NotAvailable } from "./api";
 import { Archive } from "./components/Archive";
@@ -45,7 +45,7 @@ function firstVisit(): boolean {
 }
 
 export function App() {
-  const today = localToday();
+  const today = todayGmt();
   const [date, setDate] = useState(() => dateFromUrl(today));
   const [puzzle, setPuzzle] = useState<Puzzle | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -108,7 +108,7 @@ export function App() {
   }, [date]);
 
   useEffect(() => {
-    const onPop = () => setDate(dateFromUrl(localToday()));
+    const onPop = () => setDate(dateFromUrl(todayGmt()));
     addEventListener("popstate", onPop);
     return () => removeEventListener("popstate", onPop);
   }, []);
