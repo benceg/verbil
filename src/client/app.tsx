@@ -132,6 +132,12 @@ export function App() {
     setPanel(null);
   };
 
+  // e.g. "Verbil #24, Tue 10 Nov: a daily synonym word game"
+  useEffect(() => {
+    if (!puzzle) return;
+    document.title = `Verbil #${puzzle.number}, ${formatDate(puzzle.date)}: a daily synonym word game`;
+  }, [puzzle]);
+
   const answers = useMemo(() => puzzle?.words ?? [], [puzzle]);
   const answerSet = useMemo(() => new Set(answers), [answers]);
   const total = answers.length;
@@ -217,8 +223,8 @@ export function App() {
   // Sharing is the reward for reaching Gerbrilliant.
   const canShare = pct >= GERBRILLIANT;
   const share = async () => {
-    if (!canShare) return;
-    const text = shareText(found.length, total);
+    if (!canShare || !puzzle) return;
+    const text = shareText(puzzle.number, puzzle.date, found.length, total);
     const copy = async () => {
       try {
         await navigator.clipboard.writeText(text);
